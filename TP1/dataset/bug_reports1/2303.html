@@ -1,0 +1,2123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+<meta property="og:type" content="website">
+<meta property="og:title" content="2303 - Networking crash opening up an NSPR Socket">
+<meta property="og:url" content="https://bugzilla.mozilla.org/show_bug.cgi?id=2303">
+<meta property="og:description"
+      content="VERIFIED (gordon) in NSPR - NSPR. Last updated 1999-04-27.">
+<meta name="twitter:label1" value="Type">
+<meta name="twitter:data1" value="defect">
+<meta name="twitter:label2" value="Priority">
+<meta name="twitter:data2" value="P1">
+
+    <meta name="viewport" content="width=1024">
+    <meta name="color-scheme" content="dark light">
+    <meta name="generator" content="Bugzilla 20200805.1">
+    <meta name="bugzilla-global" content="dummy"
+        id="bugzilla-global" data-bugzilla="{&quot;api_token&quot;:&quot;&quot;,&quot;config&quot;:{&quot;basepath&quot;:&quot;\/&quot;},&quot;constant&quot;:{&quot;COMMENT_COLS&quot;:80},&quot;param&quot;:{&quot;maxattachmentsize&quot;:&quot;10240&quot;,&quot;maxusermatches&quot;:&quot;50&quot;,&quot;splinter_base&quot;:&quot;\/page.cgi?id=splinter.html&amp;ignore=\/&quot;},&quot;string&quot;:{&quot;bug_type_required&quot;:&quot;You must select a Type for this bug&quot;,&quot;component_required&quot;:&quot;You must select a Component for this bug&quot;,&quot;description_required&quot;:&quot;You must enter a Description for this bug&quot;,&quot;short_desc_required&quot;:&quot;You must enter a Summary for this bug&quot;,&quot;version_required&quot;:&quot;You must select a Version for this bug&quot;},&quot;user&quot;:{&quot;is_new&quot;:1,&quot;login&quot;:&quot;&quot;}}">
+    <title>2303 - Networking crash opening up an NSPR Socket</title>
+
+<link rel="Top" href="/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="/showdependencytree.cgi?id=2303&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="/showdependencygraph.cgi?id=2303">
+
+      <link rel="Show" title="Bug Activity"
+            href="/show_activity.cgi?id=2303">
+
+<link href="https://bugzilla.mozilla.org/static/v20200805.1/skins/yui.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/skins/standard/global.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BugModal/web/bug_modal.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/plugins/contextMenu/contextMenu.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BMO/web/styles/bug_modal.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/EditComments/web/styles/inline-editor.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/ui/jquery-ui-min.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/ui/jquery-ui-structure-min.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/ui/jquery-ui-theme-min.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/skins/lib/prism.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/Needinfo/web/styles/needinfo.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/Review/web/styles/badge.css" rel="stylesheet" type="text/css">
+
+
+
+    
+<script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/jquery-min.js"></script><script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/ui/jquery-ui-min.js"></script><script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/js/yui.js"></script><script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/plugins/contextMenu/contextMenu-min.js"></script><script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/plugins/devbridgeAutocomplete/devbridgeAutocomplete-min.js"></script><script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/js/global.js"></script><script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/js/util.js"></script><script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/js/dropdown.js"></script>
+
+      <script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv">
+          YAHOO.namespace('bugzilla');
+          if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+              YAHOO.util.Event._simpleRemove(window, "unload",
+                                             YAHOO.util.Event._unload);
+          }BUGZILLA.value_descs = JSON.parse('{\"bug_status\":{},\"resolution\":{\"\":\"---\"}}');
+
+  
+    var tracking_flags_str = "{\"types\":[\"tracking\"],\"comments\":{\"cf_tracking_firefox81\":{\"?\":\"[Tracking Requested - why for this release]:\"},\"cf_tracking_firefox_esr68\":{\"?\":\"[Tracking Requested - why for this release]:\"},\"cf_tracking_firefox79\":{\"?\":\"[Tracking Requested - why for this release]:\"},\"cf_tracking_firefox_sumo\":{\"none-needed\":\"Release Note Request (optional, but appreciated)\\n[Why is this notable]:\\n[Affects Firefox for Android]:\\n[Suggested wording]:\\n[Links (documentation, blog post, etc)]:\"},\"cf_tracking_firefox_esr78\":{\"?\":\"[Tracking Requested - why for this release]:\"},\"cf_tracking_firefox80\":{\"?\":\"[Tracking Requested - why for this release]:\"},\"cf_tracking_firefox82\":{\"?\":\"[Tracking Requested - why for this release]:\"},\"cf_tracking_firefox_relnote\":{\"?\":\"Release Note Request (optional, but appreciated)\\n[Why is this notable]:\\n[Affects Firefox for Android]:\\n[Suggested wording]:\\n[Links (documentation, blog post, etc)]:\"}},\"flags\":{\"tracking\":{\"cf_tracking_firefox_esr68\":\"---\",\"cf_status_firefox_esr68\":\"---\",\"cf_status_firefox82\":\"---\",\"cf_status_firefox79\":\"---\",\"cf_status_firefox81\":\"---\",\"cf_tracking_firefox_relnote\":\"---\",\"cf_status_firefox80\":\"---\",\"cf_tracking_firefox_esr78\":\"---\",\"cf_tracking_firefox81\":\"---\",\"cf_tracking_firefox79\":\"---\",\"cf_status_firefox_esr78\":\"---\",\"cf_tracking_firefox80\":\"---\",\"cf_tracking_firefox82\":\"---\"},\"project\":{\"cf_fission_milestone\":\"---\",\"cf_tracking_firefox_sumo\":\"---\"}}}";
+    var TrackingFlags = $.parseJSON(tracking_flags_str);
+
+  
+
+  
+  BUGZILLA.bug_id = 2303;
+  BUGZILLA.bug_title = '2303 - Networking crash opening up an NSPR Socket';
+  BUGZILLA.bug_summary = 'Networking crash opening up an NSPR Socket';
+  BUGZILLA.bug_url = 'https:\/\/bugzilla.mozilla.org\/show_bug.cgi?id=2303';
+  BUGZILLA.bug_keywords = '',
+  BUGZILLA.user = {
+    id: 0,
+    login: '',
+    is_insider: false,
+    is_timetracker: false,
+    can_tag: false,
+    timezone: 'America\/Los_Angeles',
+    settings: {
+      quote_replies: 'quoted_reply',
+      zoom_textareas: true,
+      remember_collapsed: true,
+      inline_attachments: true,
+      autosize_comments: false
+    }
+  };
+
+  BUGZILLA.bug_secure = false;
+      </script>
+<script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BugModal/web/autosize.min.js"></script><script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/ProdCompSearch/web/js/prod_comp_search.js"></script><script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BugModal/web/bug_modal.js"></script><script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BugModal/web/comments.js"></script><script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/ComponentWatching/web/js/overlay.js"></script><script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/js/bugzilla-readable-status-min.js"></script><script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/js/field.js"></script><script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/js/comments.js"></script><script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/TrackingFlags/web/js/flags.js"></script><script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BMO/web/js/firefox-crash-table.js"></script><script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/js/lib/prism.js"></script><script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/GoogleAnalytics/web/js/analytics.js"></script><script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/js/lib/md5.min.js"></script><script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/Review/web/js/badge.js"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla@Mozilla" href="/search_plugin.cgi"><link rel="shortcut icon" href="/extensions/BMO/web/images/favicon.ico">
+<link rel="canonical" href="https://bugzilla.mozilla.org/show_bug.cgi?id=2303">
+<link rel="shorturl" href="https://bugzilla.mozilla.org/2303"><meta name="google-analytics" content="UA-36116321-3" data-location="https://bugzilla.mozilla.org/bug/show-modal" data-title="2303 - Networking crash opening up an NSPR Socket">
+<script async src="https://www.google-analytics.com/analytics.js"></script><meta name="robots" content="noarchive">
+  </head>
+
+
+
+  <body
+        class="bugzilla-mozilla-org
+               skin-standard bug_modal yui-skin-sam">
+
+
+
+<div id="wrapper">
+
+<aside id="message-container" role="complementary">
+  <noscript>
+    <div class="noscript">
+      <div class="inner">
+        <p>Please enable JavaScript in your browser to use all the features on this site.</p>
+      </div>
+    </div>
+  </noscript>
+</aside>
+
+<header id="header" role="banner">
+  <div class="inner">
+    <h1 id="header-title" class="title"><a href="https://bugzilla.mozilla.org/home" title="Go to home page">Bugzilla</a></h1>
+    <form role="search" id="header-search" class="quicksearch" action="/buglist.cgi" data-no-csrf>
+      <section class="searchbox-outer dropdown" role="combobox" aria-expanded="false" aria-haspopup="listbox"
+               aria-labelledby="header-search-label" aria-owns="header-search-dropdown">
+        <h2 id="header-search-label">Quick Search</h2>
+        <span class="icon" aria-hidden="true"></span>
+        <input role="searchbox" id="quicksearch_top" class="dropdown-button" name="quicksearch" autocomplete="off"
+               value="" placeholder="Search Bugs"
+               title="Enter a bug number or some search terms" aria-controls="header-search-dropdown"
+               aria-label="Quick Search"><div id="header-search-dropdown" class="dropdown-content right" role="listbox" style="display: none;">
+  <div id="header-search-dropdown-wrapper">
+  </div>
+</div>
+      </section>
+    </form>
+    <nav id="header-nav">
+      <ul class="links">
+        <li class="link-browse">
+          <a href="/describecomponents.cgi" title="Browse bugs by component">
+            <span class="icon" aria-hidden="true"></span>
+            <span class="label">Browse</span>
+          </a>
+        </li>
+        <li class="link-search">
+          <a href="/query.cgi?format=advanced" title="Search bugs using various criteria">
+            <span class="icon" aria-hidden="true"></span>
+            <span class="label">Advanced Search</span>
+          </a>
+        </li>
+      </ul>
+      <div class="dropdown">
+        <button type="button" id="header-tools-menu-button" class="dropdown-button minor" title="More tools…"
+                aria-label="More tools…" aria-expanded="false" aria-haspopup="true" aria-controls="header-tools-menu">
+          <span class="icon" aria-hidden="true"></span>
+        </button>
+        <ul class="dropdown-content left" id="header-tools-menu" role="menu" style="display:none;">
+          <li role="presentation">
+            <a href="/report.cgi" role="menuitem" tabindex="-1">Reports</a>
+          </li>
+            <li role="separator"></li>
+            <li role="presentation">
+              <a href="https://bmo.readthedocs.io/en/latest/" role="menuitem" tabindex="-1">Documentation</a>
+            </li>
+        </ul>
+      </div>
+    </nav>
+      <ul id="header-login" class="links">
+          <li id="moz_new_account_container_top"><a href="/createaccount.cgi">New Account</a></li><li id="mini_login_container_top">
+  <a id="login_link_top" href="/show_bug.cgi?id=2303&amp;GoAheadAndLogIn=1"
+     class='show_mini_login_form' data-qs-suffix="_top">Log In</a>
+
+  <div id="mini_login_top" class="mini-popup mini_login bz_default_hidden"><span id="github_mini_login_top" class="mini_login_top">
+    <form method="post" action="/github.cgi">
+      <input type="hidden" name="github_secret" value="Ynl6ZbicxYi1xlmmzzOTY9klyEWGgQF4KXc4uPTfN6DNON4F8betGPlHR09IECj5RTPnEWEBqlI3vRimj3O6jAkeZ2Tb7aAgoPazBQZiIYz7m431flhdOugOY50i2XIUsoIrwtqHF7LUw22wOuZwPVapmVehCql1q7bDJaeWg6IH1dU9cRlvmCgEn7e2X6yJ8I5EQwz5XH5JN7J9NtPdQkYJyF3Y1ZxaEIfeOI83BZAUz624TCoaBzQoNdt5XVGi">
+      <input type="hidden" name="target_uri" value="https://bugzilla.mozilla.org/show_bug.cgi?id=2303">
+      <input type="image" src="/extensions/GitHubAuth/web/images/sign_in.png" height="22" width="75" align="absmiddle"
+             alt="Sign in with GitHub"
+             title="Sign in with GitHub"> or
+    </form>
+  </span>
+
+  <form action="/show_bug.cgi?id=2303" method="POST"
+        data-qs-suffix="_top">
+
+    <input id="Bugzilla_login_top"
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           placeholder="Email"
+           aria-label="Email"
+           type="email"
+           required
+    >
+    <input class="bz_password"
+           id="Bugzilla_password_top"
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+           placeholder="Password"
+           aria-label="Password"
+           required
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text"
+           id="Bugzilla_password_dummy_top" value="password"
+           title="Password"
+    >
+      <input type="checkbox" id="Bugzilla_remember_top"
+             name="Bugzilla_remember" value="on" class="bz_remember"
+                 checked>
+      <label for="Bugzilla_remember_top">Remember</label>
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+           class="check_mini_login_fields"
+            id="log_in_top">
+    <a href="#" id="hide_mini_login_top" aria-label="Close"
+       class="close-button hide_mini_login_form" data-qs-suffix="_top">
+      <span class="icon" aria-hidden="true"></span>
+    </a>
+  </form>
+  </div>
+</li>
+<li id="forgot_container_top">
+  <a id="forgot_link_top" href="/show_bug.cgi?id=2303&amp;GoAheadAndLogIn=1#forgot"
+     class='show_forgot_form'
+     data-qs-suffix="_top">Forgot Password</a>
+  <div id="forgot_form_top" class="mini-popup mini_forgot bz_default_hidden">
+  <form action="/token.cgi" method="post">
+    <input type="email" name="loginname" size="20" placeholder="Email" aria-label="Email" required>
+    <input id="forgot_button_top" value="Reset Password"
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token_top" name="token" value="1598303537-CFtWcIBGnLg4tJehOYo4ZJ4DfzJQbQKw4yu714H95ok">
+    <a href="#" class="close-button hide_forgot_form" aria-label="Close" data-qs-suffix="_top">
+      <span class="icon" aria-hidden="true"></span>
+    </a>
+  </form>
+  </div>
+</li>
+      </ul><div id="header-external-links" class="dropdown first">
+  <button type="button" id="header-external-menu-button" class="dropdown-button minor" title="Mozilla"
+          aria-label="Mozilla" aria-expanded="false" aria-haspopup="true" aria-controls="header-external-menu">
+    <img src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BMO/web/images/moz-fav-one-color-white-rgb.svg" width="32" height="32" alt="">
+  </button>
+  <ul class="dropdown-content right" id="header-external-menu" role="menu" style="display:none;">
+    <li role="presentation">
+      <a href="https://www.mozilla.org/" role="menuitem" tabindex="-1">Mozilla Home</a>
+    </li>
+    <li role="separator"></li>
+    <li role="presentation">
+      <a href="https://www.mozilla.org/privacy/websites/" role="menuitem" tabindex="-1">Privacy</a>
+    </li>
+    <li role="presentation">
+      <a href="https://www.mozilla.org/privacy/websites/#cookies" role="menuitem" tabindex="-1">Cookies</a>
+    </li>
+    <li role="presentation">
+      <a href="https://www.mozilla.org/about/legal/" role="menuitem" tabindex="-1">Legal</a>
+    </li>
+  </ul>
+</div>
+  </div>
+</header> 
+
+
+<main id="bugzilla-body" tabindex="-1">
+<div id="main-inner">
+
+
+
+
+<div role="toolbar" id="page-toolbar">
+  <div role="group" class="buttons">
+    <button type="button" id="copy-summary" class="secondary"
+      title="Copy bug number and summary to your clipboard">Copy Summary</button>
+    <div id="clip-container" style="display:none"><input type="text" id="clip"></div>
+    <div class="dropdown">
+      <button type="button" id="action-menu-btn" aria-haspopup="true" aria-label="View"
+        aria-expanded="false" aria-controls="action-menu" class="dropdown-button secondary">View &#9662;</button>
+      <ul class="dropdown-content left" id="action-menu" role="menu" style="display:none;">
+        <li role="presentation">
+          <a id="action-reset" role="menuitem" tabindex="-1">Reset Sections</a>
+        </li>
+        <li role="presentation">
+          <a id="action-expand-all" role="menuitem" tabindex="-1">Expand All Sections</a>
+        </li>
+        <li role="presentation">
+          <a id="action-collapse-all" role="menuitem" tabindex="-1">Collapse All Sections</a>
+        </li>
+        <li role="separator"></li>
+        <li role="presentation">
+          <a id="action-history" role="menuitem" tabindex="-1">History</a>
+        </li>
+        <li role="separator"></li>
+        <li role="presentation">
+          <a href="/rest/bug/2303" role="menuitem" tabindex="-1">JSON</a>
+        </li>
+        <li role="presentation">
+          <a href="/show_bug.cgi?ctype=xml&amp;id=2303" role="menuitem" tabindex="-1">XML</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+<div role="status" id="io-error" style="display:none"></div>
+<div role="status" id="floating-message" style="display:none">
+  <div id="floating-message-text"></div>
+</div>
+<section class="module"
+>
+  <div class="module-content"
+  >
+  <div id="summary-container">
+    <div class="field indent" id="field-status_summary"
+>
+
+
+  
+    <div class=" container">
+        <span id="field-value-status_summary">
+      <span class="bug-status-label text" data-status="closed">Closed</span>
+      <span id="field-value-bug_id">
+        <a href="/show_bug.cgi?id=2303">Bug 2303</a>
+      </span>
+      <span>
+        <span class="bug-time-label">Opened <span class="rel-time" title="1999-01-12 13:41 PST" data-time="916177315">22 years ago</span></span>
+          <span class="bug-time-label">Closed <span class="rel-time" title="1999-01-12 13:46 PST" data-time="916177612">22 years ago</span></span>
+      </span>
+        </span>
+    </div>
+
+  
+</div>
+<div class="field indent edit-hide"
+>
+
+
+  
+    <div class=" container">
+      
+
+      <h1 id="field-value-short_desc">Networking crash opening up an NSPR Socket</h1>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-short_desc" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#short_desc" id="short_desc-help-link" class="help">Summary:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-short_desc">
+            Networking crash opening up an NSPR Socket
+
+        </span>
+    </div>
+
+  
+</div>
+  </div>
+  </div>
+</section>
+
+
+<section class="module" id="module-categories"
+>
+    <header id="module-categories-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Categories section"
+           data-label-collapsed="Expand Categories section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-categories-content"
+             aria-expanded="true"
+             aria-labeledby="module-categories-title"
+             aria-describedby="module-categories-subtitle"></div>
+        <h2 class="module-title" id="module-categories-title">Categories</h2>
+          <h3 class="module-subtitle" id="module-categories-subtitle">
+            (NSPR :: NSPR, defect, P1)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-categories-content"
+  ><div class="fields-lhs">
+
+    <div class="field" id="field-product"
+>
+    <div class="name">
+        <a href="/describecomponents.cgi?product=NSPR" id="product-help-link" class="help">Product:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-product">
+      <div class="name-info-outer dropdown">
+        <span id="product-name" class="dropdown-button" tabindex="0" role="button"
+             aria-haspopup="menu" aria-controls="product-info">NSPR
+          <span class="icon" aria-hidden="true">&#x25BE;</span>
+        </span>
+        <aside id="product-info" class="name-info-popup dropdown-content right hover-display" hidden role="menu"
+               aria-label="Product description and actions">
+          <header>
+            <div class="title">NSPR</div>
+            <div class="description">The Netscape Portable Runtime - Mozilla's cross-platform
+portability layer (<a href="http://www.mozilla.org/projects/nspr/reference/html/">more info</a>)</div>
+          </header>
+          <li role="separator"></li>
+          <div class="actions">
+            <div><a href="/buglist.cgi?product=NSPR&amp;bug_status=__open__"
+                    target="_blank" role="menuitem" tabindex="-1">See Open Bugs in This Product</a></div>
+            <div><a href="/enter_bug.cgi?product=NSPR"
+                    target="_blank" role="menuitem" tabindex="-1">File New Bug in This Product</a></div>
+            <div><button disabled type="button" class="secondary component-watching" role="menuitem" tabindex="-1"
+                         data-product="NSPR"
+                         data-label-watch="Watch This Product" data-label-unwatch="Unwatch This Product"
+                         data-source="BugModal">Watch This Product</button></div>
+          </div>
+        </aside>
+      </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field" id="field-component"
+>
+    <div class="name">
+        <a href="/describecomponents.cgi?product=NSPR&component=NSPR#NSPR" id="component-help-link" class="help">Component:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-component">
+      <div class="name-info-outer dropdown">
+        <span id="component-name" class="dropdown-button" tabindex="0" role="button"
+             aria-haspopup="menu" aria-controls="component-info">NSPR
+          <span class="icon" aria-hidden="true">&#x25BE;</span>
+        </span>
+        <aside id="component-info" class="name-info-popup dropdown-content right hover-display" hidden role="menu"
+               aria-label="Component description and actions">
+          <header>
+            <div class="title">NSPR :: NSPR</div>
+            <div class="description">Cross-platform library providing runtime services, including threading, synchronization, File and Network I/O services, with a platform-independent API.</div>
+          </header>
+          <li role="separator"></li>
+          <div class="actions">
+            <div><a href="/buglist.cgi?product=NSPR&amp;component=NSPR&amp;bug_status=__open__"
+                    target="_blank" role="menuitem" tabindex="-1">See Open Bugs in This Component</a></div>
+            <div><a href="/buglist.cgi?product=NSPR&amp;component=NSPR&amp;chfield=resolution&chfieldfrom=-6m&chfieldvalue=FIXED&bug_status=__closed__"
+                    target="_blank" role="menuitem" tabindex="-1">Recently Fixed Bugs in This Component</a></div>
+            <div><a href="/enter_bug.cgi?product=NSPR&amp;component=NSPR"
+                    target="_blank" role="menuitem" tabindex="-1">File New Bug in This Component</a></div>
+            <div><button disabled type="button" class="secondary component-watching" role="menuitem" tabindex="-1"
+                         data-product="NSPR" data-component="NSPR"
+                         data-label-watch="Watch This Component" data-label-unwatch="Unwatch This Component"
+                         data-source="BugModal">Watch This Component</button></div>
+          </div>
+        </aside>
+      </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-version" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#version" id="version-help-link" class="help">Version:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-version">
+            other
+
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#rep_platform" id="-help-link" class="help">Platform:
+        </a>
+    </div>
+
+
+  
+    <div class=" container"><div class="field inline" id="field-rep_platform"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-rep_platform">
+            x86
+
+        </span>
+    </div>
+
+  
+</div><div class="field indent inline" id="field-op_sys"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-op_sys">
+            Mac System 8.0
+
+        </span>
+    </div>
+
+  
+</div><div class="field indent inline"
+>
+
+
+  
+    <div class=" container">
+    </div>
+
+  
+</div>
+    </div>
+
+  
+</div>
+</div><div class="fields-rhs">
+
+    <div class="field contains-buttons" id="field-bug_type"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#bug_type" id="bug_type-help-link" class="help">Type:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_type">
+      <span class="bug-type-label iconic-text" data-type="defect">
+        <span class="icon" aria-hidden="true"></span>defect</span>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field" id="field-importance"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#priority" id="importance-help-link" class="help">Priority:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-importance"><div class="field inline" id="field-priority"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-priority">P1
+        </span>
+    </div>
+
+  
+</div><div class="field inline" id="field-bug_severity"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#bug_severity" id="bug_severity-help-link" class="help">Severity:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_severity">
+            critical
+
+        </span>
+    </div>
+
+  
+</div>
+        </span>
+    </div>
+
+  
+</div>
+
+    
+</div>
+  </div>
+</section>
+
+
+<section class="module" id="module-tracking"
+>
+    <header id="module-tracking-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Tracking section"
+           data-label-collapsed="Expand Tracking section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-tracking-content"
+             aria-expanded="true"
+             aria-labeledby="module-tracking-title"
+             aria-describedby="module-tracking-subtitle"></div>
+        <h2 class="module-title" id="module-tracking-title">Tracking</h2>
+          <h3 class="module-subtitle" id="module-tracking-subtitle">
+            (Not tracked)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-tracking-content"
+  ><div class="fields-lhs">
+
+    <div class="field edit-hide" id="field-status-view"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugStatuses" id="status-view-help-link" class="help">Status:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-status-view">VERIFIED
+        DUPLICATE
+          of <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED FIXED - [PP]Jan25:Mac freezes waiting for data"
+   href="/show_bug.cgi?id=2133">bug 2133</a>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-status-edit" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugStatuses" id="status-edit-help-link" class="help">Status:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-status-edit"><div class="field inline" id="field-bug_status"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_status">
+            VERIFIED
+
+        </span>
+    </div>
+
+  
+</div><div class="field indent inline" id="field-resolution"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-resolution">
+            DUPLICATE
+
+        </span>
+    </div>
+
+  
+</div>
+    <div id="duplicate-container">
+      of
+      <input id="dup_id" name="dup_id"
+        size="6" value="2133">
+    </div>
+  <div id="status-action-buttons">
+      <div id="duplicate-actions">
+        <button type="button" class="secondary" id="mark-as-dup-btn">
+          Mark as Duplicate
+        </button>
+      </div>
+      <div id="assigned-container" style="display:none">
+        <button type="button" class="secondary" id="mark-as-assigned-btn">
+          Mark as Assigned
+        </button>
+      </div>
+  </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-target_milestone" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#target_milestone" id="target_milestone-help-link" class="help">Milestone:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-target_milestone">
+            ---
+
+        </span>
+    </div>
+
+  
+</div>
+
+    
+
+
+      <div class="field edit-show" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide#Tracking_Flags" id="-help-link" class="help">Project Flags:
+        </a>
+    </div>
+
+
+  
+    <div class=" container"><div class="flags edit-show" style="display:none">
+  <table class="layout-table tracking-flags">
+      <tr>
+        <td class="tracking-flag-name">user-doc-firefox</td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_tracking_firefox_sumo-dirty">
+  <select id="cf_tracking_firefox_sumo" name="cf_tracking_firefox_sumo">
+        <option value="---"
+          id="v4660_cf_tracking_firefox_sumo" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">Fission Milestone</td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_fission_milestone-dirty">
+  <select id="cf_fission_milestone" name="cf_fission_milestone">
+        <option value="---"
+          id="v4222_cf_fission_milestone" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+  </table>
+</div>
+    </div>
+
+  
+</div>
+</div><div class="fields-rhs">
+
+      <div class="field edit-show" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide#Tracking_Flags" id="-help-link" class="help">Tracking Flags:
+        </a>
+    </div>
+
+
+  
+    <div class=" container"><div class="flags edit-show" style="display:none">
+  <table class="layout-table tracking-flags">
+      <tr>
+        <th></th>
+        <th>Tracking</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">relnote-firefox</td>
+          <td class="tracking-flag-tracking"></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_tracking_firefox_relnote-dirty">
+  <select id="cf_tracking_firefox_relnote" name="cf_tracking_firefox_relnote">
+        <option value="---"
+          id="v539_cf_tracking_firefox_relnote" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">firefox-esr68</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_firefox_esr68-dirty">
+  <select id="cf_tracking_firefox_esr68" name="cf_tracking_firefox_esr68">
+        <option value="---"
+          id="v4365_cf_tracking_firefox_esr68" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_firefox_esr68-dirty">
+  <select id="cf_status_firefox_esr68" name="cf_status_firefox_esr68">
+        <option value="---"
+          id="v4407_cf_status_firefox_esr68" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">firefox-esr78</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_firefox_esr78-dirty">
+  <select id="cf_tracking_firefox_esr78" name="cf_tracking_firefox_esr78">
+        <option value="---"
+          id="v4808_cf_tracking_firefox_esr78" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_firefox_esr78-dirty">
+  <select id="cf_status_firefox_esr78" name="cf_status_firefox_esr78">
+        <option value="---"
+          id="v4813_cf_status_firefox_esr78" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">firefox79</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_firefox79-dirty">
+  <select id="cf_tracking_firefox79" name="cf_tracking_firefox79">
+        <option value="---"
+          id="v4791_cf_tracking_firefox79" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_firefox79-dirty">
+  <select id="cf_status_firefox79" name="cf_status_firefox79">
+        <option value="---"
+          id="v4796_cf_status_firefox79" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">firefox80</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_firefox80-dirty">
+  <select id="cf_tracking_firefox80" name="cf_tracking_firefox80">
+        <option value="---"
+          id="v4850_cf_tracking_firefox80" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_firefox80-dirty">
+  <select id="cf_status_firefox80" name="cf_status_firefox80">
+        <option value="---"
+          id="v4855_cf_status_firefox80" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">firefox81</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_firefox81-dirty">
+  <select id="cf_tracking_firefox81" name="cf_tracking_firefox81">
+        <option value="---"
+          id="v4883_cf_tracking_firefox81" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_firefox81-dirty">
+  <select id="cf_status_firefox81" name="cf_status_firefox81">
+        <option value="---"
+          id="v4888_cf_status_firefox81" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">firefox82</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_firefox82-dirty">
+  <select id="cf_tracking_firefox82" name="cf_tracking_firefox82">
+        <option value="---"
+          id="v4915_cf_tracking_firefox82" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_firefox82-dirty">
+  <select id="cf_status_firefox82" name="cf_status_firefox82">
+        <option value="---"
+          id="v4920_cf_status_firefox82" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+  </table>
+</div>
+    </div>
+
+  
+</div>
+
+</div>
+  </div>
+</section>
+
+
+
+<section class="module" id="module-people"
+>
+    <header id="module-people-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse People section"
+           data-label-collapsed="Expand People section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-people-content"
+             aria-expanded="false"
+             aria-labeledby="module-people-title"
+             aria-describedby="module-people-subtitle"></div>
+        <h2 class="module-title" id="module-people-title">People</h2>
+          <h3 class="module-subtitle" id="module-people-subtitle">
+            (Reporter: paulmac, Assigned: gordon)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-people-content" style="display:none"
+  ><div class="fields-lhs">
+
+    <div class="field edit-hide" id="field-assigned_to"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#assigned_to" id="assigned_to-help-link" class="help">Assignee:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-assigned_to"><div class="vcard vcard_4306" ><img src="https://secure.gravatar.com/avatar/495a08d64297597053bd429c0fb5c3f3?d=mm&size=40" class="gravatar" width="20" height="20"> <a class="email disabled" href="/user_profile?user_id=4306" > <span class="fna">gordon</span></a>
+</div>
+        </span>
+    </div>
+
+  
+</div><div class="field edit-show" id="field-assigned_to" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#assigned_to" id="assigned_to-help-link" class="help">Assignee:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-assigned_to">
+      <div class="set-default-container" style="display:none">
+        <input type="checkbox" id="set-default-assignee" name="set_default_assignee" class="set-default"
+          value="1" data-for="assigned_to">
+        <label for="set-default-assignee">Reset Assignee to default</label>
+      </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-bug_mentors" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#bug_mentor" id="bug_mentors-help-link" class="help">Mentors:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_mentors">---
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-qa_contact" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#qa_contact" id="qa_contact-help-link" class="help">QA Contact:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-qa_contact">
+      <div class="set-default-container" style="display:none">
+        <input type="checkbox" id="set-default-qa-contact" name="set_default_qa_contact" class="set-default"
+          value="1" data-for="qa_contact">
+        <label for="set-default-qa-contact">Reset QA Contact to default</label>
+      </div>
+        </span>
+    </div>
+
+  
+</div>
+</div><div class="fields-rhs">
+
+    <div class="field" id="field-reporter"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#reporter" id="reporter-help-link" class="help">Reporter:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-reporter">
+            <div class="vcard vcard_3819" ><img src="https://secure.gravatar.com/avatar/d2b2b0cadefe2defe4bd7a62e4384e6e?d=mm&size=40" class="gravatar" width="20" height="20"> <a class="email disabled" href="/user_profile?user_id=3819" > <span class="fna">paulmac</span></a>
+</div>
+
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field" id="field-triage_owner"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#triage_owner" id="triage_owner-help-link" class="help">Triage Owner:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-triage_owner">
+            <div class="vcard vcard_36541" ><img src="https://secure.gravatar.com/avatar/d11b5b0a468ed960df1fde3c304d3580?d=mm&size=40" class="gravatar" width="20" height="20"> <a class="email " href="/user_profile?user_id=36541" > <span class="fna">KaiE</span></a>
+</div>
+
+        </span>
+    </div>
+
+  
+</div>
+
+    
+
+    <div class="field"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#cc" id="-help-link" class="help">CC:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+
+
+        <span aria-owns="cc-summary cc-latch">
+          <span role="button" tabindex="0" id="cc-summary" data-count="3">3 people
+          </span>
+        </span>
+
+
+        <div id="cc-list" style="display:none"></div>
+    </div>
+
+  
+</div>
+</div>
+  </div>
+</section>
+
+
+<section class="module edit-show" style="display:none" id="module-references"
+>
+    <header id="module-references-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse References section"
+           data-label-collapsed="Expand References section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-references-content"
+             aria-expanded="false"
+             aria-labeledby="module-references-title"
+             aria-describedby="module-references-subtitle"></div>
+        <h2 class="module-title" id="module-references-title">References</h2>
+      </div>
+    </header>
+  <div class="module-content" id="module-references-content" style="display:none"
+  ><div class="fields-lhs">
+
+    <div class="field bug-list edit-show" id="field-dependson" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#dependson" id="dependson-help-link" class="help">Depends on:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-dependson">
+        ---
+        </span>
+    </div>
+
+  
+</div><div class="field bug-list edit-show" id="field-blocked" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#blocks" id="blocked-help-link" class="help">Blocks:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-blocked">
+        ---
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field bug-list edit-show" id="field-regresses" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#regresses" id="regresses-help-link" class="help">Regressions:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-regresses">
+        ---
+        </span>
+    </div>
+
+  
+</div><div class="field bug-list edit-show" id="field-regressed_by" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#regressed_by" id="regressed_by-help-link" class="help">Regressed by:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-regressed_by">
+        ---
+        </span>
+    </div>
+
+  
+</div>
+
+    
+</div><div class="fields-rhs">
+
+    <div class="field edit-show" id="field-bug_file_loc" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#bug_file_loc" id="bug_file_loc-help-link" class="help">URL:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_file_loc"><div class="link">
+    <a href="" target="_blank"
+      rel="noreferrer" title=""
+      class="bug-url" data-safe="0"></a>
+  </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-see_also" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#see_also" id="see_also-help-link" class="help">See Also:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-see_also">
+        ---
+        </span>
+    </div>
+
+  
+</div>
+</div>
+  </div>
+</section>
+
+
+<section class="module" id="module-details"
+>
+    <header id="module-details-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Details section"
+           data-label-collapsed="Expand Details section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-details-content"
+             aria-expanded="false"
+             aria-labeledby="module-details-title"
+             aria-describedby="module-details-subtitle"></div>
+        <h2 class="module-title" id="module-details-title">Details</h2>
+      </div>
+    </header>
+  <div class="module-content" id="module-details-content" style="display:none"
+  ><div class="fields-lhs">
+
+    <div class="field edit-show" id="field-alias" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#alias" id="alias-help-link" class="help">Alias:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-alias">
+        ---
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-keywords" style="display:none"
+>
+    <div class="name">
+        <a href="/describekeywords.cgi" id="keywords-help-link" class="help">Keywords:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-keywords">---
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-status_whiteboard" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/Whiteboard" id="status_whiteboard-help-link" class="help">Whiteboard:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-status_whiteboard">---
+        </span>
+    </div>
+
+  
+</div>
+
+    
+
+    
+
+    <div class="field" id="field-votes"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#votes" id="votes-help-link" class="help">Votes:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-votes">0
+        </span>
+    </div>
+
+  
+</div>
+</div><div class="fields-rhs">
+
+    <div class="field edit-show" id="field-bug_flags" style="display:none"
+>
+    <div class="name">Bug Flags:
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-bug_flags"><div id="bug-flags" class="flags">
+  <table class="layout-table">
+    <tbody class="edit-show" style="display:none"><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Is this bug/feature enabled in a release by a pref flag (see https://github.com/mozilla/bug-handling/blob/master/policy/feature-flags.md)?" for="flag_type-930">behind-pref</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-930-dirty">
+      <select id="flag_type-930" name="flag_type-930"
+        title="Is this bug/feature enabled in a release by a pref flag (see https://github.com/mozilla/bug-handling/blob/master/policy/feature-flags.md)?"
+        class="bug-flag">
+          <option value="X"></option>
+            <option value="+" >+</option>
+            <option value="-" >-</option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Flag is used to track security bug bounty nominations. Mail security(at)mozilla.org to nominate a bug." for="flag_type-803">sec-bounty</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-803-dirty">
+      <select id="flag_type-803" name="flag_type-803"
+        title="Flag is used to track security bug bounty nominations. Mail security(at)mozilla.org to nominate a bug."
+        class="bug-flag">
+          <option value="X"></option>
+            <option value="?" >?</option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Flag is used to track whether the bug report is eligible for inclusion in the Bug Bounty Hall of Fame." for="flag_type-913">sec-bounty-hof</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-913-dirty">
+      <select id="flag_type-913" name="flag_type-913"
+        title="Flag is used to track whether the bug report is eligible for inclusion in the Bug Bounty Hall of Fame."
+          disabled
+        class="bug-flag">
+          <option value="X"></option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="qe-verify: ? ➜ request to assess whether the bug should be tested manually
+qe-verify: + ➜ request to verify the bug manually
+qe-verify: – ➜ the bug will not/can not be verified manually" for="flag_type-864">qe-verify</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-864-dirty">
+      <select id="flag_type-864" name="flag_type-864"
+        title="qe-verify: ? ➜ request to assess whether the bug should be tested manually
+qe-verify: + ➜ request to verify the bug manually
+qe-verify: – ➜ the bug will not/can not be verified manually"
+          disabled
+        class="bug-flag">
+          <option value="X"></option>
+      </select>
+    </td>
+
+
+  </tr>
+    </tbody>
+  </table>
+</div>
+        </span>
+    </div>
+
+  
+</div>
+</div>
+
+  
+  </div>
+</section>
+
+
+<section class="module edit-show" style="display:none" id="module-crash-data"
+>
+    <header id="module-crash-data-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Crash Data section"
+           data-label-collapsed="Expand Crash Data section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-crash-data-content"
+             aria-expanded="false"
+             aria-labeledby="module-crash-data-title"
+             aria-describedby="module-crash-data-subtitle"></div>
+        <h2 class="module-title" id="module-crash-data-title">Crash Data</h2>
+      </div>
+    </header>
+  <div class="module-content" id="module-crash-data-content" style="display:none"
+  ><div class="field edit-show" id="field-cf_crash_signature" style="display:none"
+>
+    <div class="name">Signature:
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-cf_crash_signature">
+        </span>
+    </div>
+
+  
+</div>
+  </div>
+</section>
+
+
+<section class="module edit-show" style="display:none" id="module-security"
+>
+    <header id="module-security-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Security section"
+           data-label-collapsed="Expand Security section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-security-content"
+             aria-expanded="false"
+             aria-labeledby="module-security-title"
+             aria-describedby="module-security-subtitle"></div>
+        <h2 class="module-title" id="module-security-title">Security</h2>
+          <h3 class="module-subtitle" id="module-security-subtitle">
+            (public)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-security-content" style="display:none"
+  ><div class="groups edit-hide">
+    This bug is publicly visible.
+</div>
+
+<div class="groups edit-show" style="display:none">
+
+
+</div>
+  </div>
+</section>
+
+
+<section class="module edit-show" style="display:none" id="module-user-story" data-non-stick="1"
+>
+    <header id="module-user-story-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse User Story section"
+           data-label-collapsed="Expand User Story section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-user-story-content"
+             aria-expanded="false"
+             aria-labeledby="module-user-story-title"
+             aria-describedby="module-user-story-subtitle"></div>
+        <h2 class="module-title" id="module-user-story-title">User Story</h2>
+      </div>
+    </header>
+  <div class="module-content" id="module-user-story-content" style="display:none"
+  >
+    <pre id="user-story"></pre>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<script nonce="dB0MHETVnz5HhONFWyoOP6ATrIJKxg7SKjEbtGSrNzYCBurv">
+  init_module_visibility();
+</script>
+
+
+
+<meta name="firefox-versions" content="{&quot;FIREFOX_AURORA&quot;:&quot;&quot;,&quot;FIREFOX_DEVEDITION&quot;:&quot;80.0b8&quot;,&quot;FIREFOX_ESR&quot;:&quot;68.11.0esr&quot;,&quot;FIREFOX_ESR_NEXT&quot;:&quot;78.1.0esr&quot;,&quot;FIREFOX_NIGHTLY&quot;:&quot;81.0a1&quot;,&quot;LAST_MERGE_DATE&quot;:&quot;2020-07-27&quot;,&quot;LAST_RELEASE_DATE&quot;:&quot;2020-07-28&quot;,&quot;LAST_SOFTFREEZE_DATE&quot;:&quot;2020-07-23&quot;,&quot;LATEST_FIREFOX_DEVEL_VERSION&quot;:&quot;80.0b8&quot;,&quot;LATEST_FIREFOX_OLDER_VERSION&quot;:&quot;3.6.28&quot;,&quot;LATEST_FIREFOX_RELEASED_DEVEL_VERSION&quot;:&quot;80.0b8&quot;,&quot;LATEST_FIREFOX_VERSION&quot;:&quot;79.0&quot;,&quot;NEXT_MERGE_DATE&quot;:&quot;2020-08-24&quot;,&quot;NEXT_RELEASE_DATE&quot;:&quot;2020-08-25&quot;,&quot;NEXT_SOFTFREEZE_DATE&quot;:&quot;2020-08-20&quot;}">
+
+
+<div id="comment-actions">
+    <button type="button" id="bottom-btn" class="secondary" aria-label="Go to Page Bottom">Bottom &darr;</button>
+  <div class="dropdown">
+    <button type="button" id="comment-tags-btn" aria-haspopup="true" aria-label="Tags"
+      aria-expanded="false" aria-controls="comment-tags-menu" class="dropdown-button minor">Tags &#9662;</button>
+    <ul id="comment-tags-menu" role="menu" tabindex="0" class="dropdown-content left" style="display:none">
+      <li role="presentation">
+        <a role="menuitem" tabindex="-1" data-comment-tag="">Reset</a>
+      </li>
+    </ul>
+  </div>
+  <div class="dropdown">
+    <button type="button" id="view-menu-btn" aria-haspopup="true" aria-label="Timeline"
+      aria-expanded="false" aria-controls="view-menu" class="dropdown-button minor">Timeline &#9662;</button>
+    <ul id="view-menu" role="menu" tabindex="0" class="dropdown-content left" style="display:none">
+      <li role="presentation">
+        <a id="view-reset" role="menuitem" tabindex="-1">Reset</a>
+      </li>
+      <li role="separator"></li>
+      <li role="presentation">
+        <a id="view-collapse-all" role="menuitem" tabindex="-1">Collapse All</a>
+      </li>
+      <li role="presentation">
+        <a id="view-expand-all" role="menuitem" tabindex="-1">Expand All</a>
+      </li>
+      <li role="presentation">
+        <a id="view-comments-only" role="menuitem" tabindex="-1">Comments Only</a>
+      </li>
+    </ul>
+   </div>
+</div>
+<div class="change-set" id="c0"><div class="comment" data-id="14222" data-no="0"
+       data-tags="">
+    
+    <table class="layout-table change-head reporter" id="ch-0" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_3819" ><img src="https://secure.gravatar.com/avatar/d2b2b0cadefe2defe4bd7a62e4384e6e?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_3819" ><a class="email disabled" href="/user_profile?user_id=3819" > <span class="fna">Paul MacQuiddy</span></a>
+</div>
+            <span class="user-role">Reporter</span>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-0"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-0" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=2303#c0">Description</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-01-12 13:41 PST" data-time="916177315">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-0">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-0" data-comment-id="14222">Moving 5.0 bugs from Bugsplat to Bugzilla. Please close if no longer relevant.
+This was 316317 in Bugsplat.
+
+
+-----------------------------------------------------------------------------
+Frequent (though random) crashes when surfing around. Crash occurs when creating
+an nspr socket. Here's a dump.
+
+PowerPC illegal instruction at FFC10000 _RelString+0045C
+
+  26-Aug-1998 2:14:45 PM (since boot = 3 hours, 40 minutes)
+  Current application is “NavigatorDebug”
+  Machine = 510 (PowerMacG3), System $0850, sysu = $01008000
+  ROM version $077D, $40F2, $0001 (ROMBase $FFC00000)
+  VM is on; paging is currently safe
+  NIL^ = $FFC10000
+  Stack space used = -11290650
+ Address FFC10000 is in the ROM at _RelString+0045C
+ PowerPC 740/750 Registers
+                         CR0  CR1  CR2  CR3  CR4  CR5  CR6  CR7
+  PC  = FFC10000     CR  0100 0010 0000 0000 0000 1000 0010 1000
+  LR  = 17FC2234         &lt;&gt;=O XEVO
+  CTR = FFC10000
+  MSR = 00000000         SOC Compare Count
+  Int = 0            XER 001   00     00
+
+  R0  = FFC10000     R8  = 04E112F4      R16 = 00000000      R24 = 04D7E33C
+  SP  = 05378A30     R9  = 05378A28      R17 = 04CC4D7C      R25 = 04E0EBF0
+  TOC = FFC10000     R10 = 04E112F4      R18 = 00000037      R26 = 04DCEC54
+  R3  = 04CBC3E0     R11 = 05041554      R19 = 00000000      R27 = 04CBA1E8
+  R4  = 04E6CE88     R12 = 00000000      R20 = 04CC602C      R28 = 00000002
+  R5  = 00000000     R13 = 00000000      R21 = 050D2214      R29 = 05378A28
+  R6  = 04CBA1E8     R14 = 00000001      R22 = 04CC4D48      R30 = 05378A28
+  R7  = AAAAAAAA     R15 = 00000001      R23 = 04CC4D54      R31 = 05378A28
+ Disassembling PowerPC code from FFC0FFD8
+  _RelString
+     +00434 FFC0FFD8   dc.l       0xE000E100                              |
+E000E100
+     +00438 FFC0FFDC   dc.l       0xE200E300                              |
+E200E300
+     +0043C FFC0FFE0   dc.l       0xE400E500                              |
+E400E500
+     +00440 FFC0FFE4   dc.l       0xE600E700                              |
+E600E700
+     +00444 FFC0FFE8   dc.l       0xE800E900                              |
+E800E900
+     +00448 FFC0FFEC   dc.l       0xEA00EB00                              |
+EA00EB00
+     +0044C FFC0FFF0   dc.l       0xEC00ED00                              |
+EC00ED00
+     +00450 FFC0FFF4   dc.l       0xEE00EF00                              |
+EE00EF00
+     +00454 FFC0FFF8   dc.l       0xF000F100                              |
+F000F100
+     +00458 FFC0FFFC   dc.l       0xF200F300                              |
+F200F300
+     +0045C FFC10000  *dc.l       0xF400F500                              |
+F400F500
+     +00460 FFC10004   dc.l       0xF600F700                              |
+F600F700
+     +00464 FFC10008   dc.l       0xF800F900                              |
+F800F900
+     +00468 FFC1000C   dc.l       0xFA00FB00                              |
+FA00FB00
+     +0046C FFC10010   dc.l       0xFC00FD00                              |
+FC00FD00
+     +00470 FFC10014   dc.l       0xFE00FF00                              |
+FE00FF00
+     +00474 FFC10018   cmpwi      cr6,r8,0x1038                           |
+2F081038
+     +00478 FFC1001C   dc.l       0x02080200                              |
+02080200
+     +0047C FFC10020   dc.l       0x000711C0                              |
+000711C0
+     +00480 FFC10024   dc.l       0x02602049                              |
+02602049
+ Heap zones
+  #1  Mod        9722K  00002800 to 0098104F  SysZone^
+  #2  Mod           6K    000145C0 to 000160DF  ROM read-only zone
+  #3  Mod      116764K  00981050 to 07B881DF  Process Manager zone
+  #4  Mod        6981K    04C99380 to 0536AA7F  “NavigatorDebug”  ApplZone^
+TheZone^  Target
+Zone
+  #5  Mod        7149K    0537AB90 to 05A7628F  “Nova M13”
+  #6  Mod       11083K    061FCE60 to 06CCFD5F  “CodeWarrior IDE 2.1”
+  #7  Mod        2481K    07174E70 to 073E156F  “MWDebug 1.7.4”
+  #8  Mod         781K    0789D3F0 to 07960AEF  “DragThing 2.5”
+  #9  Mod         898K    079BE940 to 07A9F43F  “Finder”
+  #10 Mod          63K    07AAFCD0 to 07ABFBCF  “Time Synchronizer”
+  #11 Mod         237K    07ACA460 to 07B05B5F  “Folder Actions”
+  #12 Mod          69K    07B3A710 to 07B4BE0F  “Control Strip Extension”
+  #13 Mod        6143K  08100000 to 086FFFBF !  PageableSysZone
+  #14 Mod         288K    08161370 to 081A936F
+
+  WARNING: One or more heaps may be corrupt. Use HC ALL (Heap Check) for a
+thorough check.
+
+Checking all heaps
+ The System heap at 00002800 is ok
+ The ROM read-only heap at 000145C0 is ok
+ The Process Manager heap at 00981050 is ok
+ The “NavigatorDebug” heap at 04C99380 is ok
+ Totaling the “NavigatorDebug” heap at 04C99380
+                                 Total Blocks    Total of Block Sizes
+  Free                           008B     #139   000C4110      #803088
+  Nonrelocatable                 008F     #143   005B0E0C     #5967372
+  Relocatable                    036E     #878   0005C7A0      #378784
+    Locked                       0004       #4   00000300         #768
+    Purgeable and not locked     00FD     #253   00006510       #25872
+  Heap size                      0488    #1160   006D16BC     #7149244
+ The target heap is the System heap at 00002800
+ Totaling the System heap at 00002800
+                                 Total Blocks    Total of Block Sizes
+  Free                           001D      #29   000136D0       #79568
+  Nonrelocatable                 0A01    #2561   005C3BBC     #6044604
+  Relocatable                    084B    #2123   003A7580     #3831168
+    Locked                       01A2     #418   002D75A0     #2979232
+    Purgeable and not locked     0061      #97   000311A0      #201120
+  Heap size                      1269    #4713   0097E80C     #9955340
+ The target heap is the “NavigatorDebug” heap at 04C99380
+ Displaying File Control Blocks
+  fRef File                   Vol         Type Fl Fork     LEof
+  0002 System                 Macintosh … zsys dW rsrc #7167508
+  0060                        Macintosh … •••• dw data  #990720
+  00BE                        Macintosh … •••• dw data #1981440
+  011C VM Storage             Macintosh … ZSYS dW data #141557760
+  017A System Resources       Macintosh … zsyr dw rsrc  #727510
+  0C20 System                 Macintosh … zsys dw data #4011837
+  0C7E Open Tpt AppleTalk Li… Macintosh … libr dw rsrc  #502800
+  0CDC Open Transport Library Macintosh … libr dw rsrc  #524779
+  0D3A OpenTransportLib       Macintosh … otsl dw data  #501392
+  0D98 Shared Library Manage… Macintosh … INIT dw rsrc  #211698
+  0DF6 Open Transport Library Macintosh … libr dw rsrc  #524779
+  0E54 Open Tpt AppleTalk Li… Macintosh … libr dw rsrc  #502800
+  0EB2 Open Tpt Internet Lib… Macintosh … libr dw rsrc  #460942
+  0F10 OpenTpt Remote Access  Macintosh … libr dw rsrc  #541432
+  0F6E OpenTpt Modem          Macintosh … libr dw rsrc   #85766
+  0FCC OpenTpt Remote Access  Macintosh … libr dw rsrc  #541432
+  102A Remote Access Log      Macintosh … lzlg dW data  #264192
+  1088 Open Transport Library Macintosh … libr dw rsrc  #524779
+  10E6 Serial (Built-in)      Macintosh … libr dw rsrc   #63258
+  1144 OpenTptAppleTalkLib    Macintosh … otsl dw data   #48738
+  11A2 OpenTpt Serial Arbitr… Macintosh … libr dw rsrc    #7638
+  1200 OpenTpt Serial Arbitr… Macintosh … libr dw rsrc    #7638
+  125E ATI Video Memory Mana… Macintosh … shlb dw data   #25104
+  12BC Users &amp; Groups Data F… Macintosh … BTFL dW data  #264192
+  131A Apple Guide            Macintosh … INIT dw data  #417352
+  1378 Apple IX3D Video Memo… Macintosh … shlb dw data    #5009
+  13D6 Contextual Menu Exten… Macintosh … INIT dw data   #66103
+  1434 SOMobjects™ for Mac OS Macintosh … shlb dw data  #129152
+  1492 QuickTime™             Macintosh … INIT dw data  #369846
+  14F0 Sound Manager          Macintosh … INIT dw data   #15008
+  154E Nova M13               Macintosh … APPL dW rsrc #1371440
+  15AC Control Strip Extensi… Macintosh … appe dW rsrc   #67092
+  160A Inbox.snm              Macintosh … •••• dW data  #280520
+  1668 Control Strip Extensi… Macintosh … appe dw data    #3160
+  16C6 Folder Actions         Macintosh … appe dW rsrc    #4885
+  1724 Time Synchronizer      Macintosh … appe dW rsrc    #6327
+  1782 Finder                 Macintosh … FNDR dw rsrc  #638552
+  17E0 Finder                 Macintosh … FNDR dw data #1870154
+  183E Color Picker           Macintosh … INIT dw data    #6400
+  189C File Sharing Library   Macintosh … shlb dw data   #91214
+  18FA File Sharing Library   Macintosh … shlb dw rsrc    #3194
+  1958 Finder Preferences     Macintosh … pref dW rsrc     #622
+  19B6 Desktop DB             Macintosh … BTFL dW data  #264192
+  1A14 Desktop DF             Macintosh … DTFL dW data #1781474
+  1A72 **** EXTENTS B-TREE    Develop     •••• dw data #1048576
+  1AD0 **** CATALOG B-TREE    Develop     •••• dw data #3145728
+  1B2E **** EXTENTS B-TREE    Source      •••• dw data #1048576
+  1B8C **** CATALOG B-TREE    Source      •••• dw data #5242880
+  1BEA QuickTime™ PowerPlug   Macintosh … INIT dw data  #219681
+  1C48 **** EXTENTS B-TREE    Incoming    •••• dw data #1048576
+  1CA6 **** CATALOG B-TREE    Incoming    •••• dw data #1048576
+  1D04 **** EXTENTS B-TREE    Scratch     •••• dw data #1032192
+  1D62 **** CATALOG B-TREE    Scratch     •••• dw data #1032192
+  1DC0 Time Synchronizer      Macintosh … appe dw data   #37259
+  1E1E OpenTptInternetLib     Macintosh … otsl dw data  #257230
+  1E7C PrintingLib            Macintosh … shlb dw data #1098176
+  1EDA Folder Actions         Macintosh … appe dw data   #19139
+  1F38 AppleScriptLib         Macintosh … shlb dw data   #22636
+  1F96 Desktop DB             Develop     BTFL dW data  #131072
+  1FF4 Desktop DF             Develop     DTFL dW data  #524996
+  2052 Desktop DB             Source      BTFL dW data   #65536
+  20B0 Desktop DF             Source      DTFL dW data  #398090
+  210E Desktop DB             Incoming    BTFL dW data   #65536
+  216C Desktop DF             Incoming    DTFL dW data  #248578
+  21CA Desktop DB             Scratch     BTFL dW data   #86016
+  2228 Desktop DF             Scratch     DTFL dW data  #260100
+  2286 Find CM Items          Macintosh … cmpi dw data   #21987
+  22E4 Folder Actions Menus   Macintosh … cmpi dw data   #10205
+  2342 Nova M13               Macintosh … APPL dw data #10998233
+  23A0 AppleTalk Switch       Macintosh … sdev dw data    #5066
+  23FE File Sharing Strip     Macintosh … sdev dw data    #8634
+  245C File Sharing Library   Macintosh … shlb dw rsrc    #3194
+  24BA Monitor BitDepth       Macintosh … sdev dw data    #4794
+  2518 Monitor Resolution     Macintosh … sdev dw data    #9750
+  2576 Sound Volume           Macintosh … sdev dw data    #4154
+  25D4 Video Mirroring        Macintosh … sdev dw data    #4426
+  2632 DragThing 2.5          Macintosh … APPL dW rsrc  #330229
+  2690 DragThing 2.5          Macintosh … APPL dw data  #723938
+  26EE DragThing Preferences  Macintosh … pref dW rsrc  #169099
+  274C MWDebug 1.7.4          Develop     APPL dW rsrc  #278558
+  27AA MWDebug 1.7.4          Develop     APPL dw data #2883882
+  2808 MetroNub Plugin        Develop     MWDP dw data   #47186
+  2866 hostinfo.dat           Macintosh … DBNX dW data    #3490
+  28C4 TrueDocDisplayer.dlm   Macintosh … shlb dw data  #249184
+  2922 MetroNub Plugin        Develop     MWDP dw rsrc    #3118
+  2980 NavigatorDebug         Source      APPL dW rsrc  #973283
+  29DE NavigatorDebug         Source      APPL dw data #4588249
+  2A3C DBMDebug.shlb          Source      shlb dw data   #24651
+  2A9A MemAllocatorDebug.shlb Source      shlb dw data   #14137
+  2AF8 Talkback Library       Macintosh … shlb dw data   #67206
+  2B56 lock                   Macintosh … ???? dW data       #0
+  2BB4 JavaScript Debug Supp… Macintosh … shlb dw data   #32518
+  2C12 NSRuntimeDebug.shlb    Source      shlb dw data   #30490
+  2C70 Netscape Resources     Macintosh … NSPL dW rsrc  #498141
+  2CCE Certificates7          Macintosh … CERT dW data  #352256
+  2D2C Key Database3          Macintosh … TEXT dW data   #16384
+  2D8A Global History         Macintosh … DBMG dW data #1241088
+  2DE8 NSPR20Debug.shlb       Source      shlb dw data  #249605
+  2E46 NSStdLibDebug.shlb     Source      shlb dw data  #307182
+  2EA4 MoreFilesDebug.shlb    Source      shlb dw data   #58342
+  2F02 JavaRuntimeDebug.shlb  Source      shlb dw data    #1574
+  2F60 JavaScriptDebug.shlb   Source      shlb dw data  #412008
+  2FBE JPEGDebug.shlb         Source      shlb dw data   #64897
+  301C NavJavaDebug.shlb      Source      shlb dw data    #5864
+  307A RDFDebug.shlb          Source      shlb dw data  #240032
+  30D8 StringsDebug.shlb      Source      shlb dw data  #114931
+  3136 XMLDebug.shlb          Source      shlb dw data  #117700
+  3194 zlibDebug.shlb         Source      shlb dw data   #41910
+  31F2 xpcomDebug.shlb        Source      shlb dw data   #21943
+  3250 PowerPlantDebug.shlb   Source      shlb dw data #1226277
+  32AE LiveConnectDebug.shlb  Source      shlb dw data   #84131
+  330C Log.txt                Source      TEXT DW data  #359233
+  336A Mozilla Resources      Source      NSPL dW rsrc  #509121
+  33C8 names.db               Macintosh … BINA dW data   #26496
+  3426 child.db               Macintosh … BINA dW data   #24576
+  3484 CodeWarrior IDE 2.1    Develop     APPL dW rsrc #2836929
+  34E2 lstr.db                Macintosh … BINA dW data   #88064
+  3540 CodeWarrior IDE 2.1    Develop     APPL dw data #2770125
+  359E Client.mcp             Source      MMPr dw data  #293194
+  35FC CW Settings.stm        Source      TDAT dW data    #3703
+  365A ClientDebug.tdm        Source      TDAT dW data #19885623
+  36B8 MacOS Merge            Develop     Link dw rsrc   #39064
+  3716 MacOS Merge            Develop     Link dw data   #45834
+  3774 Client.tdm             Source      TDAT dW data  #109333
+  37D2 Nav_Resources.tdm      Source      TDAT dW data  #361944
+  3830 Moz_Resources.tdm      Source      TDAT dW data  #398219
+  388E MozDark_Resources.tdm  Source      TDAT dW data   #41520
+  38EC ilstr.db               Macintosh … BINA dW data   #65536
+  394A CCache log             Macintosh … DBMC dW data  #184320
+  39A8 Global History         Macintosh … DBMG dW data  #172032
+  3A06 cache793964.html       Macintosh … TEXT dW data       #0
+  3A64 Single Signons         Macintosh … COOK dw data     #441
+  3AC2 foo                    Macintosh … TEXT dW data   #14043
+  3B20 htrdf.h                Source      TEXT dw data   #21861
+  3B7E MacOS PPC Linker       Develop     Link dw rsrc  #179454
+  3BDC MacOS PPC Linker       Develop     Link dw data  #203020
+  #209 FCBs, #164 in use (including #28 fonts not listed), #45 free
+ Displaying resource information:
+  &gt;   Map $04C99508, flags $0000, file $2980 = NavigatorDebug
+      Map $04D83F08, flags $0000, file $336A = Mozilla Resources
+   +  Map $0000319C, flags $801A, file $0003 = •ROM resources that override
+System•
+    S Map $00003270, flags $200D, file $0002 = System
+      Map $00003120, flags $0014, file $017A = System Resources
+      [Skipped $001C maps belonging to font files]
+ Calling chain using A6/R1 links
+  Back chain  ISA  Caller
+  00000000    PPC  165C1FF8  XP_GetNavCenterContext+17CC0
+  0537A8B0    PPC  163EF7D8  main+00134
+  0537A860    PPC  17829270  LApplication::Run()+000B8
+  0537A7F0    PPC  163EFFC0  CFrontApp::ProcessNextEvent()+00048
+  0537A770    PPC  17B370D0  PL_ProcessPendingEvents+00064
+  0537A720    PPC  17B371FC  PL_HandleEvent+0004C
+  0537A6E0    PPC  166D77F0  et_HandleEvent_EvalAck+00044
+  0537A6A0    PPC  164E5810  lo_ScriptEvalExitFn+00078
+  0537A650    PPC  164E54C4  lo_unblock_script_tag+00228
+  0537A4C0    PPC  16540140  pa_FlushOverflow+000E0
+  0537A470    PPC  16541274  PA_ParseBlock+00998
+  0537A3C0    PPC  1665CFC0  EDT_ProcessTag+00058
+  0537A360    PPC  164E0840  LO_ProcessTag+010A8
+  05379F50    PPC  16507254  lo_LayoutTag+02C30
+  05379B90    PPC  164C8490  lo_EndGrid+0004C
+  05379B40    PPC  164C7DB0  lo_MakeGrid+002F8
+  05379AA0    PPC  163E567C  FE_MakeGridWindow+000F0
+  05379A40    PPC  163BCC24
+CreateGridContext__15CBrowserContextFPvPvllllPcPcSc16NET_ReloadM
+ethodb+00348
+  05379990    PPC  163C4458  CNSContext::ImmediateLoadURL(URL_Struct_*, int)+
+0004C
+  05379950    PPC  1648EEEC  EarlManager::StartLoadURL(URL_Struct_*,
+MWContext_*,
+int)+00064
+  05379910    PPC  165EEE34  NET_GetURL+01864
+  05379400    PPC  1661C31C  net_HTTPLoad+0050C
+  05379360    PPC  1661C3C4  net_ProcessHTTP+00064
+  05378ED0    PPC  166174BC  net_start_http_connect+000C4
+  05378E70    PPC  165E7C34  NET_BeginConnect+001BC
+  05378B60    PPC  17B50EC8  PR_NewTCPSocket+00020
+  05378B20    PPC  17B50E5C  PR_Socket+000D4
+  05378AC0    PPC  17B65FC8  _MD_makenonblock+00030
+ Return addresses on the stack
+  Stack Addr  Frame Addr   ISA   Caller
+   05378DC8                PPC   0031266C EmToNatEndMoveParams+00014
+   05378DB8    05378DB0    PPC   00056650 InitSIMGlobs+02308
+   05378D98                PPC   00403D4C
+   05378D90    05378D88    PPC   001AEAAC DoDriverPrime+0006C
+   05378D6C                68K   001A457E
+   05378D48                PPC   17B7EB28 new_lseek+000FC
+   05378D38    05378D30    PPC   001B1954 DoDriverClose+01838
+   05378CE8                PPC   001B16E0 DoDriverClose+015C4
+   05378CA8    05378CA0    PPC   001A7600 DoDriverOpen+00CC0
+   05378C98                PPC   165FA408 _MK_TraceMsg+00050
+   05378C78                PPC   FFD53028 PBSetFPosSync+00028
+   05378C38    05378C30    PPC   17B4F358 PR_vsnprintf+00078
+   05378BD8    05378BD0    PPC   00409358
+   05378B98                PPC   0005EBC0 SIMAction_ST+00060
+   05378B68                PPC   165E7C34 NET_BeginConnect+001BC
+   05378B28    05378B20    PPC   17B50EC8 PR_NewTCPSocket+00020
+   05378AE8    05378AE0    PPC   165F5EB4 NET_ParseURL+00564
+   05378AC8    05378AC0    PPC   17B50E5C PR_Socket+000D4
+   05378A98                PPC   1655518C NET_SACat+00124
+   05378A78    05378A70    PPC   17B65FC8 _MD_makenonblock+00030
+ Displaying memory from 0
+  00000000  FFC1 0000 FFC1 0000  002E 4176 002E 4178  *¡••*¡•••.Av•.Ax
+  00000010  002E 417A 002E 417C  0079 2474 07B7 9400  •.Az•.A|•y$t•*î•
+ Closing log</pre></div><div class="change-set" id="a297_388"><div class="change" id="aa297_388">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_388" id="a297_388"><img src="https://secure.gravatar.com/avatar/b9e23a7378deeb7b572e4b6153de010f?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_388" id="a297_388"><a class="email disabled" href="/user_profile?user_id=388" > <span class="fna">Mike Pinkerton (not reading bugmail)</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a297_388"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a297_388">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=2303#a297_388">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-01-12 13:46 PST" data-time="916177612">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Status: NEW &rarr; RESOLVED</div><div class="change">Closed: <span class="rel-time" title="1999-01-12 13:46 PST" data-time="916177612">22 years ago</span></div><div class="change">Resolution: --- &rarr; DUPLICATE</div></div></div><div class="change-set" id="c1"><div class="comment" data-id="14223" data-no="1"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-1" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_388" id="a297_388"><img src="https://secure.gravatar.com/avatar/b9e23a7378deeb7b572e4b6153de010f?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_388" id="a297_388"><a class="email disabled" href="/user_profile?user_id=388" > <span class="fna">Mike Pinkerton (not reading bugmail)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-1"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-1" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=2303#c1">Comment 1</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-01-12 13:46 PST" data-time="916177619">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-1">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-1" data-comment-id="14223">duplicate of 2133
+
+
+*** This bug has been marked as a duplicate of <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED FIXED - [PP]Jan25:Mac freezes waiting for data"
+   href="/show_bug.cgi?id=2133">2133</a> ***</pre></div><div class="change-set" id="a1364788_3819"><div class="change" id="aa1364788_3819">
+    <table class="layout-table change-head reporter" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_3819" id="a1364788_3819"><img src="https://secure.gravatar.com/avatar/d2b2b0cadefe2defe4bd7a62e4384e6e?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_3819" id="a1364788_3819"><a class="email disabled" href="/user_profile?user_id=3819" > <span class="fna">Paul MacQuiddy</span></a>
+</div>
+            <span class="user-role">Reporter</span>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a1364788_3819"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a1364788_3819">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=2303#a1364788_3819">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-01-28 08:48 PST" data-time="917542103">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Status: RESOLVED &rarr; VERIFIED</div></div></div><div class="change-set" id="c2"><div class="comment" data-id="14224" data-no="2"
+       data-tags="">
+    
+    <table class="layout-table change-head reporter" id="ch-2" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_3819" id="a1364788_3819"><img src="https://secure.gravatar.com/avatar/d2b2b0cadefe2defe4bd7a62e4384e6e?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_3819" id="a1364788_3819"><a class="email disabled" href="/user_profile?user_id=3819" > <span class="fna">Paul MacQuiddy</span></a>
+</div>
+            <span class="user-role">Reporter</span>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-2"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-2" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=2303#c2">Comment 2</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-01-28 08:48 PST" data-time="917542139">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-2">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-2" data-comment-id="14224">verified dup</pre></div><div class="change-set" id="c3"><div class="comment" data-id="14225" data-no="3"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-3" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_3794" id="a1364788_3819"><img src="https://secure.gravatar.com/avatar/fb2f634ada0fd54fa83cd87fabafd52c?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_3794" id="a1364788_3819"><a class="email " href="/user_profile?user_id=3794" > <span class="fna">Terry Weissman</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-3"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-3" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=2303#c3">Comment 3</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-04-27 10:59 PDT" data-time="925235999">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-3">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-3" data-comment-id="14225">NSPR now has its own Bugzilla product.  Moving this bug to the NSPR product.</pre></div><div id="new-comment-notice">
+          You need to <a href="/show_bug.cgi?id=2303&amp;GoAheadAndLogIn=1">log in</a>
+          before you can comment on or make changes to this bug.
+        </div>
+
+
+
+<div id="bottom-actions">
+  <div id="bottom-right-actions">
+    <button type="button" id="top-btn" class="secondary" aria-label="Go to Page Top">Top &uarr;</button>
+  </div>
+</div></div> 
+</main> 
+</div> 
+
+
+</body>
+</html>

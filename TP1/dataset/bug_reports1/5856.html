@@ -1,0 +1,4027 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+<meta property="og:type" content="website">
+<meta property="og:title" content="5856 - (js-ieee-double-hurts) javascript rounding bug">
+<meta property="og:url" content="https://bugzilla.mozilla.org/show_bug.cgi?id=5856">
+<meta property="og:description"
+      content="VERIFIED (norrisboyd) in Core - JavaScript Engine. Last updated 2019-04-17.">
+<meta name="twitter:label1" value="Type">
+<meta name="twitter:data1" value="defect">
+<meta name="twitter:label2" value="Priority">
+<meta name="twitter:data2" value="P3">
+
+    <meta name="viewport" content="width=1024">
+    <meta name="color-scheme" content="dark light">
+    <meta name="generator" content="Bugzilla 20200805.1">
+    <meta name="bugzilla-global" content="dummy"
+        id="bugzilla-global" data-bugzilla="{&quot;api_token&quot;:&quot;&quot;,&quot;config&quot;:{&quot;basepath&quot;:&quot;\/&quot;},&quot;constant&quot;:{&quot;COMMENT_COLS&quot;:80},&quot;param&quot;:{&quot;maxattachmentsize&quot;:&quot;10240&quot;,&quot;maxusermatches&quot;:&quot;50&quot;,&quot;splinter_base&quot;:&quot;\/page.cgi?id=splinter.html&amp;ignore=\/&quot;},&quot;string&quot;:{&quot;bug_type_required&quot;:&quot;You must select a Type for this bug&quot;,&quot;component_required&quot;:&quot;You must select a Component for this bug&quot;,&quot;description_required&quot;:&quot;You must enter a Description for this bug&quot;,&quot;short_desc_required&quot;:&quot;You must enter a Summary for this bug&quot;,&quot;version_required&quot;:&quot;You must select a Version for this bug&quot;},&quot;user&quot;:{&quot;is_new&quot;:1,&quot;login&quot;:&quot;&quot;}}">
+    <title>5856 - (js-ieee-double-hurts) javascript rounding bug</title>
+
+<link rel="Top" href="/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="/showdependencytree.cgi?id=5856&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="/showdependencygraph.cgi?id=5856">
+
+      <link rel="Show" title="Bug Activity"
+            href="/show_activity.cgi?id=5856">
+
+<link href="https://bugzilla.mozilla.org/static/v20200805.1/skins/yui.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/skins/standard/global.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BugModal/web/bug_modal.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/plugins/contextMenu/contextMenu.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BMO/web/styles/bug_modal.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/EditComments/web/styles/inline-editor.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/ui/jquery-ui-min.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/ui/jquery-ui-structure-min.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/ui/jquery-ui-theme-min.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/skins/lib/prism.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/Needinfo/web/styles/needinfo.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/Review/web/styles/badge.css" rel="stylesheet" type="text/css">
+
+
+
+    
+<script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/jquery-min.js"></script><script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/ui/jquery-ui-min.js"></script><script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/js/yui.js"></script><script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/plugins/contextMenu/contextMenu-min.js"></script><script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/plugins/devbridgeAutocomplete/devbridgeAutocomplete-min.js"></script><script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/js/global.js"></script><script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/js/util.js"></script><script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/js/dropdown.js"></script>
+
+      <script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a">
+          YAHOO.namespace('bugzilla');
+          if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+              YAHOO.util.Event._simpleRemove(window, "unload",
+                                             YAHOO.util.Event._unload);
+          }BUGZILLA.value_descs = JSON.parse('{\"bug_status\":{},\"resolution\":{\"\":\"---\"}}');
+
+  
+    var tracking_flags_str = "{\"flags\":{\"project\":{\"cf_a11y_review_project_flag\":\"---\",\"cf_webcompat_priority\":\"---\",\"cf_root_cause\":\"---\",\"cf_fission_milestone\":\"---\",\"cf_tracking_firefox_sumo\":\"---\"},\"tracking\":{\"cf_status_firefox80\":\"---\",\"cf_tracking_thunderbird_esr78\":\"---\",\"cf_tracking_firefox_esr78\":\"---\",\"cf_tracking_thunderbird_esr68\":\"---\",\"cf_tracking_firefox_relnote\":\"---\",\"cf_tracking_firefox82\":\"---\",\"cf_tracking_firefox79\":\"---\",\"cf_tracking_firefox81\":\"---\",\"cf_tracking_firefox80\":\"---\",\"cf_status_firefox82\":\"---\",\"cf_status_firefox_esr78\":\"---\",\"cf_status_firefox81\":\"---\",\"cf_status_thunderbird_esr78\":\"---\",\"cf_status_thunderbird_esr68\":\"---\",\"cf_tracking_firefox_esr68\":\"---\",\"cf_status_firefox79\":\"---\",\"cf_status_firefox_esr68\":\"---\"}},\"types\":[\"tracking\"],\"comments\":{\"cf_tracking_firefox_esr68\":{\"?\":\"[Tracking Requested - why for this release]:\"},\"cf_tracking_firefox_esr78\":{\"?\":\"[Tracking Requested - why for this release]:\"},\"cf_tracking_firefox80\":{\"?\":\"[Tracking Requested - why for this release]:\"},\"cf_tracking_firefox81\":{\"?\":\"[Tracking Requested - why for this release]:\"},\"cf_tracking_firefox79\":{\"?\":\"[Tracking Requested - why for this release]:\"},\"cf_tracking_firefox_sumo\":{\"none-needed\":\"Release Note Request (optional, but appreciated)\\n[Why is this notable]:\\n[Affects Firefox for Android]:\\n[Suggested wording]:\\n[Links (documentation, blog post, etc)]:\"},\"cf_tracking_firefox82\":{\"?\":\"[Tracking Requested - why for this release]:\"},\"cf_tracking_firefox_relnote\":{\"?\":\"Release Note Request (optional, but appreciated)\\n[Why is this notable]:\\n[Affects Firefox for Android]:\\n[Suggested wording]:\\n[Links (documentation, blog post, etc)]:\"},\"cf_a11y_review_project_flag\":{\"requested\":\"Description:\\nPlease provide an explanation of the feature or change. Include a description of the user scenario in which it would be used and how the user would complete the task(s).\\nScreenshots and visual UI specs are welcome, but please include sufficient accompanying explanation so that blind members of the accessibility team are able to understand the feature\/change.\\n\\nHow do we test this?\\nIf there is an implementation to test, please provide instructions for testing it; e.g. setting preferences, other preparation, how to trigger the UI, etc.\\n\\nWhen will this ship?\\nTracking bug\/issue:\\nDesign documents (e.g. Product Requirements Document, UI spec):\\nEngineering lead:\\nProduct manager:\\n\\nAll user interface additions and changes must meet the Mozilla Accessibility Release Requirements:\\nhttps:\/\/wiki.mozilla.org\/Accessibility\/Requirements\\nPlease describe the accessibility requirements you considered and what steps you\'ve taken to address them:\\n\\nDescribe any areas of concern to which you want the accessibility team to give special attention:\"}}}";
+    var TrackingFlags = $.parseJSON(tracking_flags_str);
+
+  
+
+  
+  BUGZILLA.bug_id = 5856;
+  BUGZILLA.bug_title = '5856 - (js-ieee-double-hurts) javascript rounding bug';
+  BUGZILLA.bug_summary = 'javascript rounding bug';
+  BUGZILLA.bug_url = 'https:\/\/bugzilla.mozilla.org\/show_bug.cgi?id=5856';
+  BUGZILLA.bug_keywords = '',
+  BUGZILLA.user = {
+    id: 0,
+    login: '',
+    is_insider: false,
+    is_timetracker: false,
+    can_tag: false,
+    timezone: 'America\/Los_Angeles',
+    settings: {
+      quote_replies: 'quoted_reply',
+      zoom_textareas: true,
+      remember_collapsed: true,
+      inline_attachments: true,
+      autosize_comments: false
+    }
+  };
+
+  BUGZILLA.bug_secure = false;
+      </script>
+<script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BugModal/web/autosize.min.js"></script><script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/ProdCompSearch/web/js/prod_comp_search.js"></script><script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BugModal/web/bug_modal.js"></script><script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BugModal/web/comments.js"></script><script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/ComponentWatching/web/js/overlay.js"></script><script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/js/bugzilla-readable-status-min.js"></script><script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/js/field.js"></script><script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/js/comments.js"></script><script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/TrackingFlags/web/js/flags.js"></script><script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BMO/web/js/firefox-crash-table.js"></script><script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/js/lib/prism.js"></script><script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/GoogleAnalytics/web/js/analytics.js"></script><script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/js/lib/md5.min.js"></script><script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/Review/web/js/badge.js"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla@Mozilla" href="/search_plugin.cgi"><link rel="shortcut icon" href="/extensions/BMO/web/images/favicon.ico">
+<link rel="canonical" href="https://bugzilla.mozilla.org/show_bug.cgi?id=5856">
+<link rel="shorturl" href="https://bugzilla.mozilla.org/5856"><meta name="google-analytics" content="UA-36116321-3" data-location="https://bugzilla.mozilla.org/bug/show-modal" data-title="5856 - (js-ieee-double-hurts) javascript rounding bug">
+<script async src="https://www.google-analytics.com/analytics.js"></script><meta name="robots" content="noarchive">
+  </head>
+
+
+
+  <body
+        class="bugzilla-mozilla-org
+               skin-standard bug_modal yui-skin-sam">
+
+
+
+<div id="wrapper">
+
+<aside id="message-container" role="complementary">
+  <noscript>
+    <div class="noscript">
+      <div class="inner">
+        <p>Please enable JavaScript in your browser to use all the features on this site.</p>
+      </div>
+    </div>
+  </noscript>
+</aside>
+
+<header id="header" role="banner">
+  <div class="inner">
+    <h1 id="header-title" class="title"><a href="https://bugzilla.mozilla.org/home" title="Go to home page">Bugzilla</a></h1>
+    <form role="search" id="header-search" class="quicksearch" action="/buglist.cgi" data-no-csrf>
+      <section class="searchbox-outer dropdown" role="combobox" aria-expanded="false" aria-haspopup="listbox"
+               aria-labelledby="header-search-label" aria-owns="header-search-dropdown">
+        <h2 id="header-search-label">Quick Search</h2>
+        <span class="icon" aria-hidden="true"></span>
+        <input role="searchbox" id="quicksearch_top" class="dropdown-button" name="quicksearch" autocomplete="off"
+               value="" placeholder="Search Bugs"
+               title="Enter a bug number or some search terms" aria-controls="header-search-dropdown"
+               aria-label="Quick Search"><div id="header-search-dropdown" class="dropdown-content right" role="listbox" style="display: none;">
+  <div id="header-search-dropdown-wrapper">
+  </div>
+</div>
+      </section>
+    </form>
+    <nav id="header-nav">
+      <ul class="links">
+        <li class="link-browse">
+          <a href="/describecomponents.cgi" title="Browse bugs by component">
+            <span class="icon" aria-hidden="true"></span>
+            <span class="label">Browse</span>
+          </a>
+        </li>
+        <li class="link-search">
+          <a href="/query.cgi?format=advanced" title="Search bugs using various criteria">
+            <span class="icon" aria-hidden="true"></span>
+            <span class="label">Advanced Search</span>
+          </a>
+        </li>
+      </ul>
+      <div class="dropdown">
+        <button type="button" id="header-tools-menu-button" class="dropdown-button minor" title="More tools…"
+                aria-label="More tools…" aria-expanded="false" aria-haspopup="true" aria-controls="header-tools-menu">
+          <span class="icon" aria-hidden="true"></span>
+        </button>
+        <ul class="dropdown-content left" id="header-tools-menu" role="menu" style="display:none;">
+          <li role="presentation">
+            <a href="/report.cgi" role="menuitem" tabindex="-1">Reports</a>
+          </li>
+            <li role="separator"></li>
+            <li role="presentation">
+              <a href="https://bmo.readthedocs.io/en/latest/" role="menuitem" tabindex="-1">Documentation</a>
+            </li>
+        </ul>
+      </div>
+    </nav>
+      <ul id="header-login" class="links">
+          <li id="moz_new_account_container_top"><a href="/createaccount.cgi">New Account</a></li><li id="mini_login_container_top">
+  <a id="login_link_top" href="/show_bug.cgi?id=5856&amp;GoAheadAndLogIn=1"
+     class='show_mini_login_form' data-qs-suffix="_top">Log In</a>
+
+  <div id="mini_login_top" class="mini-popup mini_login bz_default_hidden"><span id="github_mini_login_top" class="mini_login_top">
+    <form method="post" action="/github.cgi">
+      <input type="hidden" name="github_secret" value="vfWj7kLnwqnutnorkwNB4U9ySy1bqRmQgeCrem5Zzpy8glczXffI2ewNysXm5c1OsJN0f7a6HI8VTrSw62q74dsmXZvcdlr48e3BEi4da5IA0H0kznbBMCyb2kV8XmzuRMWMuI6DqtE8BY8tKevLtjgrHGJpjTWOSblJ9vbJzhxOEO1FIrnpLRvGiDoRz1NcRL8VTxBxRj1okqRiBCsAhxjSq6wc5pWuBUPNFiBtGPQKFVum5GHgxYNKGXpfP3tp">
+      <input type="hidden" name="target_uri" value="https://bugzilla.mozilla.org/show_bug.cgi?id=5856">
+      <input type="image" src="/extensions/GitHubAuth/web/images/sign_in.png" height="22" width="75" align="absmiddle"
+             alt="Sign in with GitHub"
+             title="Sign in with GitHub"> or
+    </form>
+  </span>
+
+  <form action="/show_bug.cgi?id=5856" method="POST"
+        data-qs-suffix="_top">
+
+    <input id="Bugzilla_login_top"
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           placeholder="Email"
+           aria-label="Email"
+           type="email"
+           required
+    >
+    <input class="bz_password"
+           id="Bugzilla_password_top"
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+           placeholder="Password"
+           aria-label="Password"
+           required
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text"
+           id="Bugzilla_password_dummy_top" value="password"
+           title="Password"
+    >
+      <input type="checkbox" id="Bugzilla_remember_top"
+             name="Bugzilla_remember" value="on" class="bz_remember"
+                 checked>
+      <label for="Bugzilla_remember_top">Remember</label>
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+           class="check_mini_login_fields"
+            id="log_in_top">
+    <a href="#" id="hide_mini_login_top" aria-label="Close"
+       class="close-button hide_mini_login_form" data-qs-suffix="_top">
+      <span class="icon" aria-hidden="true"></span>
+    </a>
+  </form>
+  </div>
+</li>
+<li id="forgot_container_top">
+  <a id="forgot_link_top" href="/show_bug.cgi?id=5856&amp;GoAheadAndLogIn=1#forgot"
+     class='show_forgot_form'
+     data-qs-suffix="_top">Forgot Password</a>
+  <div id="forgot_form_top" class="mini-popup mini_forgot bz_default_hidden">
+  <form action="/token.cgi" method="post">
+    <input type="email" name="loginname" size="20" placeholder="Email" aria-label="Email" required>
+    <input id="forgot_button_top" value="Reset Password"
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token_top" name="token" value="1598303871-LamW0h6vL_EIzg6-yRiphgqDfSD4NmvXaeg_RE6s9wA">
+    <a href="#" class="close-button hide_forgot_form" aria-label="Close" data-qs-suffix="_top">
+      <span class="icon" aria-hidden="true"></span>
+    </a>
+  </form>
+  </div>
+</li>
+      </ul><div id="header-external-links" class="dropdown first">
+  <button type="button" id="header-external-menu-button" class="dropdown-button minor" title="Mozilla"
+          aria-label="Mozilla" aria-expanded="false" aria-haspopup="true" aria-controls="header-external-menu">
+    <img src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BMO/web/images/moz-fav-one-color-white-rgb.svg" width="32" height="32" alt="">
+  </button>
+  <ul class="dropdown-content right" id="header-external-menu" role="menu" style="display:none;">
+    <li role="presentation">
+      <a href="https://www.mozilla.org/" role="menuitem" tabindex="-1">Mozilla Home</a>
+    </li>
+    <li role="separator"></li>
+    <li role="presentation">
+      <a href="https://www.mozilla.org/privacy/websites/" role="menuitem" tabindex="-1">Privacy</a>
+    </li>
+    <li role="presentation">
+      <a href="https://www.mozilla.org/privacy/websites/#cookies" role="menuitem" tabindex="-1">Cookies</a>
+    </li>
+    <li role="presentation">
+      <a href="https://www.mozilla.org/about/legal/" role="menuitem" tabindex="-1">Legal</a>
+    </li>
+  </ul>
+</div>
+  </div>
+</header> 
+
+
+<main id="bugzilla-body" tabindex="-1">
+<div id="main-inner">
+
+
+
+
+<div role="toolbar" id="page-toolbar">
+  <div role="group" class="buttons">
+    <button type="button" id="copy-summary" class="secondary"
+      title="Copy bug number and summary to your clipboard">Copy Summary</button>
+    <div id="clip-container" style="display:none"><input type="text" id="clip"></div>
+    <div class="dropdown">
+      <button type="button" id="action-menu-btn" aria-haspopup="true" aria-label="View"
+        aria-expanded="false" aria-controls="action-menu" class="dropdown-button secondary">View &#9662;</button>
+      <ul class="dropdown-content left" id="action-menu" role="menu" style="display:none;">
+        <li role="presentation">
+          <a id="action-reset" role="menuitem" tabindex="-1">Reset Sections</a>
+        </li>
+        <li role="presentation">
+          <a id="action-expand-all" role="menuitem" tabindex="-1">Expand All Sections</a>
+        </li>
+        <li role="presentation">
+          <a id="action-collapse-all" role="menuitem" tabindex="-1">Collapse All Sections</a>
+        </li>
+        <li role="separator"></li>
+        <li role="presentation">
+          <a id="action-history" role="menuitem" tabindex="-1">History</a>
+        </li>
+        <li role="separator"></li>
+        <li role="presentation">
+          <a href="/rest/bug/5856" role="menuitem" tabindex="-1">JSON</a>
+        </li>
+        <li role="presentation">
+          <a href="/show_bug.cgi?ctype=xml&amp;id=5856" role="menuitem" tabindex="-1">XML</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+<div role="status" id="io-error" style="display:none"></div>
+<div role="status" id="floating-message" style="display:none">
+  <div id="floating-message-text"></div>
+</div>
+<section class="module"
+>
+  <div class="module-content"
+  >
+  <div id="summary-container">
+    <div class="field indent" id="field-status_summary"
+>
+
+
+  
+    <div class=" container">
+        <span id="field-value-status_summary">
+      <span class="bug-status-label text" data-status="closed">Closed</span>
+      <span id="field-value-bug_id">
+        <a href="/show_bug.cgi?id=5856">Bug 5856</a>
+          <span class="edit-hide">(js-ieee-double-hurts)</span>
+      </span>
+      <span>
+        <span class="bug-time-label">Opened <span class="rel-time" title="1999-05-02 20:24 PDT" data-time="925701867">22 years ago</span></span>
+          <span class="bug-time-label">Closed <span class="rel-time" title="1999-05-05 13:05 PDT" data-time="925934751">22 years ago</span></span>
+      </span>
+        </span>
+    </div>
+
+  
+</div>
+<div class="field indent edit-hide"
+>
+
+
+  
+    <div class=" container">
+      
+
+      <h1 id="field-value-short_desc">javascript rounding bug</h1>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-short_desc" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#short_desc" id="short_desc-help-link" class="help">Summary:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-short_desc">
+            javascript rounding bug
+
+        </span>
+    </div>
+
+  
+</div>
+  </div>
+  </div>
+</section>
+
+
+<section class="module" id="module-categories"
+>
+    <header id="module-categories-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Categories section"
+           data-label-collapsed="Expand Categories section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-categories-content"
+             aria-expanded="true"
+             aria-labeledby="module-categories-title"
+             aria-describedby="module-categories-subtitle"></div>
+        <h2 class="module-title" id="module-categories-title">Categories</h2>
+          <h3 class="module-subtitle" id="module-categories-subtitle">
+            (Core :: JavaScript Engine, defect, P3)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-categories-content"
+  ><div class="fields-lhs">
+
+    <div class="field" id="field-product"
+>
+    <div class="name">
+        <a href="/describecomponents.cgi?product=Core" id="product-help-link" class="help">Product:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-product">
+      <div class="name-info-outer dropdown">
+        <span id="product-name" class="dropdown-button" tabindex="0" role="button"
+             aria-haspopup="menu" aria-controls="product-info">Core
+          <span class="icon" aria-hidden="true">&#x25BE;</span>
+        </span>
+        <aside id="product-info" class="name-info-popup dropdown-content right hover-display" hidden role="menu"
+               aria-label="Product description and actions">
+          <header>
+            <div class="title">Core</div>
+            <div class="description">Shared components used by Firefox and other Mozilla software, including handling of Web content; Gecko, HTML, CSS, layout, DOM, scripts, images, networking, etc. Issues with web page layout probably go here, while Firefox user interface issues belong in the <a href="https://bugzilla.mozilla.org/describecomponents.cgi?product=Firefox">Firefox</a> product. (<a href="https://wiki.mozilla.org/Modules/All#Core">More info</a>)</div>
+          </header>
+          <li role="separator"></li>
+          <div class="actions">
+            <div><a href="/buglist.cgi?product=Core&amp;bug_status=__open__"
+                    target="_blank" role="menuitem" tabindex="-1">See Open Bugs in This Product</a></div>
+            <div><a href="/enter_bug.cgi?product=Core"
+                    target="_blank" role="menuitem" tabindex="-1">File New Bug in This Product</a></div>
+            <div><button disabled type="button" class="secondary component-watching" role="menuitem" tabindex="-1"
+                         data-product="Core"
+                         data-label-watch="Watch This Product" data-label-unwatch="Unwatch This Product"
+                         data-source="BugModal">Watch This Product</button></div>
+          </div>
+        </aside>
+      </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field" id="field-component"
+>
+    <div class="name">
+        <a href="/describecomponents.cgi?product=Core&component=JavaScript%20Engine#JavaScript%20Engine" id="component-help-link" class="help">Component:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-component">
+      <div class="name-info-outer dropdown">
+        <span id="component-name" class="dropdown-button" tabindex="0" role="button"
+             aria-haspopup="menu" aria-controls="component-info">JavaScript Engine
+          <span class="icon" aria-hidden="true">&#x25BE;</span>
+        </span>
+        <aside id="component-info" class="name-info-popup dropdown-content right hover-display" hidden role="menu"
+               aria-label="Component description and actions">
+          <header>
+            <div class="title">Core :: JavaScript Engine</div>
+            <div class="description">The interpreter engine for the core JavaScript language,  independent of the browser's object model. File ONLY core JavaScript language bugs in this category. For bugs involving browser objects such as "window" and "document", use the "DOM" component. For bugs involving calls between JavaScript and C++, use the "XPConnect" component.</div>
+          </header>
+          <li role="separator"></li>
+          <div class="actions">
+            <div><a href="/buglist.cgi?product=Core&amp;component=JavaScript%20Engine&amp;bug_status=__open__"
+                    target="_blank" role="menuitem" tabindex="-1">See Open Bugs in This Component</a></div>
+            <div><a href="/buglist.cgi?product=Core&amp;component=JavaScript%20Engine&amp;chfield=resolution&chfieldfrom=-6m&chfieldvalue=FIXED&bug_status=__closed__"
+                    target="_blank" role="menuitem" tabindex="-1">Recently Fixed Bugs in This Component</a></div>
+            <div><a href="/enter_bug.cgi?product=Core&amp;component=JavaScript%20Engine"
+                    target="_blank" role="menuitem" tabindex="-1">File New Bug in This Component</a></div>
+            <div><button disabled type="button" class="secondary component-watching" role="menuitem" tabindex="-1"
+                         data-product="Core" data-component="JavaScript Engine"
+                         data-label-watch="Watch This Component" data-label-unwatch="Unwatch This Component"
+                         data-source="BugModal">Watch This Component</button></div>
+          </div>
+        </aside>
+      </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-version" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#version" id="version-help-link" class="help">Version:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-version">
+            Trunk
+
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#rep_platform" id="-help-link" class="help">Platform:
+        </a>
+    </div>
+
+
+  
+    <div class=" container"><div class="field inline" id="field-rep_platform"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-rep_platform">
+            All
+
+        </span>
+    </div>
+
+  
+</div><div class="field indent inline" id="field-op_sys"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-op_sys">
+            All
+
+        </span>
+    </div>
+
+  
+</div><div class="field indent inline"
+>
+
+
+  
+    <div class=" container">
+    </div>
+
+  
+</div>
+    </div>
+
+  
+</div>
+</div><div class="fields-rhs">
+
+    <div class="field contains-buttons" id="field-bug_type"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#bug_type" id="bug_type-help-link" class="help">Type:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_type">
+      <span class="bug-type-label iconic-text" data-type="defect">
+        <span class="icon" aria-hidden="true"></span>defect</span>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field" id="field-importance"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#priority" id="importance-help-link" class="help">Priority:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-importance"><div class="field inline" id="field-priority"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-priority">P3
+        </span>
+    </div>
+
+  
+</div><div class="field inline" id="field-bug_severity"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#bug_severity" id="bug_severity-help-link" class="help">Severity:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_severity">
+            normal
+
+        </span>
+    </div>
+
+  
+</div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-cf_fx_points" style="display:none"
+>
+    <div class="name">Points:
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-cf_fx_points">
+            ---
+
+        </span>
+    </div>
+
+  
+</div>
+</div>
+  </div>
+</section>
+
+
+<section class="module" id="module-tracking"
+>
+    <header id="module-tracking-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Tracking section"
+           data-label-collapsed="Expand Tracking section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-tracking-content"
+             aria-expanded="true"
+             aria-labeledby="module-tracking-title"
+             aria-describedby="module-tracking-subtitle"></div>
+        <h2 class="module-title" id="module-tracking-title">Tracking</h2>
+          <h3 class="module-subtitle" id="module-tracking-subtitle">
+            (<span id="readable-bug-status" data-readable-bug-status="{&quot;cf_tracking_firefox_esr68&quot;:&quot;---&quot;,&quot;cf_status_thunderbird_esr78&quot;:&quot;---&quot;,&quot;cf_status_firefox81&quot;:&quot;---&quot;,&quot;keywords&quot;:[],&quot;cf_status_firefox_esr68&quot;:&quot;---&quot;,&quot;cf_tracking_firefox_sumo&quot;:&quot;---&quot;,&quot;priority&quot;:&quot;P3&quot;,&quot;cf_tracking_firefox80&quot;:&quot;---&quot;,&quot;cf_tracking_firefox82&quot;:&quot;---&quot;,&quot;cf_tracking_firefox_relnote&quot;:&quot;---&quot;,&quot;cf_a11y_review_project_flag&quot;:&quot;---&quot;,&quot;cf_status_thunderbird_esr68&quot;:&quot;---&quot;,&quot;resolution&quot;:&quot;INVALID&quot;,&quot;cf_status_firefox_esr78&quot;:&quot;---&quot;,&quot;cf_status_firefox82&quot;:&quot;---&quot;,&quot;flags&quot;:[],&quot;cf_root_cause&quot;:&quot;---&quot;,&quot;cf_webcompat_priority&quot;:&quot;---&quot;,&quot;dupe_of&quot;:null,&quot;id&quot;:5856,&quot;cf_status_firefox79&quot;:&quot;---&quot;,&quot;cf_tracking_thunderbird_esr68&quot;:&quot;---&quot;,&quot;cf_tracking_firefox_esr78&quot;:&quot;---&quot;,&quot;cf_fission_milestone&quot;:&quot;---&quot;,&quot;status&quot;:&quot;VERIFIED&quot;,&quot;cf_tracking_thunderbird_esr78&quot;:&quot;---&quot;,&quot;cf_status_firefox80&quot;:&quot;---&quot;,&quot;cf_tracking_firefox81&quot;:&quot;---&quot;,&quot;cf_tracking_firefox79&quot;:&quot;---&quot;,&quot;target_milestone&quot;:&quot;---&quot;}"></span>)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-tracking-content"
+  ><div class="fields-lhs">
+
+    <div class="field edit-hide" id="field-status-view"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugStatuses" id="status-view-help-link" class="help">Status:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-status-view">VERIFIED
+        INVALID
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-status-edit" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugStatuses" id="status-edit-help-link" class="help">Status:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-status-edit"><div class="field inline" id="field-bug_status"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_status">
+            VERIFIED
+
+        </span>
+    </div>
+
+  
+</div><div class="field indent inline" id="field-resolution"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-resolution">
+            INVALID
+
+        </span>
+    </div>
+
+  
+</div>
+  <div id="status-action-buttons">
+      <div id="assigned-container" style="display:none">
+        <button type="button" class="secondary" id="mark-as-assigned-btn">
+          Mark as Assigned
+        </button>
+      </div>
+  </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-target_milestone" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#target_milestone" id="target_milestone-help-link" class="help">Milestone:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-target_milestone">
+            ---
+
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-cf_fx_iteration" style="display:none"
+>
+    <div class="name">Iteration:
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-cf_fx_iteration">
+            ---
+
+        </span>
+    </div>
+
+  
+</div>
+
+
+      <div class="field edit-show" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide#Tracking_Flags" id="-help-link" class="help">Project Flags:
+        </a>
+    </div>
+
+
+  
+    <div class=" container"><div class="flags edit-show" style="display:none">
+  <table class="layout-table tracking-flags">
+      <tr>
+        <td class="tracking-flag-name">Webcompat Priority</td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_webcompat_priority-dirty">
+  <select id="cf_webcompat_priority" name="cf_webcompat_priority">
+        <option value="---"
+          id="v4274_cf_webcompat_priority" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">a11y-review</td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_a11y_review_project_flag-dirty">
+  <select id="cf_a11y_review_project_flag" name="cf_a11y_review_project_flag">
+        <option value="---"
+          id="v4876_cf_a11y_review_project_flag" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">Root Cause</td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_root_cause-dirty">
+  <select id="cf_root_cause" name="cf_root_cause">
+        <option value="---"
+          id="v4701_cf_root_cause" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">user-doc-firefox</td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_tracking_firefox_sumo-dirty">
+  <select id="cf_tracking_firefox_sumo" name="cf_tracking_firefox_sumo">
+        <option value="---"
+          id="v4660_cf_tracking_firefox_sumo" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">Fission Milestone</td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_fission_milestone-dirty">
+  <select id="cf_fission_milestone" name="cf_fission_milestone">
+        <option value="---"
+          id="v4222_cf_fission_milestone" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+  </table>
+</div>
+    </div>
+
+  
+</div>
+</div><div class="fields-rhs">
+
+      <div class="field edit-show" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide#Tracking_Flags" id="-help-link" class="help">Tracking Flags:
+        </a>
+    </div>
+
+
+  
+    <div class=" container"><div class="flags edit-show" style="display:none">
+  <table class="layout-table tracking-flags">
+      <tr>
+        <th></th>
+        <th>Tracking</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">relnote-firefox</td>
+          <td class="tracking-flag-tracking"></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_tracking_firefox_relnote-dirty">
+  <select id="cf_tracking_firefox_relnote" name="cf_tracking_firefox_relnote">
+        <option value="---"
+          id="v539_cf_tracking_firefox_relnote" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">thunderbird_esr68</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_thunderbird_esr68-dirty">
+  <select id="cf_tracking_thunderbird_esr68" name="cf_tracking_thunderbird_esr68">
+        <option value="---"
+          id="v4353_cf_tracking_thunderbird_esr68" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_thunderbird_esr68-dirty">
+  <select id="cf_status_thunderbird_esr68" name="cf_status_thunderbird_esr68">
+        <option value="---"
+          id="v4347_cf_status_thunderbird_esr68" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">thunderbird_esr78</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_thunderbird_esr78-dirty">
+  <select id="cf_tracking_thunderbird_esr78" name="cf_tracking_thunderbird_esr78">
+        <option value="---"
+          id="v4823_cf_tracking_thunderbird_esr78" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_thunderbird_esr78-dirty">
+  <select id="cf_status_thunderbird_esr78" name="cf_status_thunderbird_esr78">
+        <option value="---"
+          id="v4829_cf_status_thunderbird_esr78" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">firefox-esr68</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_firefox_esr68-dirty">
+  <select id="cf_tracking_firefox_esr68" name="cf_tracking_firefox_esr68">
+        <option value="---"
+          id="v4365_cf_tracking_firefox_esr68" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_firefox_esr68-dirty">
+  <select id="cf_status_firefox_esr68" name="cf_status_firefox_esr68">
+        <option value="---"
+          id="v4407_cf_status_firefox_esr68" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">firefox-esr78</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_firefox_esr78-dirty">
+  <select id="cf_tracking_firefox_esr78" name="cf_tracking_firefox_esr78">
+        <option value="---"
+          id="v4808_cf_tracking_firefox_esr78" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_firefox_esr78-dirty">
+  <select id="cf_status_firefox_esr78" name="cf_status_firefox_esr78">
+        <option value="---"
+          id="v4813_cf_status_firefox_esr78" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">firefox79</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_firefox79-dirty">
+  <select id="cf_tracking_firefox79" name="cf_tracking_firefox79">
+        <option value="---"
+          id="v4791_cf_tracking_firefox79" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_firefox79-dirty">
+  <select id="cf_status_firefox79" name="cf_status_firefox79">
+        <option value="---"
+          id="v4796_cf_status_firefox79" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">firefox80</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_firefox80-dirty">
+  <select id="cf_tracking_firefox80" name="cf_tracking_firefox80">
+        <option value="---"
+          id="v4850_cf_tracking_firefox80" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_firefox80-dirty">
+  <select id="cf_status_firefox80" name="cf_status_firefox80">
+        <option value="---"
+          id="v4855_cf_status_firefox80" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">firefox81</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_firefox81-dirty">
+  <select id="cf_tracking_firefox81" name="cf_tracking_firefox81">
+        <option value="---"
+          id="v4883_cf_tracking_firefox81" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_firefox81-dirty">
+  <select id="cf_status_firefox81" name="cf_status_firefox81">
+        <option value="---"
+          id="v4888_cf_status_firefox81" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">firefox82</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_firefox82-dirty">
+  <select id="cf_tracking_firefox82" name="cf_tracking_firefox82">
+        <option value="---"
+          id="v4915_cf_tracking_firefox82" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_firefox82-dirty">
+  <select id="cf_status_firefox82" name="cf_status_firefox82">
+        <option value="---"
+          id="v4920_cf_status_firefox82" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+  </table>
+</div>
+    </div>
+
+  
+</div>
+
+</div>
+  </div>
+</section>
+
+
+
+<section class="module" id="module-people"
+>
+    <header id="module-people-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse People section"
+           data-label-collapsed="Expand People section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-people-content"
+             aria-expanded="false"
+             aria-labeledby="module-people-title"
+             aria-describedby="module-people-subtitle"></div>
+        <h2 class="module-title" id="module-people-title">People</h2>
+          <h3 class="module-subtitle" id="module-people-subtitle">
+            (Reporter: AriB, Assigned: norrisboyd)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-people-content" style="display:none"
+  ><div class="fields-lhs">
+
+    <div class="field edit-hide" id="field-assigned_to"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#assigned_to" id="assigned_to-help-link" class="help">Assignee:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-assigned_to"><div class="vcard vcard_4307" ><img src="https://secure.gravatar.com/avatar/9863603778ee4fdae6687202b1dbc3fd?d=mm&size=40" class="gravatar" width="20" height="20"> <a class="email disabled" href="/user_profile?user_id=4307" > <span class="fna">norrisboyd</span></a>
+</div>
+        </span>
+    </div>
+
+  
+</div><div class="field edit-show" id="field-assigned_to" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#assigned_to" id="assigned_to-help-link" class="help">Assignee:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-assigned_to">
+      <div class="set-default-container" style="display:none">
+        <input type="checkbox" id="set-default-assignee" name="set_default_assignee" class="set-default"
+          value="1" data-for="assigned_to">
+        <label for="set-default-assignee">Reset Assignee to default</label>
+      </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-bug_mentors" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#bug_mentor" id="bug_mentors-help-link" class="help">Mentors:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_mentors">---
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-hide" id="field-qa_contact"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#qa_contact" id="qa_contact-help-link" class="help">QA Contact:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-qa_contact"><div class="vcard vcard_4590" ><img src="https://secure.gravatar.com/avatar/5f318b0149a02f8f0265784c3d8d3f87?d=mm&size=40" class="gravatar" width="20" height="20"> <a class="email disabled" href="/user_profile?user_id=4590" > <span class="fna">cbegle</span></a>
+</div>
+        </span>
+    </div>
+
+  
+</div><div class="field edit-show" id="field-qa_contact" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#qa_contact" id="qa_contact-help-link" class="help">QA Contact:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-qa_contact">
+      <div class="set-default-container" style="display:none">
+        <input type="checkbox" id="set-default-qa-contact" name="set_default_qa_contact" class="set-default"
+          value="1" data-for="qa_contact">
+        <label for="set-default-qa-contact">Reset QA Contact to default</label>
+      </div>
+        </span>
+    </div>
+
+  
+</div>
+</div><div class="fields-rhs">
+
+    <div class="field" id="field-reporter"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#reporter" id="reporter-help-link" class="help">Reporter:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-reporter">
+            <div class="vcard vcard_5085" ><img src="https://secure.gravatar.com/avatar/4fcf464e8f76cee10d009c81ee9b9a3c?d=mm&size=40" class="gravatar" width="20" height="20"> <a class="email disabled" href="/user_profile?user_id=5085" > <span class="fna">AriB</span></a>
+</div>
+
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field" id="field-triage_owner"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#triage_owner" id="triage_owner-help-link" class="help">Triage Owner:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-triage_owner">
+            <div class="vcard vcard_607698" ><img src="https://secure.gravatar.com/avatar/629d9cacc1e7a36371e4583cc5739cf4?d=mm&size=40" class="gravatar" width="20" height="20"> <a class="email " href="/user_profile?user_id=607698" > <span class="fna">sdetar</span></a>
+</div>
+
+        </span>
+    </div>
+
+  
+</div>
+
+    
+
+    <div class="field"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#cc" id="-help-link" class="help">CC:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+
+
+        <span aria-owns="cc-summary cc-latch">
+          <span role="button" tabindex="0" id="cc-summary" data-count="41">41 people
+          </span>
+        </span>
+
+
+        <div id="cc-list" style="display:none"></div>
+    </div>
+
+  
+</div>
+</div>
+  </div>
+</section>
+
+
+<section class="module" id="module-references"
+>
+    <header id="module-references-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse References section"
+           data-label-collapsed="Expand References section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-references-content"
+             aria-expanded="false"
+             aria-labeledby="module-references-title"
+             aria-describedby="module-references-subtitle"></div>
+        <h2 class="module-title" id="module-references-title">References</h2>
+          <h3 class="module-subtitle" id="module-references-subtitle">
+            (<div class="link">
+    <a href="http://www.browsertune.com/bt2kdemo/matherror.htm" target="_blank"
+      rel="noreferrer" title="http://www.browsertune.com/bt2kdemo/matherror.htm"
+      class="bug-url" data-safe="1">URL</a>
+  </div>)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-references-content" style="display:none"
+  ><div class="fields-lhs">
+
+    <div class="field bug-list edit-show" id="field-dependson" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#dependson" id="dependson-help-link" class="help">Depends on:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-dependson">
+        ---
+        </span>
+    </div>
+
+  
+</div><div class="field bug-list edit-show" id="field-blocked" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#blocks" id="blocked-help-link" class="help">Blocks:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-blocked">
+        ---
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field bug-list edit-show" id="field-regresses" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#regresses" id="regresses-help-link" class="help">Regressions:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-regresses">
+        ---
+        </span>
+    </div>
+
+  
+</div><div class="field bug-list edit-show" id="field-regressed_by" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#regressed_by" id="regressed_by-help-link" class="help">Regressed by:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-regressed_by">
+        ---
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field bug-list"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#duplicates" id="-help-link" class="help">Duplicates:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+            <div class="bug-list">
+        <span class="bug-type-label iconic" title="defect"
+              aria-label="defect" data-type="defect">
+          <span class="icon" aria-hidden="true"></span>
+        </span><a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED DUPLICATE - Javascript has Pentium-style precision errors"
+   href="/show_bug.cgi?id=1813">1813</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - Rounding Error?"
+   href="/show_bug.cgi?id=20140">20140</a>, <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED DUPLICATE - Javascript floating point calculation"
+   href="/show_bug.cgi?id=190303">190303</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - Calculating Error"
+   href="/show_bug.cgi?id=251585">251585</a>, <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED DUPLICATE - Javascript multiplication of float values produces incorrect result"
+   href="/show_bug.cgi?id=280544">280544</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - Floating point error in javascript"
+   href="/show_bug.cgi?id=281659">281659</a>, <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED DUPLICATE - wrong sum result in javascript 1999.00 + 439.78, which handles firefox"
+   href="/show_bug.cgi?id=283303">283303</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - JavaScript floating-point precision error"
+   href="/show_bug.cgi?id=297361">297361</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - In javascript 0.7+0.2=0.8(9)"
+   href="/show_bug.cgi?id=320093">320093</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - The Javascript modulus arithmetic has gross errors when large numbers are used."
+   href="/show_bug.cgi?id=356566">356566</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - SVG rounding error"
+   href="/show_bug.cgi?id=369803">369803</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - 0.1 * 0.1 = 0.010000000000000002"
+   href="/show_bug.cgi?id=378956">378956</a>, <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED DUPLICATE - http://chafy.net/firefoxbug.php"
+   href="/show_bug.cgi?id=393209">393209</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - losing accurency"
+   href="/show_bug.cgi?id=396764">396764</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - Javascript modulo operator returns incorrect result when using floating point numbers"
+   href="/show_bug.cgi?id=408202">408202</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - rounding error with javascript (6 * 1.66 = 9.9566666666666666 instead of 9.96)"
+   href="/show_bug.cgi?id=409726">409726</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - 35.05 - 5 = 30.049999999999997"
+   href="/show_bug.cgi?id=413965">413965</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - Javascript: Wrong addition of floats"
+   href="/show_bug.cgi?id=444938">444938</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - javascript mathematics : 0.4 + 0.2 = 0.6000000000000001"
+   href="/show_bug.cgi?id=452198">452198</a>, <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED DUPLICATE - Javascript - Incorrect value on arithmetic operation"
+   href="/show_bug.cgi?id=460943">460943</a>, <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED DUPLICATE - error in the sum of float"
+   href="/show_bug.cgi?id=466822">466822</a>, <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED DUPLICATE - JavaScript Math is producing incorrect results with floating point differences"
+   href="/show_bug.cgi?id=480475">480475</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - parseFloat is not working property when the number exceeds 17 digits"
+   href="/show_bug.cgi?id=516355">516355</a>, <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED DUPLICATE - Multiplying of two specific factors not very accurate"
+   href="/show_bug.cgi?id=520754">520754</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - Large number division is wrong"
+   href="/show_bug.cgi?id=538209">538209</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - javascript return floating-error on enter the values (162.295 or 110.565) .toFixed(2) and .toPrecision(5);"
+   href="/show_bug.cgi?id=557530">557530</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - javascript calculates incorrectly and outputs 17 digit number"
+   href="/show_bug.cgi?id=582086">582086</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - Wrong calculation in javascript with floats"
+   href="/show_bug.cgi?id=618839">618839</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - 18014398509481983 === 18014398509481984 ?"
+   href="/show_bug.cgi?id=624189">624189</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - 69*0.01 = 0.6900000000000001 ?"
+   href="/show_bug.cgi?id=656887">656887</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - [Javascript] Wrong comparision (0.55*100 == 55) always return false"
+   href="/show_bug.cgi?id=699645">699645</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - Math Error in substraction"
+   href="/show_bug.cgi?id=832727">832727</a>, <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - Javascript interpreter changes integers on function calls"
+   href="/show_bug.cgi?id=839324">839324</a>, <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED DUPLICATE - math"
+   href="/show_bug.cgi?id=1118287">1118287</a>
+      </div>
+
+    </div>
+
+  
+</div>
+</div><div class="fields-rhs">
+
+    <div class="field" id="field-bug_file_loc"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#bug_file_loc" id="bug_file_loc-help-link" class="help">URL:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_file_loc"><div class="link">
+    <a href="http://www.browsertune.com/bt2kdemo/matherror.htm" target="_blank"
+      rel="noreferrer" title="http://www.browsertune.com/bt2kdemo/matherror.htm"
+      class="bug-url" data-safe="1">browsertune.com/bt2kdemo/matherror.htm</a>
+  </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-see_also" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#see_also" id="see_also-help-link" class="help">See Also:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-see_also">
+        ---
+        </span>
+    </div>
+
+  
+</div>
+</div>
+  </div>
+</section>
+
+
+<section class="module" id="module-details"
+>
+    <header id="module-details-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Details section"
+           data-label-collapsed="Expand Details section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-details-content"
+             aria-expanded="false"
+             aria-labeledby="module-details-title"
+             aria-describedby="module-details-subtitle"></div>
+        <h2 class="module-title" id="module-details-title">Details</h2>
+      </div>
+    </header>
+  <div class="module-content" id="module-details-content" style="display:none"
+  ><div class="fields-lhs">
+
+    <div class="field edit-show" id="field-alias" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#alias" id="alias-help-link" class="help">Alias:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-alias">
+            js-ieee-double-hurts
+
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-keywords" style="display:none"
+>
+    <div class="name">
+        <a href="/describekeywords.cgi" id="keywords-help-link" class="help">Keywords:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-keywords">---
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-status_whiteboard" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/Whiteboard" id="status_whiteboard-help-link" class="help">Whiteboard:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-status_whiteboard">---
+        </span>
+    </div>
+
+  
+</div><div class="field edit-show" id="field-cf_qa_whiteboard" style="display:none"
+>
+    <div class="name">QA Whiteboard:
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-cf_qa_whiteboard">
+        ---
+        </span>
+    </div>
+
+  
+</div>
+
+    
+
+    <div class="field edit-show" id="field-cf_has_regression_range" style="display:none"
+>
+    <div class="name">Has Regression Range:
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-cf_has_regression_range">
+            ---
+
+        </span>
+    </div>
+
+  
+</div><div class="field edit-show" id="field-cf_has_str" style="display:none"
+>
+    <div class="name">Has STR:
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-cf_has_str">
+            ---
+
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field" id="field-votes"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#votes" id="votes-help-link" class="help">Votes:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-votes">0
+        </span>
+    </div>
+
+  
+</div>
+</div><div class="fields-rhs">
+
+    <div class="field edit-show" id="field-bug_flags" style="display:none"
+>
+    <div class="name">Bug Flags:
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-bug_flags"><div id="bug-flags" class="flags">
+  <table class="layout-table">
+    <tbody class="edit-show" style="display:none"><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Is this bug/feature enabled in a release by a pref flag (see https://github.com/mozilla/bug-handling/blob/master/policy/feature-flags.md)?" for="flag_type-930">behind-pref</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-930-dirty">
+      <select id="flag_type-930" name="flag_type-930"
+        title="Is this bug/feature enabled in a release by a pref flag (see https://github.com/mozilla/bug-handling/blob/master/policy/feature-flags.md)?"
+        class="bug-flag">
+          <option value="X"></option>
+            <option value="+" >+</option>
+            <option value="-" >-</option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Flag tracking inclusion in the desktop Firefox product backlog." for="flag_type-846">firefox-backlog</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-846-dirty">
+      <select id="flag_type-846" name="flag_type-846"
+        title="Flag tracking inclusion in the desktop Firefox product backlog."
+          disabled
+        class="bug-flag">
+          <option value="X"></option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Flag is used to track security bug bounty nominations. Mail security(at)mozilla.org to nominate a bug." for="flag_type-803">sec-bounty</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-803-dirty">
+      <select id="flag_type-803" name="flag_type-803"
+        title="Flag is used to track security bug bounty nominations. Mail security(at)mozilla.org to nominate a bug."
+        class="bug-flag">
+          <option value="X"></option>
+            <option value="?" >?</option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Flag is used to track whether the bug report is eligible for inclusion in the Bug Bounty Hall of Fame." for="flag_type-913">sec-bounty-hof</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-913-dirty">
+      <select id="flag_type-913" name="flag_type-913"
+        title="Flag is used to track whether the bug report is eligible for inclusion in the Bug Bounty Hall of Fame."
+          disabled
+        class="bug-flag">
+          <option value="X"></option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Whether the bug has a testcase in the qa test suite or not. Set it to &quot;in-qa-testsuite?&quot; if the bug needs a testcase (only set this if the bug actually *needs* a testcase - not all bugs do, even layout bugs!), set it to &quot;in-qa-testsuite+&quot; if the bug has an appropriate testcase, and set it to &quot;in-qa-testsuite-&quot; if the bug doesn't need an explicit testcase (e.g. for code cleanup bugs). Only QA actively working on test cases in the component should use this keyword." for="flag_type-787">in-qa-testsuite</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-787-dirty">
+      <select id="flag_type-787" name="flag_type-787"
+        title="Whether the bug has a testcase in the qa test suite or not. Set it to &quot;in-qa-testsuite?&quot; if the bug needs a testcase (only set this if the bug actually *needs* a testcase - not all bugs do, even layout bugs!), set it to &quot;in-qa-testsuite+&quot; if the bug has an appropriate testcase, and set it to &quot;in-qa-testsuite-&quot; if the bug doesn't need an explicit testcase (e.g. for code cleanup bugs). Only QA actively working on test cases in the component should use this keyword."
+        class="bug-flag">
+          <option value="X"></option>
+            <option value="?" >?</option>
+            <option value="+" >+</option>
+            <option value="-" >-</option>
+      </select>
+    </td>
+
+      <td class="flag-requestee">
+        <div id="requestee_type-787-container" style="display:none"><input
+    name="requestee_type-787"
+    value="" class="requestee bz_autocomplete_user"  id="requestee_type-787" 
+  >
+        </div>
+      <td>
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Whether the bug has a testcase in the test suite or not. Set it to &quot;in-testsuite?&quot; if the bug needs a testcase (only set this if the bug actually *needs* a testcase - not all bugs do, even layout bugs!), set it to &quot;in-testsuite+&quot; if the bug has an appropriate testcase, and set it to &quot;in-testsuite-&quot; if the bug doesn't need an explicit testcase (e.g. for code cleanup bugs). Only QA actively working on test cases in the component should use this keyword." for="flag_type-37">in-testsuite</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-37-dirty">
+      <select id="flag_type-37" name="flag_type-37"
+        title="Whether the bug has a testcase in the test suite or not. Set it to &quot;in-testsuite?&quot; if the bug needs a testcase (only set this if the bug actually *needs* a testcase - not all bugs do, even layout bugs!), set it to &quot;in-testsuite+&quot; if the bug has an appropriate testcase, and set it to &quot;in-testsuite-&quot; if the bug doesn't need an explicit testcase (e.g. for code cleanup bugs). Only QA actively working on test cases in the component should use this keyword."
+        class="bug-flag">
+          <option value="X"></option>
+            <option value="?" >?</option>
+            <option value="+" >+</option>
+            <option value="-" >-</option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="qe-verify: ? ➜ request to assess whether the bug should be tested manually
+qe-verify: + ➜ request to verify the bug manually
+qe-verify: – ➜ the bug will not/can not be verified manually" for="flag_type-864">qe-verify</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-864-dirty">
+      <select id="flag_type-864" name="flag_type-864"
+        title="qe-verify: ? ➜ request to assess whether the bug should be tested manually
+qe-verify: + ➜ request to verify the bug manually
+qe-verify: – ➜ the bug will not/can not be verified manually"
+          disabled
+        class="bug-flag">
+          <option value="X"></option>
+      </select>
+    </td>
+
+
+  </tr>
+    </tbody>
+  </table>
+</div>
+        </span>
+    </div>
+
+  
+</div>
+</div>
+
+  
+  </div>
+</section>
+
+
+<section class="module edit-show" style="display:none" id="module-crash-data"
+>
+    <header id="module-crash-data-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Crash Data section"
+           data-label-collapsed="Expand Crash Data section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-crash-data-content"
+             aria-expanded="false"
+             aria-labeledby="module-crash-data-title"
+             aria-describedby="module-crash-data-subtitle"></div>
+        <h2 class="module-title" id="module-crash-data-title">Crash Data</h2>
+      </div>
+    </header>
+  <div class="module-content" id="module-crash-data-content" style="display:none"
+  ><div class="field edit-show" id="field-cf_crash_signature" style="display:none"
+>
+    <div class="name">Signature:
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-cf_crash_signature">
+        </span>
+    </div>
+
+  
+</div>
+  </div>
+</section>
+
+
+<section class="module edit-show" style="display:none" id="module-security"
+>
+    <header id="module-security-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Security section"
+           data-label-collapsed="Expand Security section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-security-content"
+             aria-expanded="false"
+             aria-labeledby="module-security-title"
+             aria-describedby="module-security-subtitle"></div>
+        <h2 class="module-title" id="module-security-title">Security</h2>
+          <h3 class="module-subtitle" id="module-security-subtitle">
+            (public)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-security-content" style="display:none"
+  ><div class="groups edit-hide">
+    This bug is publicly visible.
+</div>
+
+<div class="groups edit-show" style="display:none">
+
+
+</div>
+  </div>
+</section>
+
+
+<section class="module edit-show" style="display:none" id="module-user-story" data-non-stick="1"
+>
+    <header id="module-user-story-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse User Story section"
+           data-label-collapsed="Expand User Story section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-user-story-content"
+             aria-expanded="false"
+             aria-labeledby="module-user-story-title"
+             aria-describedby="module-user-story-subtitle"></div>
+        <h2 class="module-title" id="module-user-story-title">User Story</h2>
+      </div>
+    </header>
+  <div class="module-content" id="module-user-story-content" style="display:none"
+  >
+    <pre id="user-story"></pre>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<script nonce="1LgvZOVQb3NAD8nu2XrerP6kJeFYMLApE8MVP5gVb3kBZH6a">
+  init_module_visibility();
+</script>
+
+
+
+<meta name="firefox-versions" content="{&quot;FIREFOX_AURORA&quot;:&quot;&quot;,&quot;FIREFOX_DEVEDITION&quot;:&quot;80.0b8&quot;,&quot;FIREFOX_ESR&quot;:&quot;68.11.0esr&quot;,&quot;FIREFOX_ESR_NEXT&quot;:&quot;78.1.0esr&quot;,&quot;FIREFOX_NIGHTLY&quot;:&quot;81.0a1&quot;,&quot;LAST_MERGE_DATE&quot;:&quot;2020-07-27&quot;,&quot;LAST_RELEASE_DATE&quot;:&quot;2020-07-28&quot;,&quot;LAST_SOFTFREEZE_DATE&quot;:&quot;2020-07-23&quot;,&quot;LATEST_FIREFOX_DEVEL_VERSION&quot;:&quot;80.0b8&quot;,&quot;LATEST_FIREFOX_OLDER_VERSION&quot;:&quot;3.6.28&quot;,&quot;LATEST_FIREFOX_RELEASED_DEVEL_VERSION&quot;:&quot;80.0b8&quot;,&quot;LATEST_FIREFOX_VERSION&quot;:&quot;79.0&quot;,&quot;NEXT_MERGE_DATE&quot;:&quot;2020-08-24&quot;,&quot;NEXT_RELEASE_DATE&quot;:&quot;2020-08-25&quot;,&quot;NEXT_SOFTFREEZE_DATE&quot;:&quot;2020-08-20&quot;}">
+
+
+<div id="comment-actions">
+    <button type="button" id="bottom-btn" class="secondary" aria-label="Go to Page Bottom">Bottom &darr;</button>
+  <div class="dropdown">
+    <button type="button" id="comment-tags-btn" aria-haspopup="true" aria-label="Tags"
+      aria-expanded="false" aria-controls="comment-tags-menu" class="dropdown-button minor">Tags &#9662;</button>
+    <ul id="comment-tags-menu" role="menu" tabindex="0" class="dropdown-content left" style="display:none">
+      <li role="presentation">
+        <a role="menuitem" tabindex="-1" data-comment-tag="">Reset</a>
+      </li>
+    </ul>
+  </div>
+  <div class="dropdown">
+    <button type="button" id="view-menu-btn" aria-haspopup="true" aria-label="Timeline"
+      aria-expanded="false" aria-controls="view-menu" class="dropdown-button minor">Timeline &#9662;</button>
+    <ul id="view-menu" role="menu" tabindex="0" class="dropdown-content left" style="display:none">
+      <li role="presentation">
+        <a id="view-reset" role="menuitem" tabindex="-1">Reset</a>
+      </li>
+      <li role="separator"></li>
+      <li role="presentation">
+        <a id="view-collapse-all" role="menuitem" tabindex="-1">Collapse All</a>
+      </li>
+      <li role="presentation">
+        <a id="view-expand-all" role="menuitem" tabindex="-1">Expand All</a>
+      </li>
+      <li role="presentation">
+        <a id="view-comments-only" role="menuitem" tabindex="-1">Comments Only</a>
+      </li>
+    </ul>
+   </div>
+</div>
+<div class="change-set" id="c0"><div class="comment" data-id="43300" data-no="0"
+       data-tags="">
+    
+    <table class="layout-table change-head reporter" id="ch-0" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_5085" ><img src="https://secure.gravatar.com/avatar/4fcf464e8f76cee10d009c81ee9b9a3c?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_5085" ><a class="email disabled" href="/user_profile?user_id=5085" > <span class="fna">AriB</span></a>
+</div>
+            <span class="user-role">Reporter</span>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-0"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-0" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c0">Description</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-05-02 20:24 PDT" data-time="925701867">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-0">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-0" data-comment-id="43300">Just to give one example
+14.28 x 9 should be 128.52;
+your browser's answer = 128.51999999999998
+
+This bug is also from Netscape 4.5</pre></div><div class="change-set" id="a232884_4426"><div class="change" id="aa232884_4426">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_4426" id="a232884_4426"><img src="https://secure.gravatar.com/avatar/d6e9b5339ac7e5b2b9e8067ccb024ed2?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_4426" id="a232884_4426"><a class="email disabled" href="/user_profile?user_id=4426" > <span class="fna">Waldemar Horwat</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a232884_4426"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a232884_4426">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a232884_4426">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-05-05 13:05 PDT" data-time="925934751">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Status: NEW &rarr; RESOLVED</div><div class="change">Closed: <span class="rel-time" title="1999-05-05 13:05 PDT" data-time="925934751">22 years ago</span></div><div class="change">Resolution: --- &rarr; INVALID</div></div></div><div class="change-set" id="c1"><div class="comment" data-id="43301" data-no="1"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-1" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_4426" id="a232884_4426"><img src="https://secure.gravatar.com/avatar/d6e9b5339ac7e5b2b9e8067ccb024ed2?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_4426" id="a232884_4426"><a class="email disabled" href="/user_profile?user_id=4426" > <span class="fna">Waldemar Horwat</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-1"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-1" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c1">Comment 1</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-05-05 13:05 PDT" data-time="925934759">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-1">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-1" data-comment-id="43301">ECMAScript requires the use of IEEE double precision for numbers.
+
+14.28 correctly rounded as an IEEE double is represented as
+
+1.1100100011110101110000101000111101011100001010001111e3 in base 2, which is
+
+exactly equal to 14.2799999999999993605115378159098327159881591796875 decimal.
+
+Multiplying this value by 9 yields exactly
+
+128.5199999999999942446038403431884944438934326171875.
+
+Per the ECMA spec, this is again rounded to the nearest IEEE double, which is
+
+1.0000000100001010001111010111000010100011110101110000e7 base 2, or
+
+128.51999999999998181010596454143524169921875 decimal.
+
+
+
+Why does the result print as 128.51999999999998?  Well, the ECMA spec requires
+
+numbers to be printed with sufficient precision (and no more than that precision)
+
+so that if the printed string were read in again and converted back to a number,
+
+it would round to exactly the same IEEE double that was printed.  Printing 128.52
+
+would be incorrect because the rounding 128.52 to the closest IEEE double yields
+
+128.520000000000010231815394945442676544189453125, which is closer than
+
+128.51999999999998181010596454143524169921875.  Thus we must print
+
+128.51999999999998.
+
+Every other language that uses standard IEEE double-precision arithmetic will
+
+also give this result.  This includes Java and most implementations of C and C++.</pre></div><div class="change-set" id="c2"><div class="comment" data-id="43302" data-no="2"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-2" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_3853" id="a232884_4426"><img src="https://secure.gravatar.com/avatar/715f1344e52ba783e2f3d133a958bef4?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_3853" id="a232884_4426"><a class="email disabled" href="/user_profile?user_id=3853" > <span class="fna">leger</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-2"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-2" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c2">Comment 2</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-06-07 15:59 PDT" data-time="928796399">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-2">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-2" data-comment-id="43302">Changing component to &quot;Javascript Engine&quot;.  &quot;Javascript&quot; component is being
+retired.</pre></div><div class="change-set" id="a6112434_5564"><div class="change" id="aa6112434_5564">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_5564" id="a6112434_5564"><img src="https://secure.gravatar.com/avatar/1ebda948dd892f04e2ee2fab6c179f6c?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_5564" id="a6112434_5564"><a class="email disabled" href="/user_profile?user_id=5564" > <span class="fna">Jay Patel [:jay]</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a6112434_5564"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a6112434_5564">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a6112434_5564">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-07-12 14:18 PDT" data-time="931814301">21 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Status: RESOLVED &rarr; VERIFIED</div></div></div><div class="change-set" id="c3"><div class="comment" data-id="43303" data-no="3"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-3" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_5564" id="a6112434_5564"><img src="https://secure.gravatar.com/avatar/1ebda948dd892f04e2ee2fab6c179f6c?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_5564" id="a6112434_5564"><a class="email disabled" href="/user_profile?user_id=5564" > <span class="fna">Jay Patel [:jay]</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-3"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-3" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c3">Comment 3</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-07-12 14:18 PDT" data-time="931814339">21 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-3">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-3" data-comment-id="43303">Verified Invalid</pre></div><div class="change-set" id="c4"><div class="comment" data-id="2204734" data-no="4"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-4" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_57557" id="a6112434_5564"><img src="https://secure.gravatar.com/avatar/7f6f2dbca83f44e2f811e1ec7ea4a6f9?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_57557" id="a6112434_5564"><a class="email disabled" href="/user_profile?user_id=57557" > <span class="fna">Bill Mason</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-4"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-4" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c4">Comment 4</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2004-07-15 09:34 PDT" data-time="1089909263">16 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-4">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-4" data-comment-id="2204734">*** <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - Calculating Error"
+   href="/show_bug.cgi?id=251585">Bug 251585</a> has been marked as a duplicate of this bug. ***</pre></div><div class="change-set" id="c5"><div class="comment" data-id="2204748" data-no="5"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-5" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_1214" id="a6112434_5564"><img src="https://secure.gravatar.com/avatar/c936d5fc7ef09504480b9d8aafb7e8a0?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_1214" id="a6112434_5564"><a class="email " href="/user_profile?user_id=1214" > <span class="fna">Brendan Eich [:brendan]</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-5"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-5" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c5">Comment 5</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2004-07-15 09:43 PDT" data-time="1089909793">16 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-5">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-5" data-comment-id="2204748">Note that ECMA-262 Edition 3 added Number.prototype.toFixed, which takes a
+precision argument telling how many digits after the decimal point to show.  Use
+this method well and you won't mind the disparity between finite precision base
+2 and the &quot;arbitrary&quot; or &quot;appropriate&quot; precision base 10 that we use every day.
+
+/be</pre></div><div class="change-set" id="c6"><div class="comment" data-id="2422350" data-no="6"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-6" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_20209" id="a6112434_5564"><img src="extensions/Gravatar/web/default.jpg" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_20209" id="a6112434_5564"><a class="email " href="/user_profile?user_id=20209" > <span class="fna">Boris Zbarsky [:bzbarsky]</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-6"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-6" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c6">Comment 6</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2005-02-22 13:41 PST" data-time="1109108468">16 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-6">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-6" data-comment-id="2422350">*** <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - Floating point error in javascript"
+   href="/show_bug.cgi?id=281659">Bug 281659</a> has been marked as a duplicate of this bug. ***</pre></div><div class="change-set" id="c7"><div class="comment" data-id="2425149" data-no="7"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-7" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_11608" id="a6112434_5564"><img src="https://secure.gravatar.com/avatar/d2dc9227eafcd0ec5ba3712ee4f19b75?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_11608" id="a6112434_5564"><a class="email " href="/user_profile?user_id=11608" > <span class="fna">Jesse Ruderman</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-7"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-7" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c7">Comment 7</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2005-02-24 21:40 PST" data-time="1109310037">16 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-7">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-7" data-comment-id="2425149">*** <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - Rounding Error?"
+   href="/show_bug.cgi?id=20140">Bug 20140</a> has been marked as a duplicate of this bug. ***</pre></div><div class="change-set" id="c8"><div class="comment" data-id="2425151" data-no="8"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-8" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_11608" id="a6112434_5564"><img src="https://secure.gravatar.com/avatar/d2dc9227eafcd0ec5ba3712ee4f19b75?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_11608" id="a6112434_5564"><a class="email " href="/user_profile?user_id=11608" > <span class="fna">Jesse Ruderman</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-8"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-8" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c8">Comment 8</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2005-02-24 21:41 PST" data-time="1109310112">16 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-8">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-8" data-comment-id="2425151">*** <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED DUPLICATE - Javascript has Pentium-style precision errors"
+   href="/show_bug.cgi?id=1813">Bug 1813</a> has been marked as a duplicate of this bug. ***</pre></div><div class="change-set" id="c9"><div class="comment" data-id="2425226" data-no="9"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-9" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_1214" id="a6112434_5564"><img src="https://secure.gravatar.com/avatar/c936d5fc7ef09504480b9d8aafb7e8a0?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_1214" id="a6112434_5564"><a class="email " href="/user_profile?user_id=1214" > <span class="fna">Brendan Eich [:brendan]</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-9"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-9" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c9">Comment 9</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2005-02-24 23:42 PST" data-time="1109317373">16 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-9">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-9" data-comment-id="2425226">*** <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED DUPLICATE - wrong sum result in javascript 1999.00 + 439.78, which handles firefox"
+   href="/show_bug.cgi?id=283303">Bug 283303</a> has been marked as a duplicate of this bug. ***</pre></div><div class="change-set" id="c10"><div class="comment" data-id="2524742" data-no="10"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-10" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_103593" id="a6112434_5564"><img src="https://secure.gravatar.com/avatar/08de945228403cb0598d5906e2407a7d?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_103593" id="a6112434_5564"><a class="email " href="/user_profile?user_id=103593" > <span class="fna">:Gavin Sharp [email: gavin&#64;gavinsharp.com]</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-10"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-10" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c10">Comment 10</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2005-06-10 20:06 PDT" data-time="1118459219">15 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-10">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-10" data-comment-id="2524742">*** <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - JavaScript floating-point precision error"
+   href="/show_bug.cgi?id=297361">Bug 297361</a> has been marked as a duplicate of this bug. ***</pre></div><div class="change-set" id="c11"><div class="comment" data-id="2722221" data-no="11"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-11" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_20302" id="a6112434_5564"><img src="https://secure.gravatar.com/avatar/33f0ce8821639feaa376cc60ed3ca87b?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_20302" id="a6112434_5564"><a class="email " href="/user_profile?user_id=20302" > <span class="fna">Elmar Ludwig</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-11"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-11" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c11">Comment 11</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2005-12-13 04:14 PST" data-time="1134476082">15 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-11">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-11" data-comment-id="2722221">*** <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - In javascript 0.7+0.2=0.8(9)"
+   href="/show_bug.cgi?id=320093">Bug 320093</a> has been marked as a duplicate of this bug. ***</pre></div><div class="change-set" id="c12"><div class="comment" data-id="3010140" data-no="12"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-12" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_108384" id="a6112434_5564"><img src="https://secure.gravatar.com/avatar/bafec8eb1f9f4219ac3148ba824816da?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_108384" id="a6112434_5564"><a class="email " href="/user_profile?user_id=108384" > <span class="fna">:Mook</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-12"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-12" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c12">Comment 12</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2006-10-13 07:13 PDT" data-time="1160748810">14 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-12">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-12" data-comment-id="3010140">*** <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - The Javascript modulus arithmetic has gross errors when large numbers are used."
+   href="/show_bug.cgi?id=356566">Bug 356566</a> has been marked as a duplicate of this bug. ***</pre></div><div class="change-set" id="a251930357_253737"><div class="change" id="aa251930357_253737">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_253737" id="a251930357_253737"><img src="https://secure.gravatar.com/avatar/634df1b9e16fb879ac0da8543ca1be8f?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_253737" id="a251930357_253737"><a class="email " href="/user_profile?user_id=253737" > <span class="fna">Brian Crowder</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a251930357_253737"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a251930357_253737">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a251930357_253737">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2007-04-26 17:03 PDT" data-time="1177632224">14 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - 0.1 * 0.1 = 0.010000000000000002"
+   href="/show_bug.cgi?id=378956">378956</a></div></div></div><div class="change-set" id="a262101872_103593"><div class="change" id="aa262101872_103593">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_103593" id="a262101872_103593"><img src="https://secure.gravatar.com/avatar/08de945228403cb0598d5906e2407a7d?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_103593" id="a262101872_103593"><a class="email " href="/user_profile?user_id=103593" > <span class="fna">:Gavin Sharp [email: gavin&#64;gavinsharp.com]</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a262101872_103593"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a262101872_103593">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a262101872_103593">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2007-08-22 10:28 PDT" data-time="1187803739">13 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED DUPLICATE - http://chafy.net/firefoxbug.php"
+   href="/show_bug.cgi?id=393209">393209</a></div></div></div><div class="change-set" id="a262103493_1214"><div class="change" id="aa262103493_1214">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_1214" id="a262103493_1214"><img src="https://secure.gravatar.com/avatar/c936d5fc7ef09504480b9d8aafb7e8a0?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_1214" id="a262103493_1214"><a class="email " href="/user_profile?user_id=1214" > <span class="fna">Brendan Eich [:brendan]</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a262103493_1214"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a262103493_1214">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a262103493_1214">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2007-08-22 10:56 PDT" data-time="1187805360">13 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Alias: js-ieee-double-hurts</div></div></div><div class="change-set" id="a271857914_91159"><div class="change" id="aa271857914_91159">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_91159" id="a271857914_91159"><img src="https://secure.gravatar.com/avatar/8f56e46f0120d9477f8f320991a2196a?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_91159" id="a271857914_91159"><a class="email " href="/user_profile?user_id=91159" > <span class="fna">Dave Townsend [:mossop] (Out until 28th September)</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a271857914_91159"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a271857914_91159">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a271857914_91159">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2007-12-13 07:29 PST" data-time="1197559781">13 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - Javascript modulo operator returns incorrect result when using floating point numbers"
+   href="/show_bug.cgi?id=408202">408202</a></div></div></div><div class="change-set" id="a271858220_218550"><div class="change" id="aa271858220_218550">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_218550" id="a271858220_218550"><img src="https://secure.gravatar.com/avatar/c5d912dac5c74b47bbaff7164f5f8bb8?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_218550" id="a271858220_218550"><a class="email " href="/user_profile?user_id=218550" > <span class="fna">Robert Longson [:longsonr]</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a271858220_218550"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a271858220_218550">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a271858220_218550">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2007-12-13 07:34 PST" data-time="1197560087">13 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - SVG rounding error"
+   href="/show_bug.cgi?id=369803">369803</a></div></div></div><div class="change-set" id="a272738660_45949"><div class="change" id="aa272738660_45949">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_45949" id="a272738660_45949"><img src="https://secure.gravatar.com/avatar/90f2b176f4acfb307b8bfc1a2952c85a?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_45949" id="a272738660_45949"><a class="email " href="/user_profile?user_id=45949" > <span class="fna">Frank Wein [:mcsmurf]</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a272738660_45949"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a272738660_45949">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a272738660_45949">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2007-12-23 12:08 PST" data-time="1198440527">13 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - losing accurency"
+   href="/show_bug.cgi?id=396764">396764</a></div></div></div><div class="change-set" id="a272822362_103593"><div class="change" id="aa272822362_103593">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_103593" id="a272822362_103593"><img src="https://secure.gravatar.com/avatar/08de945228403cb0598d5906e2407a7d?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_103593" id="a272822362_103593"><a class="email " href="/user_profile?user_id=103593" > <span class="fna">:Gavin Sharp [email: gavin&#64;gavinsharp.com]</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a272822362_103593"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a272822362_103593">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a272822362_103593">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2007-12-24 11:23 PST" data-time="1198524229">13 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - rounding error with javascript (6 * 1.66 = 9.9566666666666666 instead of 9.96)"
+   href="/show_bug.cgi?id=409726">409726</a></div></div></div><div class="change-set" id="a275558908_91159"><div class="change" id="aa275558908_91159">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_91159" id="a275558908_91159"><img src="https://secure.gravatar.com/avatar/8f56e46f0120d9477f8f320991a2196a?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_91159" id="a275558908_91159"><a class="email " href="/user_profile?user_id=91159" > <span class="fna">Dave Townsend [:mossop] (Out until 28th September)</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a275558908_91159"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a275558908_91159">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a275558908_91159">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2008-01-25 03:32 PST" data-time="1201260775">13 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - 35.05 - 5 = 30.049999999999997"
+   href="/show_bug.cgi?id=413965">413965</a></div></div></div><div class="change-set" id="a290195301_218550"><div class="change" id="aa290195301_218550">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_218550" id="a290195301_218550"><img src="https://secure.gravatar.com/avatar/c5d912dac5c74b47bbaff7164f5f8bb8?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_218550" id="a290195301_218550"><a class="email " href="/user_profile?user_id=218550" > <span class="fna">Robert Longson [:longsonr]</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a290195301_218550"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a290195301_218550">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a290195301_218550">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2008-07-12 14:12 PDT" data-time="1215897168">12 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - Javascript: Wrong addition of floats"
+   href="/show_bug.cgi?id=444938">444938</a></div></div></div><div class="change-set" id="a294037167_91159"><div class="change" id="aa294037167_91159">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_91159" id="a294037167_91159"><img src="https://secure.gravatar.com/avatar/8f56e46f0120d9477f8f320991a2196a?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_91159" id="a294037167_91159"><a class="email " href="/user_profile?user_id=91159" > <span class="fna">Dave Townsend [:mossop] (Out until 28th September)</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a294037167_91159"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a294037167_91159">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a294037167_91159">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2008-08-26 01:23 PDT" data-time="1219739034">12 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - javascript mathematics : 0.4 + 0.2 = 0.6000000000000001"
+   href="/show_bug.cgi?id=452198">452198</a></div></div></div><div class="change-set" id="a298884910_218550"><div class="change" id="aa298884910_218550">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_218550" id="a298884910_218550"><img src="https://secure.gravatar.com/avatar/c5d912dac5c74b47bbaff7164f5f8bb8?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_218550" id="a298884910_218550"><a class="email " href="/user_profile?user_id=218550" > <span class="fna">Robert Longson [:longsonr]</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a298884910_218550"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a298884910_218550">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a298884910_218550">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2008-10-21 03:59 PDT" data-time="1224586777">12 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED DUPLICATE - Javascript - Incorrect value on arithmetic operation"
+   href="/show_bug.cgi?id=460943">460943</a></div></div></div><div class="change-set" id="a300201739_253737"><div class="change" id="aa300201739_253737">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_253737" id="a300201739_253737"><img src="https://secure.gravatar.com/avatar/634df1b9e16fb879ac0da8543ca1be8f?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_253737" id="a300201739_253737"><a class="email " href="/user_profile?user_id=253737" > <span class="fna">Brian Crowder</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a300201739_253737"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a300201739_253737">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a300201739_253737">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2008-11-05 08:46 PST" data-time="1225903606">12 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - Number.toFixed method returns a wrong rounded value"
+   href="/show_bug.cgi?id=463163">463163</a></div></div></div><div class="change-set" id="a302008469_91159"><div class="change" id="aa302008469_91159">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_91159" id="a302008469_91159"><img src="https://secure.gravatar.com/avatar/8f56e46f0120d9477f8f320991a2196a?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_91159" id="a302008469_91159"><a class="email " href="/user_profile?user_id=91159" > <span class="fna">Dave Townsend [:mossop] (Out until 28th September)</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a302008469_91159"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a302008469_91159">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a302008469_91159">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2008-11-26 06:38 PST" data-time="1227710336">12 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED DUPLICATE - error in the sum of float"
+   href="/show_bug.cgi?id=466822">466822</a></div></div></div><div class="change-set" id="a302026889_129809"><div class="change" id="aa302026889_129809">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_129809" id="a302026889_129809"><img src="https://secure.gravatar.com/avatar/5769ea27a1744c986f4ff3cf44674daf?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_129809" id="a302026889_129809"><a class="email " href="/user_profile?user_id=129809" > <span class="fna">j.j.</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a302026889_129809"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a302026889_129809">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a302026889_129809">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2008-11-26 11:45 PST" data-time="1227728756">12 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">OS: Windows 98 &rarr; All</div><div class="change">Hardware: PC &rarr; All</div></div></div><div class="change-set" id="a310001000_422"><div class="change" id="aa310001000_422">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_422" id="a310001000_422"><img src="https://secure.gravatar.com/avatar/b0599b755b2262d9a946be691666c2ca?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_422" id="a310001000_422"><a class="email " href="/user_profile?user_id=422" > <span class="fna">Mike Shaver (:shaver -- probably not reading bugmail closely)</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a310001000_422"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a310001000_422">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a310001000_422">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2009-02-26 18:47 PST" data-time="1235702867">12 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED DUPLICATE - JavaScript Math is producing incorrect results with floating point differences"
+   href="/show_bug.cgi?id=480475">480475</a></div></div></div><div class="change-set" id="a327222507_218550"><div class="change" id="aa327222507_218550">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_218550" id="a327222507_218550"><img src="https://secure.gravatar.com/avatar/c5d912dac5c74b47bbaff7164f5f8bb8?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_218550" id="a327222507_218550"><a class="email " href="/user_profile?user_id=218550" > <span class="fna">Robert Longson [:longsonr]</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a327222507_218550"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a327222507_218550">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a327222507_218550">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2009-09-14 03:32 PDT" data-time="1252924374">11 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - parseFloat is not working property when the number exceeds 17 digits"
+   href="/show_bug.cgi?id=516355">516355</a></div></div></div><div class="change-set" id="a329136988_29552"><div class="change" id="aa329136988_29552">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_29552" id="a329136988_29552"><img src="https://secure.gravatar.com/avatar/dd45b9f6f663a1a2e85983c1f2cf5792?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_29552" id="a329136988_29552"><a class="email " href="/user_profile?user_id=29552" > <span class="fna">Jo Hermans</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a329136988_29552"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a329136988_29552">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a329136988_29552">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2009-10-06 07:20 PDT" data-time="1254838855">11 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED DUPLICATE - Multiplying of two specific factors not very accurate"
+   href="/show_bug.cgi?id=520754">520754</a></div></div></div><div class="change-set" id="a329137013_29552"><div class="change" id="aa329137013_29552">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_29552" id="a329137013_29552"><img src="https://secure.gravatar.com/avatar/dd45b9f6f663a1a2e85983c1f2cf5792?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_29552" id="a329137013_29552"><a class="email " href="/user_profile?user_id=29552" > <span class="fna">Jo Hermans</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a329137013_29552"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a329137013_29552">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a329137013_29552">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2009-10-06 07:21 PDT" data-time="1254838880">11 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED DUPLICATE - Javascript floating point calculation"
+   href="/show_bug.cgi?id=190303">190303</a></div></div></div><div class="change-set" id="a329137048_29552"><div class="change" id="aa329137048_29552">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_29552" id="a329137048_29552"><img src="https://secure.gravatar.com/avatar/dd45b9f6f663a1a2e85983c1f2cf5792?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_29552" id="a329137048_29552"><a class="email " href="/user_profile?user_id=29552" > <span class="fna">Jo Hermans</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a329137048_29552"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a329137048_29552">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a329137048_29552">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2009-10-06 07:21 PDT" data-time="1254838915">11 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED DUPLICATE - Javascript multiplication of float values produces incorrect result"
+   href="/show_bug.cgi?id=280544">280544</a></div></div></div><div class="change-set" id="a337103349_1214"><div class="change" id="aa337103349_1214">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_1214" id="a337103349_1214"><img src="https://secure.gravatar.com/avatar/c936d5fc7ef09504480b9d8aafb7e8a0?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_1214" id="a337103349_1214"><a class="email " href="/user_profile?user_id=1214" > <span class="fna">Brendan Eich [:brendan]</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a337103349_1214"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a337103349_1214">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a337103349_1214">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2010-01-06 11:13 PST" data-time="1262805216">11 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - Large number division is wrong"
+   href="/show_bug.cgi?id=538209">538209</a></div></div></div><div class="change-set" id="a344882636_1214"><div class="change" id="aa344882636_1214">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_1214" id="a344882636_1214"><img src="https://secure.gravatar.com/avatar/c936d5fc7ef09504480b9d8aafb7e8a0?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_1214" id="a344882636_1214"><a class="email " href="/user_profile?user_id=1214" > <span class="fna">Brendan Eich [:brendan]</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a344882636_1214"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a344882636_1214">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a344882636_1214">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2010-04-06 13:08 PDT" data-time="1270584503">11 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - javascript return floating-error on enter the values (162.295 or 110.565) .toFixed(2) and .toPrecision(5);"
+   href="/show_bug.cgi?id=557530">557530</a></div></div></div><div class="change-set" id="a354479580_218550"><div class="change" id="aa354479580_218550">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_218550" id="a354479580_218550"><img src="https://secure.gravatar.com/avatar/c5d912dac5c74b47bbaff7164f5f8bb8?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_218550" id="a354479580_218550"><a class="email " href="/user_profile?user_id=218550" > <span class="fna">Robert Longson [:longsonr]</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a354479580_218550"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a354479580_218550">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a354479580_218550">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2010-07-26 14:57 PDT" data-time="1280181447">10 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - javascript calculates incorrectly and outputs 17 digit number"
+   href="/show_bug.cgi?id=582086">582086</a></div></div></div><div class="change-set" id="a366557917_218550"><div class="change" id="aa366557917_218550">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_218550" id="a366557917_218550"><img src="https://secure.gravatar.com/avatar/c5d912dac5c74b47bbaff7164f5f8bb8?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_218550" id="a366557917_218550"><a class="email " href="/user_profile?user_id=218550" > <span class="fna">Robert Longson [:longsonr]</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a366557917_218550"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a366557917_218550">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a366557917_218550">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2010-12-13 09:03 PST" data-time="1292259784">10 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - Wrong calculation in javascript with floats"
+   href="/show_bug.cgi?id=618839">618839</a></div></div></div><div class="change-set" id="a368821060_422"><div class="change" id="aa368821060_422">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_422" id="a368821060_422"><img src="https://secure.gravatar.com/avatar/b0599b755b2262d9a946be691666c2ca?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_422" id="a368821060_422"><a class="email " href="/user_profile?user_id=422" > <span class="fna">Mike Shaver (:shaver -- probably not reading bugmail closely)</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a368821060_422"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a368821060_422">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a368821060_422">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2011-01-08 13:42 PST" data-time="1294522927">10 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - 18014398509481983 === 18014398509481984 ?"
+   href="/show_bug.cgi?id=624189">624189</a></div></div></div><div class="change-set" id="a379589995_218550"><div class="change" id="aa379589995_218550">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_218550" id="a379589995_218550"><img src="https://secure.gravatar.com/avatar/c5d912dac5c74b47bbaff7164f5f8bb8?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_218550" id="a379589995_218550"><a class="email " href="/user_profile?user_id=218550" > <span class="fna">Robert Longson [:longsonr]</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a379589995_218550"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a379589995_218550">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a379589995_218550">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2011-05-13 06:04 PDT" data-time="1305291862">9 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - 69*0.01 = 0.6900000000000001 ?"
+   href="/show_bug.cgi?id=656887">656887</a></div></div></div><div class="change-set" id="a394732706_14534"><div class="change" id="aa394732706_14534">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_14534" id="a394732706_14534"><img src="https://secure.gravatar.com/avatar/e5f97d33683797ab997351993a109030?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_14534" id="a394732706_14534"><a class="email " href="/user_profile?user_id=14534" > <span class="fna">Matthias Versen [:Matti]</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a394732706_14534"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a394732706_14534">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a394732706_14534">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2011-11-04 12:22 PDT" data-time="1320434573">9 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - [Javascript] Wrong comparision (0.55*100 == 55) always return false"
+   href="/show_bug.cgi?id=699645">699645</a></div></div></div><div class="change-set" id="a433010150_14534"><div class="change" id="aa433010150_14534">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_14534" id="a433010150_14534"><img src="https://secure.gravatar.com/avatar/e5f97d33683797ab997351993a109030?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_14534" id="a433010150_14534"><a class="email " href="/user_profile?user_id=14534" > <span class="fna">Matthias Versen [:Matti]</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a433010150_14534"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a433010150_14534">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a433010150_14534">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2013-01-20 12:00 PST" data-time="1358712017">8 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - Math Error in substraction"
+   href="/show_bug.cgi?id=832727">832727</a></div></div></div><div class="change-set" id="a434627430_20209"><div class="change" id="aa434627430_20209">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_20209" id="a434627430_20209"><img src="extensions/Gravatar/web/default.jpg" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_20209" id="a434627430_20209"><a class="email " href="/user_profile?user_id=20209" > <span class="fna">Boris Zbarsky [:bzbarsky]</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a434627430_20209"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a434627430_20209">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a434627430_20209">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2013-02-08 05:14 PST" data-time="1360329297">8 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED DUPLICATE - Javascript interpreter changes integers on function calls"
+   href="/show_bug.cgi?id=839324">839324</a></div></div></div><div class="change-set" id="c39"><div class="comment" data-id="7513505" data-no="39"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-39" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_472332" id="a434627430_20209"><img src="https://secure.gravatar.com/avatar/6b6e005a3ed531d1f4b2c2b4eef0bd91?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_472332" id="a434627430_20209"><a class="email disabled" href="/user_profile?user_id=472332" > <span class="fna">Sebastian Prodan</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-39"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-39" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c39">Comment 39</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2013-06-09 00:38 PDT" data-time="1370763514">7 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-39">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-39" data-comment-id="7513505">Duplicate of the Bug: 15* 1.33 (instead of expected 19.95 it return 19.950000000000003)</pre></div><div class="change-set" id="a494860394_218550"><div class="change" id="aa494860394_218550">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_218550" id="a494860394_218550"><img src="https://secure.gravatar.com/avatar/c5d912dac5c74b47bbaff7164f5f8bb8?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_218550" id="a494860394_218550"><a class="email " href="/user_profile?user_id=218550" > <span class="fna">Robert Longson [:longsonr]</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a494860394_218550"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a494860394_218550">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#a494860394_218550">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2015-01-06 08:37 PST" data-time="1420562261">6 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Duplicate of this bug: <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED DUPLICATE - math"
+   href="/show_bug.cgi?id=1118287">1118287</a></div></div></div><div class="change-set" id="c41"><div class="comment" data-id="12517252" data-no="41"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-41" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_262329" id="a494860394_218550"><img src="https://secure.gravatar.com/avatar/1d5010f333d8504309c43e2e015768a9?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_262329" id="a494860394_218550"><a class="email " href="/user_profile?user_id=262329" > <span class="fna">Jim Michaels</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-41"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-41" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c41">Comment 41</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2017-07-28 17:07 PDT" data-time="1501286850">3 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-41">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-41" data-comment-id="12517252">(37 + Math.pow(2, -1) + Math.pow(2, -3) + Math.pow(2, -5)) * 1e-32
+3.7656250000000003e-31
+in my string to number converter, it comes out without the 0000000003 error amount.</pre></div><div class="change-set" id="c42"><div class="comment" data-id="12517256" data-no="42"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-42" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_262329" id="a494860394_218550"><img src="https://secure.gravatar.com/avatar/1d5010f333d8504309c43e2e015768a9?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_262329" id="a494860394_218550"><a class="email " href="/user_profile?user_id=262329" > <span class="fna">Jim Michaels</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-42"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-42" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c42">Comment 42</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2017-07-28 17:08 PDT" data-time="1501286917">3 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-42">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-42" data-comment-id="12517256">at least into the console.</pre></div><div class="change-set" id="c43"><div class="comment" data-id="12518081" data-no="43"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-43" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_262329" id="a494860394_218550"><img src="https://secure.gravatar.com/avatar/1d5010f333d8504309c43e2e015768a9?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_262329" id="a494860394_218550"><a class="email " href="/user_profile?user_id=262329" > <span class="fna">Jim Michaels</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-43"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-43" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c43">Comment 43</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2017-07-29 11:52 PDT" data-time="1501354370">3 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-43">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-43" data-comment-id="12518081">reopen this bug?</pre></div><div class="change-set" id="c44"><div class="comment" data-id="12518084" data-no="44"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-44" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_262329" id="a494860394_218550"><img src="https://secure.gravatar.com/avatar/1d5010f333d8504309c43e2e015768a9?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_262329" id="a494860394_218550"><a class="email " href="/user_profile?user_id=262329" > <span class="fna">Jim Michaels</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-44"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-44" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c44">Comment 44</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2017-07-29 11:57 PDT" data-time="1501354658">3 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-44">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-44" data-comment-id="12518084">by the way, the representation of the mantissa is best represented in binary form (base 2). so that's what I have done. even successive adds above have not deterred my converter from coming out with the right result. does the debugger contain an old/defective IEEE in its JS engine? I don't know if it uses its own JS engine or whether it uses the browser's. to me it's only important to get right results. this should come out 
+this should come out 
+(37 + Math.pow(2, -1) + Math.pow(2, -3) + Math.pow(2, -5)) * 1e-32
+3.765625e-31
+but came out 
+(37 + Math.pow(2, -1) + Math.pow(2, -3) + Math.pow(2, -5)) * 1e-32
+3.7656250000000003e-31
+in the 54.0.1 console.</pre></div><div class="change-set" id="c45"><div class="comment" data-id="13163497" data-no="45"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-45" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_468046" id="a494860394_218550"><img src="https://secure.gravatar.com/avatar/07878bdbc2b27b58bacd55e97935d47c?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_468046" id="a494860394_218550"><a class="email " href="/user_profile?user_id=468046" > <span class="fna">stefano.statuti</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-45"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-45" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c45">Comment 45</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2018-03-28 07:44 PDT" data-time="1522248257">2 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-45">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-45" data-comment-id="13163497">same problem with:
+
+$('.chnagenumber').val()--&gt; &quot;3&quot; 
+$('.chnagenumber').val()*0.0001 ---&gt;&quot;0.00030000000000000003&quot;
+
+
+my dirty solution:
+
+alert(((0.0001*3)*1000000000000)/1000000000000); it display 0.0003 correcty
+<a rel="nofollow" href="https://en.wikipedia.org/wiki/IEEE_754">https://en.wikipedia.org/wiki/IEEE_754</a></pre></div><div class="change-set" id="c46"><div class="comment" data-id="13980235" data-no="46"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-46" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_453117" id="a494860394_218550"><img src="https://secure.gravatar.com/avatar/639ab06759b0dbc87b084d9095436693?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_453117" id="a494860394_218550"><a class="email " href="/user_profile?user_id=453117" > <span class="fna">facebook.com/arnon.jaya</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-46"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-46" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c46">Comment 46</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2019-03-11 14:24 PDT" data-time="1552339465">2 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-46">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><div
+        class="comment-text markdown-body "
+        id="ct-46" data-comment-id="13980235" data-ismarkdown="true" ><p>11 mar 2019 4:56 pm edt:<br>
+(1)to Waldemar Horwat&#39;s comment:<br>
+&#39;Every other language that uses standard IEEE double-precision arithmetic will<br>
+also give this result.  This includes Java and most implementations of C and C++.&#39;</p>
+<p>now c produce better result:<br>
+//math_test.c<br>
+//compile-command:gcc -o math_test math_test.c<br>
+#include &lt;stdio.h&gt;<br>
+int main ()<br>
+{<br>
+/* javascript-eval-result,javascript-standard-arithmetic-result:<br>
+(1)defect:2.9+2.8=5.699999999999999<br>
+(2)defect:2.9-2.8=0.10000000000000009<br>
+(3)defect:2.9-2=0.8999999999999999<br>
+(4)not defect:2.9X2=5.8<br>
+(5)defect:2.9X2.3=6.669999999999999<br>
+(6)not defect:2.8/1.4=2<br>
+(7)not defect:2.8/4=0.7<br>
+(7)not defect:2.8/3=0.9333333333333332<br>
+<em>/<br>
+printf(&quot;2.9+2.8=%f&quot;,2.9+2.8); // 2.9+2.8=5.700000<br>
+printf(&quot;\n2.9-2.8=%f&quot;,2.9-2.8); // 2.9-2.8=0.100000<br>
+printf(&quot;\n2.9-2=%f&quot;,2.9-2);  // 2.9-2=0.900000<br>
+printf(&quot;\n2.9x2=%f&quot;,2.9</em>2);  // 2.9x2=5.800000<br>
+printf(&quot;\n2.9x2.3=%f&quot;,2.9*2.3);  // 2.9x2.3=6.670000<br>
+printf(&quot;\n2.8/1.4=%f&quot;,2.8/1.4);  // 2.8/1.4=2.000000<br>
+printf(&quot;\n2.8/4=%f&quot;,2.8/4);  // 2.8/4=0.700000<br>
+printf(&quot;\n2.8/3=%f&quot;,2.8/3);  // 2.8/3=0.933333<br>
+printf(&quot;\n&quot;);</p>
+<p>return 1;<br>
+}</p>
+<p>(2)to brendan eich&#39;s comment &#39;Note that ECMA-262 Edition 3 added Number.prototype.toFixed, which takes a<br>
+precision argument telling how many digits after the decimal point to show.  Use<br>
+this method well&#39;:<br>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed" rel="nofollow">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed</a><br>
+from google(Number.prototype.toFixed)result 1<br>
+will also round-up result for 2.8/3=0.9333333333333332=0.9.<br>
+if that result remain 0.9333333333333332 then that&#39;s better because:<br>
+linuxmint-18.2-&gt;gnu-calculator says:<br>
+0.9333333333333332 x 3 = 2.8<br>
+0.9 x 3 = 2.7<br>
+0.93 x 3 = 2.79.</p>
+<p>a javascript-htm-test-file:<br>
+&lt;!--- defect_eval.htm:<br>
+(1)<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval" rel="nofollow">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval</a> from google(javascript evalulate math)<br>
+should contain warning about this eval-defect:<br>
+(2)mozilla should write warning about simple-arithmetic-defect<br>
+like in page<br>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval" rel="nofollow">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval</a><br>
+should contain warning saying &#39;tips:did you know that<br>
+in javascript 2.9-2.8 = 0.10000000000000009.please make your own<br>
+subtraction-function,addition-function,multiplication-function&#39;<br>
+--&gt;</p>
+<p>&lt;script language=&quot;javascript&quot;&gt;<br>
+//simple-arithmetic-defect<br>
+document.writeln(&#39;simple-arithmetic-defect&#39;);<br>
+document.writeln(&#39;&lt;br&gt;(1)defect:2.9+2.8=&#39;+(2.9+2.8)); // 5.699999999999999 &lt;-- defect<br>
+document.writeln(&#39;&lt;br&gt;(2)defect:2.9-2.8=&#39;+(2.9-2.8)); // 0.10000000000000009 &lt;-- defect<br>
+document.writeln(&#39;&lt;br&gt;(3)defect:2.9-2=&#39;+(2.9-2));  // 0.8999999999999999 &lt;-- defect<br>
+document.writeln(&#39;&lt;br&gt;(4)not defect:2.9X2=&#39;+(2.9<em>2));  // 5.8 &lt;-- not defect<br>
+document.writeln(&#39;&lt;br&gt;(5)defect:2.9X2.3=&#39;+(2.9</em>2.3));  // 6.669999999999999 &lt;-- defect<br>
+document.writeln(&#39;&lt;br&gt;(6)not defect:2.8/1.4=&#39;+(2.8/1.4)); // 2 &lt;-- not defect<br>
+document.writeln(&#39;&lt;br&gt;(7)not defect:2.8/4=&#39;+(2.8/4)); // 0.7 &lt;-- not defect<br>
+document.writeln(&#39;&lt;br&gt;(7)not defect:2.8/3=&#39;+(2.8/3)); // 0.9333333333333332  &lt;-- not defect</p>
+<p>//eval-defect<br>
+document.writeln(&#39;&lt;br&gt;&lt;br&gt;eval-defect&#39;);<br>
+document.writeln(&#39;&lt;br&gt;(1)defect:2.9+2.8=&#39;+eval(2.9+2.8)); // 5.699999999999999 &lt;-- defect<br>
+document.writeln(&#39;&lt;br&gt;(2)defect:2.9-2.8=&#39;+eval(2.9-2.8)); // 0.10000000000000009 &lt;-- defect<br>
+document.writeln(&#39;&lt;br&gt;(3)defect:2.9-2=&#39;+eval(2.9-2));  // 0.8999999999999999 &lt;-- defect<br>
+document.writeln(&#39;&lt;br&gt;(4)not defect:2.9X2=&#39;+eval(2.9<em>2));  // 5.8 &lt;-- not defect<br>
+document.writeln(&#39;&lt;br&gt;(5)defect:2.9X2.3=&#39;+eval(2.9</em>2.3));  // 6.669999999999999 &lt;-- defect<br>
+document.writeln(&#39;&lt;br&gt;(6)not defect:2.8/1.4=&#39;+eval(2.8/1.4)); // 2 &lt;-- not defect<br>
+document.writeln(&#39;&lt;br&gt;(7)not defect:2.8/4=&#39;+eval(2.8/4)); // 0.7 &lt;-- not defect<br>
+document.writeln(&#39;&lt;br&gt;(7)not defect:2.8/3=&#39;+eval(2.8/3)); // 0.9333333333333332  &lt;-- not defect<br>
+&lt;/script&gt;</p>
+</div></div><div class="change-set" id="c47"><div class="comment" data-id="13980270" data-no="47"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-47" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_453117" id="a494860394_218550"><img src="https://secure.gravatar.com/avatar/639ab06759b0dbc87b084d9095436693?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_453117" id="a494860394_218550"><a class="email " href="/user_profile?user_id=453117" > <span class="fna">facebook.com/arnon.jaya</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-47"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-47" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c47">Comment 47</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2019-03-11 14:36 PDT" data-time="1552340164">2 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-47">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><div
+        class="comment-text markdown-body "
+        id="ct-47" data-comment-id="13980270" data-ismarkdown="true" ><p>(In reply to arnon81 from <a class="bz_bug_link
+          bz_status_VERIFIED bz_closed" href="/show_bug.cgi?id=5856#c46" title="VERIFIED INVALID - javascript rounding bug">comment #46</a>)</p>
+<blockquote>
+<p>11 mar 2019 4:56 pm edt:<br>
+(1)to Waldemar Horwat&#39;s comment:<br>
+&#39;Every other language that uses standard IEEE double-precision arithmetic will<br>
+also give this result.  This includes Java and most implementations of C and C++.&#39;</p>
+<p>now c produce better result:<br>
+//math_test.c<br>
+//compile-command:gcc -o math_test math_test.c<br>
+#include &lt;stdio.h&gt;<br>
+int main ()<br>
+{<br>
+/* javascript-eval-result,javascript-simple-arithmetic-result:<br>
+(1)defect:2.9+2.8=5.699999999999999<br>
+(2)defect:2.9-2.8=0.10000000000000009<br>
+(3)defect:2.9-2=0.8999999999999999<br>
+(4)not defect:2.9X2=5.8<br>
+(5)defect:2.9X2.3=6.669999999999999<br>
+(6)not defect:2.8/1.4=2<br>
+(7)not defect:2.8/4=0.7<br>
+(7)not defect:2.8/3=0.9333333333333332<br>
+<em>/<br>
+printf(&quot;2.9+2.8=%f&quot;,2.9+2.8); // 2.9+2.8=5.700000<br>
+printf(&quot;\n2.9-2.8=%f&quot;,2.9-2.8); // 2.9-2.8=0.100000<br>
+printf(&quot;\n2.9-2=%f&quot;,2.9-2);  // 2.9-2=0.900000<br>
+printf(&quot;\n2.9x2=%f&quot;,2.9</em>2);  // 2.9x2=5.800000<br>
+printf(&quot;\n2.9x2.3=%f&quot;,2.9*2.3);  // 2.9x2.3=6.670000<br>
+printf(&quot;\n2.8/1.4=%f&quot;,2.8/1.4);  // 2.8/1.4=2.000000<br>
+printf(&quot;\n2.8/4=%f&quot;,2.8/4);  // 2.8/4=0.700000<br>
+printf(&quot;\n2.8/3=%f&quot;,2.8/3);  // 2.8/3=0.933333<br>
+printf(&quot;\n&quot;);</p>
+<p>return 1;<br>
+}</p>
+<p>(2)to brendan eich&#39;s comment &#39;Note that ECMA-262 Edition 3 added Number.prototype.toFixed, which takes a<br>
+precision argument telling how many digits after the decimal point to show.  Use<br>
+this method well&#39;:<br>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed" rel="nofollow">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed</a><br>
+from google(Number.prototype.toFixed)result 1<br>
+will also round-up result for 2.8/3=0.9333333333333332=0.9.<br>
+if that result remain 0.9333333333333332 then that&#39;s better because:<br>
+linuxmint-18.2-&gt;gnu-calculator says:<br>
+0.9333333333333332 x 3 = 2.8<br>
+0.9 x 3 = 2.7<br>
+0.93 x 3 = 2.79.</p>
+<p>a javascript-htm-test-file:<br>
+&lt;!--- defect_eval.htm:<br>
+(1)<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval" rel="nofollow">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval</a> from google(javascript evalulate math)<br>
+should contain warning about this eval-defect:<br>
+(2)mozilla should write warning about simple-arithmetic-defect<br>
+like in page<br>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval" rel="nofollow">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval</a><br>
+should contain warning saying &#39;tips:did you know that<br>
+in javascript 2.9-2.8 = 0.10000000000000009.please make your own<br>
+subtraction-function,addition-function,multiplication-function&#39;<br>
+--&gt;</p>
+<p>&lt;script language=&quot;javascript&quot;&gt;<br>
+//simple-arithmetic-defect<br>
+document.writeln(&#39;simple-arithmetic-defect&#39;);<br>
+document.writeln(&#39;&lt;br&gt;(1)defect:2.9+2.8=&#39;+(2.9+2.8)); // 5.699999999999999 &lt;-- defect<br>
+document.writeln(&#39;&lt;br&gt;(2)defect:2.9-2.8=&#39;+(2.9-2.8)); // 0.10000000000000009 &lt;-- defect<br>
+document.writeln(&#39;&lt;br&gt;(3)defect:2.9-2=&#39;+(2.9-2));  // 0.8999999999999999 &lt;-- defect<br>
+document.writeln(&#39;&lt;br&gt;(4)not defect:2.9X2=&#39;+(2.9<em>2));  // 5.8 &lt;-- not defect<br>
+document.writeln(&#39;&lt;br&gt;(5)defect:2.9X2.3=&#39;+(2.9</em>2.3));  // 6.669999999999999 &lt;-- defect<br>
+document.writeln(&#39;&lt;br&gt;(6)not defect:2.8/1.4=&#39;+(2.8/1.4)); // 2 &lt;-- not defect<br>
+document.writeln(&#39;&lt;br&gt;(7)not defect:2.8/4=&#39;+(2.8/4)); // 0.7 &lt;-- not defect<br>
+document.writeln(&#39;&lt;br&gt;(7)not defect:2.8/3=&#39;+(2.8/3)); // 0.9333333333333332  &lt;-- not defect</p>
+<p>//eval-defect<br>
+document.writeln(&#39;&lt;br&gt;&lt;br&gt;eval-defect&#39;);<br>
+document.writeln(&#39;&lt;br&gt;(1)defect:2.9+2.8=&#39;+eval(2.9+2.8)); // 5.699999999999999 &lt;-- defect<br>
+document.writeln(&#39;&lt;br&gt;(2)defect:2.9-2.8=&#39;+eval(2.9-2.8)); // 0.10000000000000009 &lt;-- defect<br>
+document.writeln(&#39;&lt;br&gt;(3)defect:2.9-2=&#39;+eval(2.9-2));  // 0.8999999999999999 &lt;-- defect<br>
+document.writeln(&#39;&lt;br&gt;(4)not defect:2.9X2=&#39;+eval(2.9<em>2));  // 5.8 &lt;-- not defect<br>
+document.writeln(&#39;&lt;br&gt;(5)defect:2.9X2.3=&#39;+eval(2.9</em>2.3));  // 6.669999999999999 &lt;-- defect<br>
+document.writeln(&#39;&lt;br&gt;(6)not defect:2.8/1.4=&#39;+eval(2.8/1.4)); // 2 &lt;-- not defect<br>
+document.writeln(&#39;&lt;br&gt;(7)not defect:2.8/4=&#39;+eval(2.8/4)); // 0.7 &lt;-- not defect<br>
+document.writeln(&#39;&lt;br&gt;(7)not defect:2.8/3=&#39;+eval(2.8/3)); // 0.9333333333333332  &lt;-- not defect<br>
+&lt;/script&gt;</p>
+</blockquote>
+<p>addition 11 mar 2019 5:33 pm edt--------------<br>
+#reword# /* javascript-eval-result,javascript-standard-arithmetic-result:<br>
+#to# /* javascript-eval-result,javascript-simple-arithmetic-result:<br>
+i write this addition by clicking &#39;reply to this comment&#39; on an icon located right-side of my comment.</p>
+</div></div><div class="change-set" id="c48"><div class="comment" data-id="14061641" data-no="48"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-48" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_453117" id="a494860394_218550"><img src="https://secure.gravatar.com/avatar/639ab06759b0dbc87b084d9095436693?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_453117" id="a494860394_218550"><a class="email " href="/user_profile?user_id=453117" > <span class="fna">facebook.com/arnon.jaya</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-48"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-48" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=5856#c48">Comment 48</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2019-04-17 15:35 PDT" data-time="1555540514">1 year ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-48">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><div
+        class="comment-text markdown-body "
+        id="ct-48" data-comment-id="14061641" data-ismarkdown="true" ><p><a href="http://wortel.ucoz.com/calculator.htm#17_apr_2019_6_29_pm_edt" rel="nofollow">http://wortel.ucoz.com/calculator.htm#17_apr_2019_6_29_pm_edt</a><br>
+maybe has correct-arithmetic,function division may produce many decimal-digit if those decimal-digit are all different not repetitive.<br>
+arithmetic-code is located in<br>
+find &#39;//start math-arithmetic-function&#39;,&#39;//end math-arithmetic-function&#39;</p>
+</div></div><div id="new-comment-notice">
+          You need to <a href="/show_bug.cgi?id=5856&amp;GoAheadAndLogIn=1">log in</a>
+          before you can comment on or make changes to this bug.
+        </div>
+
+
+
+<div id="bottom-actions">
+  <div id="bottom-right-actions">
+    <button type="button" id="top-btn" class="secondary" aria-label="Go to Page Top">Top &uarr;</button>
+  </div>
+</div></div> 
+</main> 
+</div> 
+
+
+</body>
+</html>

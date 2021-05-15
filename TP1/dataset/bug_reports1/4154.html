@@ -1,0 +1,2810 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+<meta property="og:type" content="website">
+<meta property="og:title" content="4154 - Clicking on Get HTML icon causes a crash">
+<meta property="og:url" content="https://bugzilla.mozilla.org/show_bug.cgi?id=4154">
+<meta property="og:description"
+      content="VERIFIED (sfraser_bugs) in Core - DOM: Editor. Last updated 2001-09-12.">
+<meta name="twitter:label1" value="Type">
+<meta name="twitter:data1" value="defect">
+<meta name="twitter:label2" value="Priority">
+<meta name="twitter:data2" value="P1">
+
+    <meta name="viewport" content="width=1024">
+    <meta name="color-scheme" content="dark light">
+    <meta name="generator" content="Bugzilla 20200805.1">
+    <meta name="bugzilla-global" content="dummy"
+        id="bugzilla-global" data-bugzilla="{&quot;api_token&quot;:&quot;&quot;,&quot;config&quot;:{&quot;basepath&quot;:&quot;\/&quot;},&quot;constant&quot;:{&quot;COMMENT_COLS&quot;:80},&quot;param&quot;:{&quot;maxattachmentsize&quot;:&quot;10240&quot;,&quot;maxusermatches&quot;:&quot;50&quot;,&quot;splinter_base&quot;:&quot;\/page.cgi?id=splinter.html&amp;ignore=\/&quot;},&quot;string&quot;:{&quot;bug_type_required&quot;:&quot;You must select a Type for this bug&quot;,&quot;component_required&quot;:&quot;You must select a Component for this bug&quot;,&quot;description_required&quot;:&quot;You must enter a Description for this bug&quot;,&quot;short_desc_required&quot;:&quot;You must enter a Summary for this bug&quot;,&quot;version_required&quot;:&quot;You must select a Version for this bug&quot;},&quot;user&quot;:{&quot;is_new&quot;:1,&quot;login&quot;:&quot;&quot;}}">
+    <title>4154 - Clicking on Get HTML icon causes a crash</title>
+
+<link rel="Top" href="/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="/showdependencytree.cgi?id=4154&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="/showdependencygraph.cgi?id=4154">
+
+      <link rel="Show" title="Bug Activity"
+            href="/show_activity.cgi?id=4154">
+
+<link href="https://bugzilla.mozilla.org/static/v20200805.1/skins/yui.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/skins/standard/global.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BugModal/web/bug_modal.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/plugins/contextMenu/contextMenu.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BMO/web/styles/bug_modal.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/EditComments/web/styles/inline-editor.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/ui/jquery-ui-min.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/ui/jquery-ui-structure-min.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/ui/jquery-ui-theme-min.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/skins/lib/prism.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/Needinfo/web/styles/needinfo.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/Review/web/styles/badge.css" rel="stylesheet" type="text/css">
+
+
+
+    
+<script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/jquery-min.js"></script><script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/ui/jquery-ui-min.js"></script><script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/js/yui.js"></script><script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/plugins/contextMenu/contextMenu-min.js"></script><script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/plugins/devbridgeAutocomplete/devbridgeAutocomplete-min.js"></script><script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/js/global.js"></script><script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/js/util.js"></script><script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/js/dropdown.js"></script>
+
+      <script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg">
+          YAHOO.namespace('bugzilla');
+          if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+              YAHOO.util.Event._simpleRemove(window, "unload",
+                                             YAHOO.util.Event._unload);
+          }BUGZILLA.value_descs = JSON.parse('{\"bug_status\":{},\"resolution\":{\"\":\"---\"}}');
+
+  
+    var tracking_flags_str = "{\"comments\":{\"cf_tracking_firefox79\":{\"?\":\"[Tracking Requested - why for this release]:\"},\"cf_tracking_firefox_sumo\":{\"none-needed\":\"Release Note Request (optional, but appreciated)\\n[Why is this notable]:\\n[Affects Firefox for Android]:\\n[Suggested wording]:\\n[Links (documentation, blog post, etc)]:\"},\"cf_tracking_firefox81\":{\"?\":\"[Tracking Requested - why for this release]:\"},\"cf_tracking_firefox80\":{\"?\":\"[Tracking Requested - why for this release]:\"},\"cf_a11y_review_project_flag\":{\"requested\":\"Description:\\nPlease provide an explanation of the feature or change. Include a description of the user scenario in which it would be used and how the user would complete the task(s).\\nScreenshots and visual UI specs are welcome, but please include sufficient accompanying explanation so that blind members of the accessibility team are able to understand the feature\/change.\\n\\nHow do we test this?\\nIf there is an implementation to test, please provide instructions for testing it; e.g. setting preferences, other preparation, how to trigger the UI, etc.\\n\\nWhen will this ship?\\nTracking bug\/issue:\\nDesign documents (e.g. Product Requirements Document, UI spec):\\nEngineering lead:\\nProduct manager:\\n\\nAll user interface additions and changes must meet the Mozilla Accessibility Release Requirements:\\nhttps:\/\/wiki.mozilla.org\/Accessibility\/Requirements\\nPlease describe the accessibility requirements you considered and what steps you\'ve taken to address them:\\n\\nDescribe any areas of concern to which you want the accessibility team to give special attention:\"},\"cf_tracking_firefox_relnote\":{\"?\":\"Release Note Request (optional, but appreciated)\\n[Why is this notable]:\\n[Affects Firefox for Android]:\\n[Suggested wording]:\\n[Links (documentation, blog post, etc)]:\"},\"cf_tracking_firefox82\":{\"?\":\"[Tracking Requested - why for this release]:\"},\"cf_tracking_firefox_esr68\":{\"?\":\"[Tracking Requested - why for this release]:\"},\"cf_tracking_firefox_esr78\":{\"?\":\"[Tracking Requested - why for this release]:\"}},\"types\":[\"tracking\"],\"flags\":{\"tracking\":{\"cf_status_firefox79\":\"---\",\"cf_status_firefox_esr68\":\"---\",\"cf_status_firefox82\":\"---\",\"cf_status_firefox_esr78\":\"---\",\"cf_status_firefox81\":\"---\",\"cf_status_thunderbird_esr68\":\"---\",\"cf_status_thunderbird_esr78\":\"---\",\"cf_tracking_firefox_esr68\":\"---\",\"cf_tracking_firefox_relnote\":\"---\",\"cf_tracking_firefox82\":\"---\",\"cf_tracking_firefox79\":\"---\",\"cf_tracking_firefox80\":\"---\",\"cf_tracking_firefox81\":\"---\",\"cf_tracking_thunderbird_esr78\":\"---\",\"cf_status_firefox80\":\"---\",\"cf_tracking_thunderbird_esr68\":\"---\",\"cf_tracking_firefox_esr78\":\"---\"},\"project\":{\"cf_webcompat_priority\":\"---\",\"cf_root_cause\":\"---\",\"cf_tracking_firefox_sumo\":\"---\",\"cf_fission_milestone\":\"---\",\"cf_a11y_review_project_flag\":\"---\"}}}";
+    var TrackingFlags = $.parseJSON(tracking_flags_str);
+
+  
+
+  
+  BUGZILLA.bug_id = 4154;
+  BUGZILLA.bug_title = '4154 - Clicking on Get HTML icon causes a crash';
+  BUGZILLA.bug_summary = 'Clicking on Get HTML icon causes a crash';
+  BUGZILLA.bug_url = 'https:\/\/bugzilla.mozilla.org\/show_bug.cgi?id=4154';
+  BUGZILLA.bug_keywords = '',
+  BUGZILLA.user = {
+    id: 0,
+    login: '',
+    is_insider: false,
+    is_timetracker: false,
+    can_tag: false,
+    timezone: 'America\/Los_Angeles',
+    settings: {
+      quote_replies: 'quoted_reply',
+      zoom_textareas: true,
+      remember_collapsed: true,
+      inline_attachments: true,
+      autosize_comments: false
+    }
+  };
+
+  BUGZILLA.bug_secure = false;
+      </script>
+<script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BugModal/web/autosize.min.js"></script><script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/ProdCompSearch/web/js/prod_comp_search.js"></script><script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BugModal/web/bug_modal.js"></script><script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BugModal/web/comments.js"></script><script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/ComponentWatching/web/js/overlay.js"></script><script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/js/bugzilla-readable-status-min.js"></script><script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/js/field.js"></script><script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/js/comments.js"></script><script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/TrackingFlags/web/js/flags.js"></script><script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BMO/web/js/firefox-crash-table.js"></script><script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/js/lib/prism.js"></script><script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/GoogleAnalytics/web/js/analytics.js"></script><script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/js/lib/md5.min.js"></script><script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/Review/web/js/badge.js"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla@Mozilla" href="/search_plugin.cgi"><link rel="shortcut icon" href="/extensions/BMO/web/images/favicon.ico">
+<link rel="canonical" href="https://bugzilla.mozilla.org/show_bug.cgi?id=4154">
+<link rel="shorturl" href="https://bugzilla.mozilla.org/4154"><meta name="google-analytics" content="UA-36116321-3" data-location="https://bugzilla.mozilla.org/bug/show-modal" data-title="4154 - Clicking on Get HTML icon causes a crash">
+<script async src="https://www.google-analytics.com/analytics.js"></script><meta name="robots" content="noarchive">
+  </head>
+
+
+
+  <body
+        class="bugzilla-mozilla-org
+               skin-standard bug_modal yui-skin-sam">
+
+
+
+<div id="wrapper">
+
+<aside id="message-container" role="complementary">
+  <noscript>
+    <div class="noscript">
+      <div class="inner">
+        <p>Please enable JavaScript in your browser to use all the features on this site.</p>
+      </div>
+    </div>
+  </noscript>
+</aside>
+
+<header id="header" role="banner">
+  <div class="inner">
+    <h1 id="header-title" class="title"><a href="https://bugzilla.mozilla.org/home" title="Go to home page">Bugzilla</a></h1>
+    <form role="search" id="header-search" class="quicksearch" action="/buglist.cgi" data-no-csrf>
+      <section class="searchbox-outer dropdown" role="combobox" aria-expanded="false" aria-haspopup="listbox"
+               aria-labelledby="header-search-label" aria-owns="header-search-dropdown">
+        <h2 id="header-search-label">Quick Search</h2>
+        <span class="icon" aria-hidden="true"></span>
+        <input role="searchbox" id="quicksearch_top" class="dropdown-button" name="quicksearch" autocomplete="off"
+               value="" placeholder="Search Bugs"
+               title="Enter a bug number or some search terms" aria-controls="header-search-dropdown"
+               aria-label="Quick Search"><div id="header-search-dropdown" class="dropdown-content right" role="listbox" style="display: none;">
+  <div id="header-search-dropdown-wrapper">
+  </div>
+</div>
+      </section>
+    </form>
+    <nav id="header-nav">
+      <ul class="links">
+        <li class="link-browse">
+          <a href="/describecomponents.cgi" title="Browse bugs by component">
+            <span class="icon" aria-hidden="true"></span>
+            <span class="label">Browse</span>
+          </a>
+        </li>
+        <li class="link-search">
+          <a href="/query.cgi?format=advanced" title="Search bugs using various criteria">
+            <span class="icon" aria-hidden="true"></span>
+            <span class="label">Advanced Search</span>
+          </a>
+        </li>
+      </ul>
+      <div class="dropdown">
+        <button type="button" id="header-tools-menu-button" class="dropdown-button minor" title="More tools…"
+                aria-label="More tools…" aria-expanded="false" aria-haspopup="true" aria-controls="header-tools-menu">
+          <span class="icon" aria-hidden="true"></span>
+        </button>
+        <ul class="dropdown-content left" id="header-tools-menu" role="menu" style="display:none;">
+          <li role="presentation">
+            <a href="/report.cgi" role="menuitem" tabindex="-1">Reports</a>
+          </li>
+            <li role="separator"></li>
+            <li role="presentation">
+              <a href="https://bmo.readthedocs.io/en/latest/" role="menuitem" tabindex="-1">Documentation</a>
+            </li>
+        </ul>
+      </div>
+    </nav>
+      <ul id="header-login" class="links">
+          <li id="moz_new_account_container_top"><a href="/createaccount.cgi">New Account</a></li><li id="mini_login_container_top">
+  <a id="login_link_top" href="/show_bug.cgi?id=4154&amp;GoAheadAndLogIn=1"
+     class='show_mini_login_form' data-qs-suffix="_top">Log In</a>
+
+  <div id="mini_login_top" class="mini-popup mini_login bz_default_hidden"><span id="github_mini_login_top" class="mini_login_top">
+    <form method="post" action="/github.cgi">
+      <input type="hidden" name="github_secret" value="Bj4O05npqK5yL624TysB28lqhID7ZxvJBociCDBOKJlAClfgCoLKLVTU4KVBGNU3tilE4tknYoF6bMGBO7sZxsO2t6kf8JgBfAPSIGn5GztaDfEPSxNkZPMEXtPi0t3R9y9RJ0EMLxaTtrl1wvO6fPk1T24vtws2LxJ6BbkUjJJE5R1WdFDD0KEVak30FqYQ1gzE5InO6EgZfPXfubVTdo8FwGCq319gigPWfWyKdQcWXtxMvQSk94kXJmPngt3B">
+      <input type="hidden" name="target_uri" value="https://bugzilla.mozilla.org/show_bug.cgi?id=4154">
+      <input type="image" src="/extensions/GitHubAuth/web/images/sign_in.png" height="22" width="75" align="absmiddle"
+             alt="Sign in with GitHub"
+             title="Sign in with GitHub"> or
+    </form>
+  </span>
+
+  <form action="/show_bug.cgi?id=4154" method="POST"
+        data-qs-suffix="_top">
+
+    <input id="Bugzilla_login_top"
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           placeholder="Email"
+           aria-label="Email"
+           type="email"
+           required
+    >
+    <input class="bz_password"
+           id="Bugzilla_password_top"
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+           placeholder="Password"
+           aria-label="Password"
+           required
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text"
+           id="Bugzilla_password_dummy_top" value="password"
+           title="Password"
+    >
+      <input type="checkbox" id="Bugzilla_remember_top"
+             name="Bugzilla_remember" value="on" class="bz_remember"
+                 checked>
+      <label for="Bugzilla_remember_top">Remember</label>
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+           class="check_mini_login_fields"
+            id="log_in_top">
+    <a href="#" id="hide_mini_login_top" aria-label="Close"
+       class="close-button hide_mini_login_form" data-qs-suffix="_top">
+      <span class="icon" aria-hidden="true"></span>
+    </a>
+  </form>
+  </div>
+</li>
+<li id="forgot_container_top">
+  <a id="forgot_link_top" href="/show_bug.cgi?id=4154&amp;GoAheadAndLogIn=1#forgot"
+     class='show_forgot_form'
+     data-qs-suffix="_top">Forgot Password</a>
+  <div id="forgot_form_top" class="mini-popup mini_forgot bz_default_hidden">
+  <form action="/token.cgi" method="post">
+    <input type="email" name="loginname" size="20" placeholder="Email" aria-label="Email" required>
+    <input id="forgot_button_top" value="Reset Password"
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token_top" name="token" value="1598305282-X2STCx8pJlvmfoBvkeIqZHTKGFcnrIKeuJixzrlGpMY">
+    <a href="#" class="close-button hide_forgot_form" aria-label="Close" data-qs-suffix="_top">
+      <span class="icon" aria-hidden="true"></span>
+    </a>
+  </form>
+  </div>
+</li>
+      </ul><div id="header-external-links" class="dropdown first">
+  <button type="button" id="header-external-menu-button" class="dropdown-button minor" title="Mozilla"
+          aria-label="Mozilla" aria-expanded="false" aria-haspopup="true" aria-controls="header-external-menu">
+    <img src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BMO/web/images/moz-fav-one-color-white-rgb.svg" width="32" height="32" alt="">
+  </button>
+  <ul class="dropdown-content right" id="header-external-menu" role="menu" style="display:none;">
+    <li role="presentation">
+      <a href="https://www.mozilla.org/" role="menuitem" tabindex="-1">Mozilla Home</a>
+    </li>
+    <li role="separator"></li>
+    <li role="presentation">
+      <a href="https://www.mozilla.org/privacy/websites/" role="menuitem" tabindex="-1">Privacy</a>
+    </li>
+    <li role="presentation">
+      <a href="https://www.mozilla.org/privacy/websites/#cookies" role="menuitem" tabindex="-1">Cookies</a>
+    </li>
+    <li role="presentation">
+      <a href="https://www.mozilla.org/about/legal/" role="menuitem" tabindex="-1">Legal</a>
+    </li>
+  </ul>
+</div>
+  </div>
+</header> 
+
+
+<main id="bugzilla-body" tabindex="-1">
+<div id="main-inner">
+
+
+
+
+<div role="toolbar" id="page-toolbar">
+  <div role="group" class="buttons">
+    <button type="button" id="copy-summary" class="secondary"
+      title="Copy bug number and summary to your clipboard">Copy Summary</button>
+    <div id="clip-container" style="display:none"><input type="text" id="clip"></div>
+    <div class="dropdown">
+      <button type="button" id="action-menu-btn" aria-haspopup="true" aria-label="View"
+        aria-expanded="false" aria-controls="action-menu" class="dropdown-button secondary">View &#9662;</button>
+      <ul class="dropdown-content left" id="action-menu" role="menu" style="display:none;">
+        <li role="presentation">
+          <a id="action-reset" role="menuitem" tabindex="-1">Reset Sections</a>
+        </li>
+        <li role="presentation">
+          <a id="action-expand-all" role="menuitem" tabindex="-1">Expand All Sections</a>
+        </li>
+        <li role="presentation">
+          <a id="action-collapse-all" role="menuitem" tabindex="-1">Collapse All Sections</a>
+        </li>
+        <li role="separator"></li>
+        <li role="presentation">
+          <a id="action-history" role="menuitem" tabindex="-1">History</a>
+        </li>
+        <li role="separator"></li>
+        <li role="presentation">
+          <a href="/rest/bug/4154" role="menuitem" tabindex="-1">JSON</a>
+        </li>
+        <li role="presentation">
+          <a href="/show_bug.cgi?ctype=xml&amp;id=4154" role="menuitem" tabindex="-1">XML</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+<div role="status" id="io-error" style="display:none"></div>
+<div role="status" id="floating-message" style="display:none">
+  <div id="floating-message-text"></div>
+</div>
+<section class="module"
+>
+  <div class="module-content"
+  >
+  <div id="summary-container">
+    <div class="field indent" id="field-status_summary"
+>
+
+
+  
+    <div class=" container">
+        <span id="field-value-status_summary">
+      <span class="bug-status-label text" data-status="closed">Closed</span>
+      <span id="field-value-bug_id">
+        <a href="/show_bug.cgi?id=4154">Bug 4154</a>
+      </span>
+      <span>
+        <span class="bug-time-label">Opened <span class="rel-time" title="1999-03-22 13:34 PST" data-time="922138499">22 years ago</span></span>
+          <span class="bug-time-label">Closed <span class="rel-time" title="1999-04-05 20:15 PDT" data-time="923368546">22 years ago</span></span>
+      </span>
+        </span>
+    </div>
+
+  
+</div>
+<div class="field indent edit-hide"
+>
+
+
+  
+    <div class=" container">
+      
+
+      <h1 id="field-value-short_desc">Clicking on Get HTML icon causes a crash</h1>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-short_desc" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#short_desc" id="short_desc-help-link" class="help">Summary:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-short_desc">
+            Clicking on Get HTML icon causes a crash
+
+        </span>
+    </div>
+
+  
+</div>
+  </div>
+  </div>
+</section>
+
+
+<section class="module" id="module-categories"
+>
+    <header id="module-categories-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Categories section"
+           data-label-collapsed="Expand Categories section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-categories-content"
+             aria-expanded="true"
+             aria-labeledby="module-categories-title"
+             aria-describedby="module-categories-subtitle"></div>
+        <h2 class="module-title" id="module-categories-title">Categories</h2>
+          <h3 class="module-subtitle" id="module-categories-subtitle">
+            (Core :: DOM: Editor, defect, P1)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-categories-content"
+  ><div class="fields-lhs">
+
+    <div class="field" id="field-product"
+>
+    <div class="name">
+        <a href="/describecomponents.cgi?product=Core" id="product-help-link" class="help">Product:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-product">
+      <div class="name-info-outer dropdown">
+        <span id="product-name" class="dropdown-button" tabindex="0" role="button"
+             aria-haspopup="menu" aria-controls="product-info">Core
+          <span class="icon" aria-hidden="true">&#x25BE;</span>
+        </span>
+        <aside id="product-info" class="name-info-popup dropdown-content right hover-display" hidden role="menu"
+               aria-label="Product description and actions">
+          <header>
+            <div class="title">Core</div>
+            <div class="description">Shared components used by Firefox and other Mozilla software, including handling of Web content; Gecko, HTML, CSS, layout, DOM, scripts, images, networking, etc. Issues with web page layout probably go here, while Firefox user interface issues belong in the <a href="https://bugzilla.mozilla.org/describecomponents.cgi?product=Firefox">Firefox</a> product. (<a href="https://wiki.mozilla.org/Modules/All#Core">More info</a>)</div>
+          </header>
+          <li role="separator"></li>
+          <div class="actions">
+            <div><a href="/buglist.cgi?product=Core&amp;bug_status=__open__"
+                    target="_blank" role="menuitem" tabindex="-1">See Open Bugs in This Product</a></div>
+            <div><a href="/enter_bug.cgi?product=Core"
+                    target="_blank" role="menuitem" tabindex="-1">File New Bug in This Product</a></div>
+            <div><button disabled type="button" class="secondary component-watching" role="menuitem" tabindex="-1"
+                         data-product="Core"
+                         data-label-watch="Watch This Product" data-label-unwatch="Unwatch This Product"
+                         data-source="BugModal">Watch This Product</button></div>
+          </div>
+        </aside>
+      </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field" id="field-component"
+>
+    <div class="name">
+        <a href="/describecomponents.cgi?product=Core&component=DOM%3A%20Editor#DOM%3A%20Editor" id="component-help-link" class="help">Component:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-component">
+      <div class="name-info-outer dropdown">
+        <span id="component-name" class="dropdown-button" tabindex="0" role="button"
+             aria-haspopup="menu" aria-controls="component-info">DOM: Editor
+          <span class="icon" aria-hidden="true">&#x25BE;</span>
+        </span>
+        <aside id="component-info" class="name-info-popup dropdown-content right hover-display" hidden role="menu"
+               aria-label="Component description and actions">
+          <header>
+            <div class="title">Core :: DOM: Editor</div>
+            <div class="description">For bugs with editing text on web pages. Related HTML features are &lt;input type=text&gt;, &lt;textarea&gt;, contenteditable, and the designMode API.</div>
+          </header>
+          <li role="separator"></li>
+          <div class="actions">
+            <div><a href="/buglist.cgi?product=Core&amp;component=DOM%3A%20Editor&amp;bug_status=__open__"
+                    target="_blank" role="menuitem" tabindex="-1">See Open Bugs in This Component</a></div>
+            <div><a href="/buglist.cgi?product=Core&amp;component=DOM%3A%20Editor&amp;chfield=resolution&chfieldfrom=-6m&chfieldvalue=FIXED&bug_status=__closed__"
+                    target="_blank" role="menuitem" tabindex="-1">Recently Fixed Bugs in This Component</a></div>
+            <div><a href="/enter_bug.cgi?product=Core&amp;component=DOM%3A%20Editor"
+                    target="_blank" role="menuitem" tabindex="-1">File New Bug in This Component</a></div>
+            <div><button disabled type="button" class="secondary component-watching" role="menuitem" tabindex="-1"
+                         data-product="Core" data-component="DOM: Editor"
+                         data-label-watch="Watch This Component" data-label-unwatch="Unwatch This Component"
+                         data-source="BugModal">Watch This Component</button></div>
+          </div>
+        </aside>
+      </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-version" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#version" id="version-help-link" class="help">Version:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-version">
+            Trunk
+
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#rep_platform" id="-help-link" class="help">Platform:
+        </a>
+    </div>
+
+
+  
+    <div class=" container"><div class="field inline" id="field-rep_platform"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-rep_platform">
+            PowerPC
+
+        </span>
+    </div>
+
+  
+</div><div class="field indent inline" id="field-op_sys"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-op_sys">
+            Mac System 8.5
+
+        </span>
+    </div>
+
+  
+</div><div class="field indent inline"
+>
+
+
+  
+    <div class=" container">
+    </div>
+
+  
+</div>
+    </div>
+
+  
+</div>
+</div><div class="fields-rhs">
+
+    <div class="field contains-buttons" id="field-bug_type"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#bug_type" id="bug_type-help-link" class="help">Type:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_type">
+      <span class="bug-type-label iconic-text" data-type="defect">
+        <span class="icon" aria-hidden="true"></span>defect</span>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field" id="field-importance"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#priority" id="importance-help-link" class="help">Priority:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-importance"><div class="field inline" id="field-priority"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-priority">P1
+        </span>
+    </div>
+
+  
+</div><div class="field inline" id="field-bug_severity"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#bug_severity" id="bug_severity-help-link" class="help">Severity:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_severity">
+            major
+
+        </span>
+    </div>
+
+  
+</div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-cf_fx_points" style="display:none"
+>
+    <div class="name">Points:
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-cf_fx_points">
+            ---
+
+        </span>
+    </div>
+
+  
+</div>
+</div>
+  </div>
+</section>
+
+
+<section class="module" id="module-tracking"
+>
+    <header id="module-tracking-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Tracking section"
+           data-label-collapsed="Expand Tracking section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-tracking-content"
+             aria-expanded="true"
+             aria-labeledby="module-tracking-title"
+             aria-describedby="module-tracking-subtitle"></div>
+        <h2 class="module-title" id="module-tracking-title">Tracking</h2>
+          <h3 class="module-subtitle" id="module-tracking-subtitle">
+            (<span id="readable-bug-status" data-readable-bug-status="{&quot;cf_tracking_firefox80&quot;:&quot;---&quot;,&quot;cf_a11y_review_project_flag&quot;:&quot;---&quot;,&quot;cf_tracking_firefox82&quot;:&quot;---&quot;,&quot;cf_tracking_firefox_relnote&quot;:&quot;---&quot;,&quot;cf_tracking_firefox_sumo&quot;:&quot;---&quot;,&quot;cf_status_firefox_esr68&quot;:&quot;---&quot;,&quot;priority&quot;:&quot;P1&quot;,&quot;cf_status_thunderbird_esr78&quot;:&quot;---&quot;,&quot;cf_tracking_firefox_esr68&quot;:&quot;---&quot;,&quot;keywords&quot;:[],&quot;cf_status_firefox81&quot;:&quot;---&quot;,&quot;cf_tracking_firefox79&quot;:&quot;---&quot;,&quot;cf_tracking_firefox81&quot;:&quot;---&quot;,&quot;target_milestone&quot;:&quot;M4&quot;,&quot;cf_fission_milestone&quot;:&quot;---&quot;,&quot;status&quot;:&quot;VERIFIED&quot;,&quot;cf_tracking_firefox_esr78&quot;:&quot;---&quot;,&quot;cf_tracking_thunderbird_esr68&quot;:&quot;---&quot;,&quot;cf_status_firefox80&quot;:&quot;---&quot;,&quot;cf_tracking_thunderbird_esr78&quot;:&quot;---&quot;,&quot;cf_webcompat_priority&quot;:&quot;---&quot;,&quot;cf_root_cause&quot;:&quot;---&quot;,&quot;id&quot;:4154,&quot;cf_status_firefox79&quot;:&quot;---&quot;,&quot;dupe_of&quot;:null,&quot;cf_status_thunderbird_esr68&quot;:&quot;---&quot;,&quot;resolution&quot;:&quot;FIXED&quot;,&quot;flags&quot;:[],&quot;cf_status_firefox82&quot;:&quot;---&quot;,&quot;cf_status_firefox_esr78&quot;:&quot;---&quot;}"></span>)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-tracking-content"
+  ><div class="fields-lhs">
+
+    <div class="field edit-hide" id="field-status-view"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugStatuses" id="status-view-help-link" class="help">Status:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-status-view">VERIFIED
+        FIXED
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-status-edit" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugStatuses" id="status-edit-help-link" class="help">Status:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-status-edit"><div class="field inline" id="field-bug_status"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_status">
+            VERIFIED
+
+        </span>
+    </div>
+
+  
+</div><div class="field indent inline" id="field-resolution"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-resolution">
+            FIXED
+
+        </span>
+    </div>
+
+  
+</div>
+  <div id="status-action-buttons">
+      <div id="assigned-container" style="display:none">
+        <button type="button" class="secondary" id="mark-as-assigned-btn">
+          Mark as Assigned
+        </button>
+      </div>
+  </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field" id="field-target_milestone"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#target_milestone" id="target_milestone-help-link" class="help">Milestone:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-target_milestone">
+            M4
+
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-cf_fx_iteration" style="display:none"
+>
+    <div class="name">Iteration:
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-cf_fx_iteration">
+            ---
+
+        </span>
+    </div>
+
+  
+</div>
+
+
+      <div class="field edit-show" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide#Tracking_Flags" id="-help-link" class="help">Project Flags:
+        </a>
+    </div>
+
+
+  
+    <div class=" container"><div class="flags edit-show" style="display:none">
+  <table class="layout-table tracking-flags">
+      <tr>
+        <td class="tracking-flag-name">Root Cause</td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_root_cause-dirty">
+  <select id="cf_root_cause" name="cf_root_cause">
+        <option value="---"
+          id="v4701_cf_root_cause" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">a11y-review</td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_a11y_review_project_flag-dirty">
+  <select id="cf_a11y_review_project_flag" name="cf_a11y_review_project_flag">
+        <option value="---"
+          id="v4876_cf_a11y_review_project_flag" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">Webcompat Priority</td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_webcompat_priority-dirty">
+  <select id="cf_webcompat_priority" name="cf_webcompat_priority">
+        <option value="---"
+          id="v4274_cf_webcompat_priority" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">user-doc-firefox</td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_tracking_firefox_sumo-dirty">
+  <select id="cf_tracking_firefox_sumo" name="cf_tracking_firefox_sumo">
+        <option value="---"
+          id="v4660_cf_tracking_firefox_sumo" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">Fission Milestone</td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_fission_milestone-dirty">
+  <select id="cf_fission_milestone" name="cf_fission_milestone">
+        <option value="---"
+          id="v4222_cf_fission_milestone" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+  </table>
+</div>
+    </div>
+
+  
+</div>
+</div><div class="fields-rhs">
+
+      <div class="field edit-show" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide#Tracking_Flags" id="-help-link" class="help">Tracking Flags:
+        </a>
+    </div>
+
+
+  
+    <div class=" container"><div class="flags edit-show" style="display:none">
+  <table class="layout-table tracking-flags">
+      <tr>
+        <th></th>
+        <th>Tracking</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">relnote-firefox</td>
+          <td class="tracking-flag-tracking"></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_tracking_firefox_relnote-dirty">
+  <select id="cf_tracking_firefox_relnote" name="cf_tracking_firefox_relnote">
+        <option value="---"
+          id="v539_cf_tracking_firefox_relnote" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">thunderbird_esr68</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_thunderbird_esr68-dirty">
+  <select id="cf_tracking_thunderbird_esr68" name="cf_tracking_thunderbird_esr68">
+        <option value="---"
+          id="v4353_cf_tracking_thunderbird_esr68" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_thunderbird_esr68-dirty">
+  <select id="cf_status_thunderbird_esr68" name="cf_status_thunderbird_esr68">
+        <option value="---"
+          id="v4347_cf_status_thunderbird_esr68" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">thunderbird_esr78</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_thunderbird_esr78-dirty">
+  <select id="cf_tracking_thunderbird_esr78" name="cf_tracking_thunderbird_esr78">
+        <option value="---"
+          id="v4823_cf_tracking_thunderbird_esr78" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_thunderbird_esr78-dirty">
+  <select id="cf_status_thunderbird_esr78" name="cf_status_thunderbird_esr78">
+        <option value="---"
+          id="v4829_cf_status_thunderbird_esr78" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">firefox-esr68</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_firefox_esr68-dirty">
+  <select id="cf_tracking_firefox_esr68" name="cf_tracking_firefox_esr68">
+        <option value="---"
+          id="v4365_cf_tracking_firefox_esr68" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_firefox_esr68-dirty">
+  <select id="cf_status_firefox_esr68" name="cf_status_firefox_esr68">
+        <option value="---"
+          id="v4407_cf_status_firefox_esr68" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">firefox-esr78</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_firefox_esr78-dirty">
+  <select id="cf_tracking_firefox_esr78" name="cf_tracking_firefox_esr78">
+        <option value="---"
+          id="v4808_cf_tracking_firefox_esr78" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_firefox_esr78-dirty">
+  <select id="cf_status_firefox_esr78" name="cf_status_firefox_esr78">
+        <option value="---"
+          id="v4813_cf_status_firefox_esr78" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">firefox79</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_firefox79-dirty">
+  <select id="cf_tracking_firefox79" name="cf_tracking_firefox79">
+        <option value="---"
+          id="v4791_cf_tracking_firefox79" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_firefox79-dirty">
+  <select id="cf_status_firefox79" name="cf_status_firefox79">
+        <option value="---"
+          id="v4796_cf_status_firefox79" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">firefox80</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_firefox80-dirty">
+  <select id="cf_tracking_firefox80" name="cf_tracking_firefox80">
+        <option value="---"
+          id="v4850_cf_tracking_firefox80" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_firefox80-dirty">
+  <select id="cf_status_firefox80" name="cf_status_firefox80">
+        <option value="---"
+          id="v4855_cf_status_firefox80" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">firefox81</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_firefox81-dirty">
+  <select id="cf_tracking_firefox81" name="cf_tracking_firefox81">
+        <option value="---"
+          id="v4883_cf_tracking_firefox81" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_firefox81-dirty">
+  <select id="cf_status_firefox81" name="cf_status_firefox81">
+        <option value="---"
+          id="v4888_cf_status_firefox81" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+      <tr>
+        <td class="tracking-flag-name">firefox82</td>
+          <td class="tracking-flag-tracking"><input type="hidden" id="cf_tracking_firefox82-dirty">
+  <select id="cf_tracking_firefox82" name="cf_tracking_firefox82">
+        <option value="---"
+          id="v4915_cf_tracking_firefox82" selected
+        >---
+        </option>
+  </select></td>
+        <td class="tracking-flag-status"><input type="hidden" id="cf_status_firefox82-dirty">
+  <select id="cf_status_firefox82" name="cf_status_firefox82">
+        <option value="---"
+          id="v4920_cf_status_firefox82" selected
+        >---
+        </option>
+  </select></td>
+      </tr>
+  </table>
+</div>
+    </div>
+
+  
+</div>
+
+</div>
+  </div>
+</section>
+
+
+
+<section class="module" id="module-people"
+>
+    <header id="module-people-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse People section"
+           data-label-collapsed="Expand People section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-people-content"
+             aria-expanded="false"
+             aria-labeledby="module-people-title"
+             aria-describedby="module-people-subtitle"></div>
+        <h2 class="module-title" id="module-people-title">People</h2>
+          <h3 class="module-subtitle" id="module-people-subtitle">
+            (Reporter: chrispetersen, Assigned: sfraser_bugs)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-people-content" style="display:none"
+  ><div class="fields-lhs">
+
+    <div class="field edit-hide" id="field-assigned_to"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#assigned_to" id="assigned_to-help-link" class="help">Assignee:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-assigned_to"><div class="vcard vcard_567" ><img src="https://secure.gravatar.com/avatar/de8abfa9de1d36b01d556a823dc11112?d=mm&size=40" class="gravatar" width="20" height="20"> <a class="email " href="/user_profile?user_id=567" > <span class="fna">sfraser_bugs</span></a>
+</div>
+        </span>
+    </div>
+
+  
+</div><div class="field edit-show" id="field-assigned_to" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#assigned_to" id="assigned_to-help-link" class="help">Assignee:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-assigned_to">
+      <div class="set-default-container" style="display:none">
+        <input type="checkbox" id="set-default-assignee" name="set_default_assignee" class="set-default"
+          value="1" data-for="assigned_to">
+        <label for="set-default-assignee">Reset Assignee to default</label>
+      </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-bug_mentors" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#bug_mentor" id="bug_mentors-help-link" class="help">Mentors:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_mentors">---
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-hide" id="field-qa_contact"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#qa_contact" id="qa_contact-help-link" class="help">QA Contact:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-qa_contact"><div class="vcard vcard_4144" ><img src="https://secure.gravatar.com/avatar/933b0894c26fc6b3fa4061bbc50044a6?d=mm&size=40" class="gravatar" width="20" height="20"> <a class="email " href="/user_profile?user_id=4144" > <span class="fna">chrispetersen</span></a>
+</div>
+        </span>
+    </div>
+
+  
+</div><div class="field edit-show" id="field-qa_contact" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#qa_contact" id="qa_contact-help-link" class="help">QA Contact:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-qa_contact">
+      <div class="set-default-container" style="display:none">
+        <input type="checkbox" id="set-default-qa-contact" name="set_default_qa_contact" class="set-default"
+          value="1" data-for="qa_contact">
+        <label for="set-default-qa-contact">Reset QA Contact to default</label>
+      </div>
+        </span>
+    </div>
+
+  
+</div>
+</div><div class="fields-rhs">
+
+    <div class="field" id="field-reporter"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#reporter" id="reporter-help-link" class="help">Reporter:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-reporter">
+            <div class="vcard vcard_4144" ><img src="https://secure.gravatar.com/avatar/933b0894c26fc6b3fa4061bbc50044a6?d=mm&size=40" class="gravatar" width="20" height="20"> <a class="email " href="/user_profile?user_id=4144" > <span class="fna">chrispetersen</span></a>
+</div>
+
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field" id="field-triage_owner"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#triage_owner" id="triage_owner-help-link" class="help">Triage Owner:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-triage_owner">
+            <div class="vcard vcard_646284" ><img src="https://secure.gravatar.com/avatar/9dcff4a8838b41f34d204c2f4cadbcc4?d=mm&size=40" class="gravatar" width="20" height="20"> <a class="email " href="/user_profile?user_id=646284" > <span class="fna">jstutte</span></a>
+</div>
+
+        </span>
+    </div>
+
+  
+</div>
+
+    
+
+    <div class="field"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#cc" id="-help-link" class="help">CC:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+
+
+        <span aria-owns="cc-summary cc-latch">
+          <span role="button" tabindex="0" id="cc-summary" data-count="1">1 person
+          </span>
+        </span>
+
+
+        <div id="cc-list" style="display:none"></div>
+    </div>
+
+  
+</div>
+</div>
+  </div>
+</section>
+
+
+<section class="module edit-show" style="display:none" id="module-references"
+>
+    <header id="module-references-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse References section"
+           data-label-collapsed="Expand References section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-references-content"
+             aria-expanded="false"
+             aria-labeledby="module-references-title"
+             aria-describedby="module-references-subtitle"></div>
+        <h2 class="module-title" id="module-references-title">References</h2>
+      </div>
+    </header>
+  <div class="module-content" id="module-references-content" style="display:none"
+  ><div class="fields-lhs">
+
+    <div class="field bug-list edit-show" id="field-dependson" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#dependson" id="dependson-help-link" class="help">Depends on:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-dependson">
+        ---
+        </span>
+    </div>
+
+  
+</div><div class="field bug-list edit-show" id="field-blocked" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#blocks" id="blocked-help-link" class="help">Blocks:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-blocked">
+        ---
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field bug-list edit-show" id="field-regresses" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#regresses" id="regresses-help-link" class="help">Regressions:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-regresses">
+        ---
+        </span>
+    </div>
+
+  
+</div><div class="field bug-list edit-show" id="field-regressed_by" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#regressed_by" id="regressed_by-help-link" class="help">Regressed by:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-regressed_by">
+        ---
+        </span>
+    </div>
+
+  
+</div>
+
+    
+</div><div class="fields-rhs">
+
+    <div class="field edit-show" id="field-bug_file_loc" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#bug_file_loc" id="bug_file_loc-help-link" class="help">URL:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_file_loc"><div class="link">
+    <a href="" target="_blank"
+      rel="noreferrer" title=""
+      class="bug-url" data-safe="0"></a>
+  </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-see_also" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#see_also" id="see_also-help-link" class="help">See Also:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-see_also">
+        ---
+        </span>
+    </div>
+
+  
+</div>
+</div>
+  </div>
+</section>
+
+
+<section class="module" id="module-details"
+>
+    <header id="module-details-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Details section"
+           data-label-collapsed="Expand Details section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-details-content"
+             aria-expanded="false"
+             aria-labeledby="module-details-title"
+             aria-describedby="module-details-subtitle"></div>
+        <h2 class="module-title" id="module-details-title">Details</h2>
+      </div>
+    </header>
+  <div class="module-content" id="module-details-content" style="display:none"
+  ><div class="fields-lhs">
+
+    <div class="field edit-show" id="field-alias" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#alias" id="alias-help-link" class="help">Alias:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-alias">
+        ---
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-keywords" style="display:none"
+>
+    <div class="name">
+        <a href="/describekeywords.cgi" id="keywords-help-link" class="help">Keywords:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-keywords">---
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-status_whiteboard" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/Whiteboard" id="status_whiteboard-help-link" class="help">Whiteboard:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-status_whiteboard">---
+        </span>
+    </div>
+
+  
+</div><div class="field edit-show" id="field-cf_qa_whiteboard" style="display:none"
+>
+    <div class="name">QA Whiteboard:
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-cf_qa_whiteboard">
+        ---
+        </span>
+    </div>
+
+  
+</div>
+
+    
+
+    <div class="field edit-show" id="field-cf_has_regression_range" style="display:none"
+>
+    <div class="name">Has Regression Range:
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-cf_has_regression_range">
+            ---
+
+        </span>
+    </div>
+
+  
+</div><div class="field edit-show" id="field-cf_has_str" style="display:none"
+>
+    <div class="name">Has STR:
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-cf_has_str">
+            ---
+
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field" id="field-votes"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#votes" id="votes-help-link" class="help">Votes:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-votes">0
+        </span>
+    </div>
+
+  
+</div>
+</div><div class="fields-rhs">
+
+    <div class="field edit-show" id="field-bug_flags" style="display:none"
+>
+    <div class="name">Bug Flags:
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-bug_flags"><div id="bug-flags" class="flags">
+  <table class="layout-table">
+    <tbody class="edit-show" style="display:none"><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Is this bug/feature enabled in a release by a pref flag (see https://github.com/mozilla/bug-handling/blob/master/policy/feature-flags.md)?" for="flag_type-930">behind-pref</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-930-dirty">
+      <select id="flag_type-930" name="flag_type-930"
+        title="Is this bug/feature enabled in a release by a pref flag (see https://github.com/mozilla/bug-handling/blob/master/policy/feature-flags.md)?"
+        class="bug-flag">
+          <option value="X"></option>
+            <option value="+" >+</option>
+            <option value="-" >-</option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Flag tracking inclusion in the desktop Firefox product backlog." for="flag_type-846">firefox-backlog</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-846-dirty">
+      <select id="flag_type-846" name="flag_type-846"
+        title="Flag tracking inclusion in the desktop Firefox product backlog."
+          disabled
+        class="bug-flag">
+          <option value="X"></option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Flag is used to track security bug bounty nominations. Mail security(at)mozilla.org to nominate a bug." for="flag_type-803">sec-bounty</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-803-dirty">
+      <select id="flag_type-803" name="flag_type-803"
+        title="Flag is used to track security bug bounty nominations. Mail security(at)mozilla.org to nominate a bug."
+        class="bug-flag">
+          <option value="X"></option>
+            <option value="?" >?</option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Flag is used to track whether the bug report is eligible for inclusion in the Bug Bounty Hall of Fame." for="flag_type-913">sec-bounty-hof</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-913-dirty">
+      <select id="flag_type-913" name="flag_type-913"
+        title="Flag is used to track whether the bug report is eligible for inclusion in the Bug Bounty Hall of Fame."
+          disabled
+        class="bug-flag">
+          <option value="X"></option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Whether the bug has a testcase in the qa test suite or not. Set it to &quot;in-qa-testsuite?&quot; if the bug needs a testcase (only set this if the bug actually *needs* a testcase - not all bugs do, even layout bugs!), set it to &quot;in-qa-testsuite+&quot; if the bug has an appropriate testcase, and set it to &quot;in-qa-testsuite-&quot; if the bug doesn't need an explicit testcase (e.g. for code cleanup bugs). Only QA actively working on test cases in the component should use this keyword." for="flag_type-787">in-qa-testsuite</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-787-dirty">
+      <select id="flag_type-787" name="flag_type-787"
+        title="Whether the bug has a testcase in the qa test suite or not. Set it to &quot;in-qa-testsuite?&quot; if the bug needs a testcase (only set this if the bug actually *needs* a testcase - not all bugs do, even layout bugs!), set it to &quot;in-qa-testsuite+&quot; if the bug has an appropriate testcase, and set it to &quot;in-qa-testsuite-&quot; if the bug doesn't need an explicit testcase (e.g. for code cleanup bugs). Only QA actively working on test cases in the component should use this keyword."
+        class="bug-flag">
+          <option value="X"></option>
+            <option value="?" >?</option>
+            <option value="+" >+</option>
+            <option value="-" >-</option>
+      </select>
+    </td>
+
+      <td class="flag-requestee">
+        <div id="requestee_type-787-container" style="display:none"><input
+    name="requestee_type-787"
+    value="" class="requestee bz_autocomplete_user"  id="requestee_type-787" 
+  >
+        </div>
+      <td>
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Whether the bug has a testcase in the test suite or not. Set it to &quot;in-testsuite?&quot; if the bug needs a testcase (only set this if the bug actually *needs* a testcase - not all bugs do, even layout bugs!), set it to &quot;in-testsuite+&quot; if the bug has an appropriate testcase, and set it to &quot;in-testsuite-&quot; if the bug doesn't need an explicit testcase (e.g. for code cleanup bugs). Only QA actively working on test cases in the component should use this keyword." for="flag_type-37">in-testsuite</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-37-dirty">
+      <select id="flag_type-37" name="flag_type-37"
+        title="Whether the bug has a testcase in the test suite or not. Set it to &quot;in-testsuite?&quot; if the bug needs a testcase (only set this if the bug actually *needs* a testcase - not all bugs do, even layout bugs!), set it to &quot;in-testsuite+&quot; if the bug has an appropriate testcase, and set it to &quot;in-testsuite-&quot; if the bug doesn't need an explicit testcase (e.g. for code cleanup bugs). Only QA actively working on test cases in the component should use this keyword."
+        class="bug-flag">
+          <option value="X"></option>
+            <option value="?" >?</option>
+            <option value="+" >+</option>
+            <option value="-" >-</option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="qe-verify: ? ➜ request to assess whether the bug should be tested manually
+qe-verify: + ➜ request to verify the bug manually
+qe-verify: – ➜ the bug will not/can not be verified manually" for="flag_type-864">qe-verify</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-864-dirty">
+      <select id="flag_type-864" name="flag_type-864"
+        title="qe-verify: ? ➜ request to assess whether the bug should be tested manually
+qe-verify: + ➜ request to verify the bug manually
+qe-verify: – ➜ the bug will not/can not be verified manually"
+          disabled
+        class="bug-flag">
+          <option value="X"></option>
+      </select>
+    </td>
+
+
+  </tr>
+    </tbody>
+  </table>
+</div>
+        </span>
+    </div>
+
+  
+</div>
+</div>
+
+  
+  </div>
+</section>
+
+
+<section class="module edit-show" style="display:none" id="module-crash-data"
+>
+    <header id="module-crash-data-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Crash Data section"
+           data-label-collapsed="Expand Crash Data section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-crash-data-content"
+             aria-expanded="false"
+             aria-labeledby="module-crash-data-title"
+             aria-describedby="module-crash-data-subtitle"></div>
+        <h2 class="module-title" id="module-crash-data-title">Crash Data</h2>
+      </div>
+    </header>
+  <div class="module-content" id="module-crash-data-content" style="display:none"
+  ><div class="field edit-show" id="field-cf_crash_signature" style="display:none"
+>
+    <div class="name">Signature:
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-cf_crash_signature">
+        </span>
+    </div>
+
+  
+</div>
+  </div>
+</section>
+
+
+<section class="module edit-show" style="display:none" id="module-security"
+>
+    <header id="module-security-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Security section"
+           data-label-collapsed="Expand Security section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-security-content"
+             aria-expanded="false"
+             aria-labeledby="module-security-title"
+             aria-describedby="module-security-subtitle"></div>
+        <h2 class="module-title" id="module-security-title">Security</h2>
+          <h3 class="module-subtitle" id="module-security-subtitle">
+            (public)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-security-content" style="display:none"
+  ><div class="groups edit-hide">
+    This bug is publicly visible.
+</div>
+
+<div class="groups edit-show" style="display:none">
+
+
+</div>
+  </div>
+</section>
+
+
+<section class="module edit-show" style="display:none" id="module-user-story" data-non-stick="1"
+>
+    <header id="module-user-story-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse User Story section"
+           data-label-collapsed="Expand User Story section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-user-story-content"
+             aria-expanded="false"
+             aria-labeledby="module-user-story-title"
+             aria-describedby="module-user-story-subtitle"></div>
+        <h2 class="module-title" id="module-user-story-title">User Story</h2>
+      </div>
+    </header>
+  <div class="module-content" id="module-user-story-content" style="display:none"
+  >
+    <pre id="user-story"></pre>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<script nonce="rWpJmkfNi3wwBmkPWuGlyW8DM99sDJAnGQJMzxbTclEbfXtg">
+  init_module_visibility();
+</script>
+
+
+
+<meta name="firefox-versions" content="{&quot;FIREFOX_AURORA&quot;:&quot;&quot;,&quot;FIREFOX_DEVEDITION&quot;:&quot;80.0b8&quot;,&quot;FIREFOX_ESR&quot;:&quot;68.11.0esr&quot;,&quot;FIREFOX_ESR_NEXT&quot;:&quot;78.1.0esr&quot;,&quot;FIREFOX_NIGHTLY&quot;:&quot;81.0a1&quot;,&quot;LAST_MERGE_DATE&quot;:&quot;2020-07-27&quot;,&quot;LAST_RELEASE_DATE&quot;:&quot;2020-07-28&quot;,&quot;LAST_SOFTFREEZE_DATE&quot;:&quot;2020-07-23&quot;,&quot;LATEST_FIREFOX_DEVEL_VERSION&quot;:&quot;80.0b8&quot;,&quot;LATEST_FIREFOX_OLDER_VERSION&quot;:&quot;3.6.28&quot;,&quot;LATEST_FIREFOX_RELEASED_DEVEL_VERSION&quot;:&quot;80.0b8&quot;,&quot;LATEST_FIREFOX_VERSION&quot;:&quot;79.0&quot;,&quot;NEXT_MERGE_DATE&quot;:&quot;2020-08-24&quot;,&quot;NEXT_RELEASE_DATE&quot;:&quot;2020-08-25&quot;,&quot;NEXT_SOFTFREEZE_DATE&quot;:&quot;2020-08-20&quot;}">
+
+
+<div id="comment-actions">
+    <button type="button" id="bottom-btn" class="secondary" aria-label="Go to Page Bottom">Bottom &darr;</button>
+  <div class="dropdown">
+    <button type="button" id="comment-tags-btn" aria-haspopup="true" aria-label="Tags"
+      aria-expanded="false" aria-controls="comment-tags-menu" class="dropdown-button minor">Tags &#9662;</button>
+    <ul id="comment-tags-menu" role="menu" tabindex="0" class="dropdown-content left" style="display:none">
+      <li role="presentation">
+        <a role="menuitem" tabindex="-1" data-comment-tag="">Reset</a>
+      </li>
+    </ul>
+  </div>
+  <div class="dropdown">
+    <button type="button" id="view-menu-btn" aria-haspopup="true" aria-label="Timeline"
+      aria-expanded="false" aria-controls="view-menu" class="dropdown-button minor">Timeline &#9662;</button>
+    <ul id="view-menu" role="menu" tabindex="0" class="dropdown-content left" style="display:none">
+      <li role="presentation">
+        <a id="view-reset" role="menuitem" tabindex="-1">Reset</a>
+      </li>
+      <li role="separator"></li>
+      <li role="presentation">
+        <a id="view-collapse-all" role="menuitem" tabindex="-1">Collapse All</a>
+      </li>
+      <li role="presentation">
+        <a id="view-expand-all" role="menuitem" tabindex="-1">Expand All</a>
+      </li>
+      <li role="presentation">
+        <a id="view-comments-only" role="menuitem" tabindex="-1">Comments Only</a>
+      </li>
+    </ul>
+   </div>
+</div>
+<div class="change-set" id="c0"><div class="comment" data-id="29594" data-no="0"
+       data-tags="">
+    
+    <table class="layout-table change-head reporter" id="ch-0" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_4144" ><img src="https://secure.gravatar.com/avatar/933b0894c26fc6b3fa4061bbc50044a6?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_4144" ><a class="email " href="/user_profile?user_id=4144" > <span class="fna">Chris Petersen</span></a>
+</div>
+            <span class="user-role">Reporter</span>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-0"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-0" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=4154#c0">Description</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-03-22 13:34 PST" data-time="922138499">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-0">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-0" data-comment-id="29594">Version: Apprunner
+Build: March 22
+Platform: Mac only
+Expected Results: Clicking Get HTMl should either complete a function or doing
+nothing.
+What I got: A crash.
+Steps to reproduce:
+1) Launch Apprunner.
+2) In Editor, click on Get HTML icon.
+3) A crash occurs.</pre></div><div class="change-set" id="a12_4144"><div class="change" id="aa12_4144">
+    <table class="layout-table change-head reporter" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_4144" id="a12_4144"><img src="https://secure.gravatar.com/avatar/933b0894c26fc6b3fa4061bbc50044a6?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_4144" id="a12_4144"><a class="email " href="/user_profile?user_id=4144" > <span class="fna">Chris Petersen</span></a>
+</div>
+            <span class="user-role">Reporter</span>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a12_4144"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a12_4144">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=4154#a12_4144">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-03-22 13:35 PST" data-time="922138511">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Priority: P3 &rarr; P1</div></div></div><div class="change-set" id="a8019_4144"><div class="change" id="aa8019_4144">
+    <table class="layout-table change-head reporter" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_4144" id="a8019_4144"><img src="https://secure.gravatar.com/avatar/933b0894c26fc6b3fa4061bbc50044a6?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_4144" id="a8019_4144"><a class="email " href="/user_profile?user_id=4144" > <span class="fna">Chris Petersen</span></a>
+</div>
+            <span class="user-role">Reporter</span>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a8019_4144"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a8019_4144">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=4154#a8019_4144">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-03-22 15:48 PST" data-time="922146518">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">QA Contact: 4079 &rarr; 4144</div></div></div><div class="change-set" id="a773251_567"><div class="change" id="aa773251_567">
+    <table class="layout-table change-head assignee" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_567" id="a773251_567"><img src="https://secure.gravatar.com/avatar/de8abfa9de1d36b01d556a823dc11112?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_567" id="a773251_567"><a class="email " href="/user_profile?user_id=567" > <span class="fna">Simon Fraser [no longer active]</span></a>
+</div>
+            <span class="user-role">Assignee</span>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a773251_567"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a773251_567">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=4154#a773251_567">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-03-31 12:22 PST" data-time="922911750">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Assignee: kostello &rarr; sfraser</div></div></div><div class="change-set" id="c1"><div class="comment" data-id="29595" data-no="1"
+       data-tags="">
+    
+    <table class="layout-table change-head assignee" id="ch-1" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_567" id="a773251_567"><img src="https://secure.gravatar.com/avatar/de8abfa9de1d36b01d556a823dc11112?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_567" id="a773251_567"><a class="email " href="/user_profile?user_id=567" > <span class="fna">Simon Fraser [no longer active]</span></a>
+</div>
+            <span class="user-role">Assignee</span>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-1"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-1" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=4154#c1">Comment 1</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-03-31 12:22 PST" data-time="922911779">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-1">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-1" data-comment-id="29595">Reassign to self. Chris, when you get crashes, can you please collect a MacsBug
+log (using the 'stdlog' command) and paste it into the bug report? Thanks.
+Also, in Windows &amp; Unix, the output from Get HTML should appear in the console.</pre></div><div class="change-set" id="c2"><div class="comment" data-id="29596" data-no="2"
+       data-tags="">
+    
+    <table class="layout-table change-head reporter" id="ch-2" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_4144" id="a773251_567"><img src="https://secure.gravatar.com/avatar/933b0894c26fc6b3fa4061bbc50044a6?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_4144" id="a773251_567"><a class="email " href="/user_profile?user_id=4144" > <span class="fna">Chris Petersen</span></a>
+</div>
+            <span class="user-role">Reporter</span>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-2"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-2" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=4154#c2">Comment 2</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-03-31 12:25 PST" data-time="922911959">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-2">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-2" data-comment-id="29596">Sure. I will get this info for you.</pre></div><div class="change-set" id="c3"><div class="comment" data-id="29597" data-no="3"
+       data-tags="">
+    
+    <table class="layout-table change-head reporter" id="ch-3" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_4144" id="a773251_567"><img src="https://secure.gravatar.com/avatar/933b0894c26fc6b3fa4061bbc50044a6?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_4144" id="a773251_567"><a class="email " href="/user_profile?user_id=4144" > <span class="fna">Chris Petersen</span></a>
+</div>
+            <span class="user-role">Reporter</span>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-3"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-3" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=4154#c3">Comment 3</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-03-31 14:16 PST" data-time="922918619">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-3">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-3" data-comment-id="29597">Simon,
+
+Here is the contents of the log file:
+
+ MacsBug 6.5.4a6, Copyright Apple Computer, Inc. 1981-98
+
+PowerPC TVector break at FFD61060 ExitToShell
+
+  31-Mar-1999 2:16:07 PM (since boot = 1 hour, 9 minutes)
+  Current application is ÒapprunnerÓ
+  Machine = 510 (PowerMacG3), System $0850, sysu = $01008000
+  ROM version $077D, $45F2, $0001 (ROMBase $FFC00000)
+  VM is on; paging is currently safe
+  NIL^ = $FFC10000
+  Stack space used = -29819380
+ Address FFD61060 is in the ROM at ExitToShell
+ It is in the CFM fragment ÒInterfaceLibÓ at FFD3BE00
+ It is 00025260 bytes from the start of the fragment
+  and 00014AA0 bytes into a non-writeable code section at FFD4C5C0
+ PowerPC 740/750 Registers
+                         CR0  CR1  CR2  CR3  CR4  CR5  CR6  CR7
+  PC  = FFD61060     CR  0100 1000 0000 0000 0000 0010 0001 0000
+  LR  = 1761CE44         &lt;&gt;=O XEVO
+  CTR = 080B8664
+  MSR = 00000000         SOC Compare Count
+  Int = 0            XER 000   00     00                     MQ  = 00000028
+
+  R0  = 080B8664     R8  = 0000023C      R16 = 0561FB80      R24 = 00000000
+  SP  = 05F06910     R9  = 0000010E      R17 = 0561FB80      R25 = 05B44108
+  TOC = 0002F1B8     R10 = 0000010E      R18 = 00000000      R26 = 17054143
+  R3  = 00000000     R11 = 0000010F      R19 = 00000000      R27 = 05F07104
+  R4  = 05535374     R12 = 0002B7C4      R20 = 00000000      R28 = 00000000
+  R5  = 05B3D57A     R13 = 0566FD1F      R21 = 0566FCFB      R29 = 00000001
+  R6  = 17027CA0     R14 = 00000000      R22 = 057570F0      R30 = 0553516C
+  R7  = 17056360     R15 = 0557AB54      R23 = 056699E8      R31 = 05535174
+ Disassembling PowerPC code from FFD61038
+  SCSIMsgOut
+     +0001C FFD61038   bl         CallUniversalProc          ; 0xFFD4C8B8 |
+4BFEB881
+     +00020 FFD6103C   lwz        RTOC,0x0014(SP)                         |
+80410014
+     +00024 FFD61040   lwz        r12,0x0048(SP)                          |
+81810048
+     +00028 FFD61044   stw        r3,0x0038(SP)                           |
+90610038
+     +0002C FFD61048   addi       r4,SP,0x0000                            |
+38810000
+     +00030 FFD6104C   addic      SP,SP,0x0040                            |
+30210040
+     +00034 FFD61050   mtlr       r12                        ; LR = 0x0008 |
+7D8803A6
+     +00038 FFD61054   lhau       r3,0x003A(r4)                           |
+AC64003A
+     +0003C FFD61058   blr                                                |
+4E800020
+     +00040 FFD6105C   dc.l       0x00000000                              |
+00000000
+  ExitToShell
+     +00000 FFD61060  *mflr       r0                         ; LR = 0x0008 |
+7C0802A6
+     +00004 FFD61064   stwu       SP,-0x0040(SP)                          |
+9421FFC0
+     +00008 FFD61068   stw        r0,0x0048(SP)                           |
+90010048
+     +0000C FFD6106C   lwz        r3,ExitToShell(r0)                      |
+806015D0
+     +00010 FFD61070   li         r4,0x0000                               |
+38800000
+     +00014 FFD61074   bl         CallUniversalProc          ; 0xFFD4C8B8 |
+4BFEB845
+     +00018 FFD61078   lwz        RTOC,0x0014(SP)                         |
+80410014
+     +0001C FFD6107C   lwz        r12,0x0048(SP)                          |
+81810048
+     +00020 FFD61080   addic      SP,SP,0x0040                            |
+30210040
+ Heap zones
+  #1  Mod        8945K  00002800 to 008BECCF  SysZone^
+  #2  Mod           6K    000145C0 to 000160DF  ROM read-only zone
+  #3  Mod         256K    006AA520 to 006EA51F
+  #4  Mod      117379K  008BECD0 to 07B5FA9F  Process Manager zone
+  #5  Mod        9801K    0552A1E0 to 05EBC8DF  ÒapprunnerÓ  ApplZone^  TheZone^
+TargetZone
+  #6  Mod       25025K    05F089F0 to 077790EF  ÒNetscape CommunicatorªÓ
+  #7  Mod         942K    0778D200 to 07878CFF  ÒFinderÓ
+  #8  Mod         187K    078DC400 to 0790B1AF  ÒFile Sharing ExtensionÓ
+  #9  Mod          18K    079166A0 to 0791AF5F
+  #10 Mod          83K    07A31810 to 07A4670F  ÒTime SynchronizerÓ
+  #11 Mod         361K    07A54FA0 to 07AAF69F  ÒFolder ActionsÓ
+  #12 Mod          89K    07B00250 to 07B1694F  ÒControl Strip ExtensionÓ
+  #13 Mod        3071K  08100000 to 083FFFCF
+  #14 Mod         288K    08161370 to 081A936F
+  #15 Mod          27K    0820D450 to 0821417F
+Checking all heaps
+ The System heap at 00002800 is ok
+ The ROM read-only heap at 000145C0 is ok
+ The heap at 006AA520 is ok
+ The Process Manager heap at 008BECD0 is ok
+ The ÒapprunnerÓ heap at 0552A1E0 is ok
+ The ÒNetscape CommunicatorªÓ heap at 05F089F0 is ok
+ The ÒFinderÓ heap at 0778D200 is ok
+ The ÒFile Sharing ExtensionÓ heap at 078DC400 is ok
+ The heap at 079166A0 is ok
+ The ÒTime SynchronizerÓ heap at 07A31810 is ok
+ The ÒFolder ActionsÓ heap at 07A54FA0 is ok
+ The ÒControl Strip ExtensionÓ heap at 07B00250 is ok
+ Totaling the ÒapprunnerÓ heap at 0552A1E0
+                                 Total Blocks    Total of Block Sizes
+  Free                           005B      #91   00230990     #2296208
+  Nonrelocatable                 008E     #142   0068D6CC     #6870732
+  Relocatable                    01AD     #429   000D4660      #869984
+    Locked                       0002       #2   000C6150      #811344
+    Purgeable and not locked     0000       #0   00000000           #0
+  Heap size                      0296     #662   009926BC    #10036924
+ The target heap is the System heap at 00002800
+ Totaling the System heap at 00002800
+                                 Total Blocks    Total of Block Sizes
+  Free                           000A      #10   00002650        #9808
+  Nonrelocatable                 0A4C    #2636   0045647C     #4547708
+  Relocatable                    0C05    #3077   004639C0     #4602304
+    Locked                       01F4     #500   00372970     #3615088
+    Purgeable and not locked     00B6     #182   0005C610      #378384
+  Heap size                      165B    #5723   008BC48C     #9159820
+ The target heap is the ÒapprunnerÓ heap at 0552A1E0
+ Displaying File Control Blocks
+  fRef File                   Vol         Type Fl Fork     LEof
+  0002 System                 Gizmo       zsys dW rsrc #6316421
+  0060 **** EXTENTS B-TREE    Gizmo       ¥¥¥¥ dw data #4194304
+  00BE **** CATALOG B-TREE    Gizmo       ¥¥¥¥ dw data #4194304
+  011C **** VOLUME BITMAP     Gizmo       ¥¥¥¥ dw data  #135168
+  017A VM Storage             Gizmo       ZSYS dW data #138412032
+  01D8 System Resources       Gizmo       zsyr dw rsrc  #727502
+  17E0 System                 Gizmo       zsys dw data #4072175
+  183E Open Tpt AppleTalk LiÉ Gizmo       libr dw rsrc  #502792
+  189C WorldScript II ResourÉ Gizmo       pref dW rsrc    #5558
+  18FA WorldScript II         Gizmo       scri dw data   #31558
+  1958 Open Transport Library Gizmo       libr dw rsrc  #524771
+  19B6 OpenTransportLib       Gizmo       otsl dw data  #501392
+  1A14 Shared Library ManageÉ Gizmo       INIT dw rsrc  #211694
+  1A72 Open Transport Library Gizmo       libr dw rsrc  #524771
+  1AD0 Open Tpt AppleTalk LiÉ Gizmo       libr dw rsrc  #502792
+  1B2E Open Tpt Internet LibÉ Gizmo       libr dw rsrc  #461056
+  1B8C OpenTpt Remote Access  Gizmo       libr dw rsrc #1083183
+  1BEA OpenTptAppleTalkLib    Gizmo       otsl dw data   #48738
+  1C48 OpenTpt Modem          Gizmo       libr dw rsrc   #91506
+  1CA6 OpenTpt Remote Access  Gizmo       libr dw rsrc #1083183
+  1D04 Remote Access Log      Gizmo       lzlg dW data   #69632
+  1D62 Open Transport Library Gizmo       libr dw rsrc  #524771
+  1DC0 Serial (Built-in)      Gizmo       libr dw rsrc   #63254
+  1E1E OpenTpt Serial ArbitrÉ Gizmo       libr dw rsrc    #7974
+  1E7C OpenTpt Serial ArbitrÉ Gizmo       libr dw rsrc    #7974
+  1EDA ATI Video Memory ManaÉ Gizmo       shlb dw data   #25104
+  1F38 Users &amp; Groups Data FÉ Gizmo       BTFL dW data   #69632
+  1F96 Apple Guide            Gizmo       INIT dw data  #417352
+  1FF4 ColorSync Extension    Gizmo       appe dw data  #301152
+  2052 Contextual Menu ExtenÉ Gizmo       INIT dw data   #66663
+  20B0 SOMobjectsª for Mac OS Gizmo       shlb dw data  #129152
+  210E GXGraphics             Gizmo       INIT dw data #2323856
+  216C QuickTimeª             Gizmo       INIT dw data  #369846
+  21CA Sound Manager          Gizmo       INIT dw data   #15008
+  2228 Speech Recognition     Gizmo       INIT dw data #1111510
+  2286 Speech Manager         Gizmo       INIT dw data    #4000
+  22E4 ~ATMª                  Gizmo       cdev dw data  #881790
+  23A0 Finder                 Gizmo       FNDR dW rsrc  #638602
+  23FE Control Strip ExtensiÉ Gizmo       appe dW rsrc   #67084
+  245C Users &amp; Groups Data FÉ Gizmo       BTFL dW data   #69632
+  24BA Find CM Items          Gizmo       cmpi dw data   #21987
+  2518 Folder Actions         Gizmo       appe dW rsrc    #4877
+  2576 Time Synchronizer      Gizmo       appe dW rsrc    #6319
+  25D4 Finder                 Gizmo       FNDR dw data #1870234
+  2632 Color Picker           Gizmo       INIT dw data    #6400
+  2690 File Sharing Library   Gizmo       shlb dw rsrc    #3190
+  26EE File Sharing Library   Gizmo       shlb dw data   #91214
+  274C Finder Preferences     Gizmo       pref dW rsrc     #818
+  27AA Internet Config ExtenÉ Gizmo       thng dw data   #27708
+  2808 Desktop DB             Gizmo       BTFL dW data  #278528
+  2866 Desktop DF             Gizmo       DTFL dW data #1974034
+  28C4 Time Synchronizer      Gizmo       appe dw data   #37169
+  2922 OpenTptInternetLib     Gizmo       otsl dw data  #257182
+  2980 PrintingLib            Gizmo       shlb dw data #1103024
+  29DE Folder Actions         Gizmo       appe dw data   #17331
+  2A3C File Sharing Extension Gizmo       INIT dW rsrc  #194076
+  2A9A AppleScriptLib         Gizmo       shlb dw data   #22636
+  2AF8                        971003_1226 ¥¥¥¥ dw data       #0
+  2B56 Folder Actions Menus   Gizmo       cmpi dw data   #10205
+  2BB4 Control Strip ExtensiÉ Gizmo       appe dw data    #3160
+  2C12 Netscape Communicatorª Gizmo       APPL dW rsrc #1363311
+  2C70 AppleTalk Switch       Gizmo       sdev dw data    #5066
+  2CCE File Sharing Strip     Gizmo       sdev dw data    #8634
+  2D2C File Sharing Library   Gizmo       shlb dw rsrc    #3190
+  2D8A Monitor BitDepth       Gizmo       sdev dw data    #4794
+  2DE8 Monitor Resolution     Gizmo       sdev dw data    #9750
+  2E46 Sound Volume           Gizmo       sdev dw data    #4154
+  2EA4 Video Mirroring        Gizmo       sdev dw data    #4426
+  2F02 Web Sharing CS         Gizmo       sdev dw data   #21334
+  2F60 AppleShare PDS         Gizmo       BTFL dW data  #139264
+  2FBE 971003_1226 PDF        Gizmo       BTFL dW data   #69632
+  301C Netscape Communicatorª Gizmo       APPL dw data #9522841
+  307A QuickTimeª PowerPlug   Gizmo       INIT dw data  #219681
+  30D8 Calendar Client LibraÉ Gizmo       shlb dw data  #635413
+  3136 TrueDocDisplayer.dlm   Gizmo       shlb dw data  #249184
+  3194 JavaScript Debug SuppÉ Gizmo       shlb dw data   #24806
+  31F2 Netscape Resources     Gizmo       NSPL dW rsrc  #508856
+  3250 hostinfo.dat           Gizmo       DBNX dW data     #194
+  32AE Certificates7          Gizmo       CERT dW data  #323584
+  330C Key Database3          Gizmo       TEXT dW data   #16384
+  336A apprunner              Gizmo       APPL dW rsrc     #428
+  33C8 CCache log             Gizmo       DBMC dW data  #167936
+  3426 Netscape History       Gizmo       DBMG dW data  #671744
+  3484 apprunner              Gizmo       APPL dw data   #10401
+  34E2 NSRuntime.shlb         Gizmo       shlb dw data   #15350
+  3540 NSStdLib.shlb          Gizmo       shlb dw data  #283936
+  359E NSPR20.shlb            Gizmo       shlb dw data  #199445
+  35FC base.shlb              Gizmo       shlb dw data  #211564
+  365A xpcom.shlb             Gizmo       shlb dw data   #81344
+  36B8 libreg.shlb            Gizmo       shlb dw data   #35213
+  3716 NetworkModular.shlb    Gizmo       shlb dw data  #562514
+  3774 JavaScript.shlb        Gizmo       shlb dw data  #386952
+  37D2 libpref.shlb           Gizmo       shlb dw data   #46069
+  3830 zlib.shlb              Gizmo       shlb dw data   #42061
+  388E libimg.shlb            Gizmo       shlb dw data  #118236
+  38EC libutil.shlb           Gizmo       shlb dw data    #2918
+  394A JPEG.shlb              Gizmo       shlb dw data   #59697
+  39A8 uconv.shlb             Gizmo       shlb dw data   #35472
+  3A06 ucvlatin.shlb          Gizmo       shlb dw data   #15910
+  3A64 ucvja.shlb             Gizmo       shlb dw data   #64189
+  3AC2 strres.shlb            Gizmo       shlb dw data    #8063
+  3B20 unicharutil.shlb       Gizmo       shlb dw data    #8941
+  3B7E nslocale.shlb          Gizmo       shlb dw data   #23979
+  3BDC lwbrk.shlb             Gizmo       shlb dw data   #13370
+  3C3A AppShell.shlb          Gizmo       shlb dw data   #50773
+  3C98 dom.shlb               Gizmo       shlb dw data  #474821
+  3CF6 widget.shlb            Gizmo       shlb dw data  #190689
+  3D54 gfx.shlb               Gizmo       shlb dw data  #131703
+  3DB2 WASTELib               Gizmo       shlb dw data  #117737
+  3E10 AppCores.shlb          Gizmo       shlb dw data  #134562
+  3E6E webshell.shlb          Gizmo       shlb dw data   #97513
+  3ECC layout.shlb            Gizmo       shlb dw data #2725128
+  3F2A htmlparser.shlb        Gizmo       shlb dw data  #226273
+  3F88 plugin.shlb            Gizmo       shlb dw data   #45081
+  3FE6 EditorCore.shlb        Gizmo       shlb dw data  #139930
+  4044 rdf.shlb               Gizmo       shlb dw data  #456487
+  40A2 ucvja2.shlb            Gizmo       shlb dw data   #44831
+  4100 oji.shlb               Gizmo       shlb dw data   #76615
+  415E LiveConnect.shlb       Gizmo       shlb dw data   #93549
+  41BC view.shlb              Gizmo       shlb dw data   #58366
+  421A EditorTxmgr.shlb       Gizmo       shlb dw data   #16797
+  4278 StdLog                 Gizmo       TEXT dW data   #13668
+  #221 FCBs, #182 in use (including #60 fonts not listed), #39 free
+ Displaying Driver Control Entries
+  No drivers are busy.
+ Displaying resource information:
+  &gt;   Map $0552A368, flags $0000, file $336A = apprunner
+   +  Map $00003204, flags $801A, file $0003 = ¥ROM resources that override
+System¥
+    S Map $00003410, flags $200D, file $0002 = System
+      Map $002CC6B4, flags $001C, file $189C = WorldScript II Resources
+      Map $0000315C, flags $0014, file $01D8 = System Resources
+      [Skipped $003C maps belonging to font files]
+ Calling chain using A6/R1 links
+  Back chain  ISA  Caller
+  00000000    PPC  17699A50
+  05F08740    PPC  17698BA8  main+0053C
+  05F08650    PPC  17416D24  nsAppShellService::Run()+00018
+  05F08610    PPC  17355878  nsAppShell::Run()+00038
+  05F08590    PPC  173561A0  nsMacMessagePump::DoMessagePump()+0003C
+  05F08540    PPC  17356334  nsMacMessagePump::DispatchEvent(int, EventRecord*)+
+00070
+  05F084F0    PPC  17356804  nsMacMessagePump::DoMouseUp(EventRecord&amp;)+0004C
+  05F084A0    PPC  17356C3C
+nsMacMessagePump::DispatchOSEventToRaptor(EventRecord&amp;, GrafPort
+*)+00044
+  05F08450    PPC  173511D4  nsMacMessageSink::DispatchOSEvent(EventRecord&amp;,
+GrafPort*)+00038
+  05F08410    PPC  1734D3B0  nsMacWindow::HandleOSEvent(EventRecord&amp;)+00020
+  05F083B0    PPC  1734D714  nsMacEventHandler::HandleOSEvent(EventRecord&amp;)+0009C
+  05F08370    PPC  1734E4E0  nsMacEventHandler::HandleMouseUpEvent(EventRecord&amp;)+
+000AC
+  05F082F0    PPC  17339730  nsWindow::DispatchMouseEvent(nsMouseEvent&amp;)+00058
+  05F08290    PPC  17339678  nsWindow::DispatchWindowEvent(nsGUIEvent&amp;)+00018
+  05F08250    PPC  173395A4  nsWindow::DispatchEvent(nsGUIEvent*, nsEventStatus&amp;
+)+00090
+  05F08200    PPC  16F6E860  HandleEvent(nsGUIEvent*)+00058
+  05F081B0    PPC  16F6CA6C  nsViewManager::DispatchEvent(nsGUIEvent*,
+nsEventStatus&amp;)+005D0
+  05F08070    PPC  16F702E8  nsView::HandleEvent(nsGUIEvent*, unsigned int,
+nsEventStatus&amp;)+0
+0104
+  05F07FF0    PPC  16F67894  nsScrollingView::HandleEvent(nsGUIEvent*, unsigned
+int, nsEventS
+tatus&amp;)+000C4
+  05F07FA0    PPC  16F702E8  nsView::HandleEvent(nsGUIEvent*, unsigned int,
+nsEventStatus&amp;)+0
+0104
+  05F07F20    PPC  16F702E8  nsView::HandleEvent(nsGUIEvent*, unsigned int,
+nsEventStatus&amp;)+0
+0104
+  05F07EA0    PPC  16F70378  nsView::HandleEvent(nsGUIEvent*, unsigned int,
+nsEventStatus&amp;)+0
+0194
+  05F07E20    PPC  1707CD28  PresShell::HandleEvent(nsIView*, nsGUIEvent*,
+nsEventStatus&amp;)+00
+234
+  05F07DB0    PPC  170F5F2C  nsEventStateManager::PostHandleEvent(nsIPresContext&amp;
+, nsGUIEvent
+*, nsIFrame*, nsEventStatus&amp;)+00170
+  05F07D50    PPC  170F67E8
+nsEventStateManager::CheckForAndDispatchClick(nsIPresContext&amp;, n
+sMouseEvent*, nsEventStatus&amp;)+001F0
+  05F07CB0    PPC  16FE103C  RDFElementImpl::HandleDOMEvent(nsIPresContext&amp;,
+nsEvent*, nsIDOM
+Event**, unsigned int, nsEventStatus&amp;)+001E8
+  05F07C10    PPC  170F49CC  nsEventListenerManager::HandleEvent(nsIPresContext&amp;,
+nsEvent*, n
+sIDOMEvent**, unsigned int, nsEventStatus&amp;)+00310
+  05F07B30    PPC  173E1FD4  nsJSEventListener::HandleEvent(nsIDOMEvent*)+0015C
+  05F07AA0    PPC  174AE0E0  JS_CallFunctionValue+00014
+  05F07A60    PPC  174C6528  js_CallFunctionValue+000B8
+  05F079B0    PPC  174C6328  js_Invoke+0057C
+  05F078D0    PPC  174CC1B4  js_Interpret+055F0
+  05F076B0    PPC  174C6328  js_Invoke+0057C
+  05F075D0    PPC  174CBB60  js_Interpret+04F9C
+  05F073B0    PPC  174D4728  js_GetProperty+00224
+  05F07330    PPC  1730C2D0  GetEditorAppCoreProperty(JSContext*, JSObject*,
+long, long*)+001
+08
+  05F07240    PPC  1730B728  nsEditorAppCore::GetContentsAsHTML(nsString&amp;)+0003C
+  05F07200    PPC  1612BBB8  nsHTMLEditor::OutputHTML(nsString&amp;)+0000C
+  05F071C0    PPC  16124174  nsTextEditor::OutputHTML(nsString&amp;)+00198
+  05F07080    PPC  1703A36C  nsParser::Parse(nsString&amp;, void*, const nsString&amp;,
+int, int)+002
+38
+  05F06F70    PPC  1703A474  nsParser::ResumeParse(nsIDTD*)+00044
+  05F06F20    PPC  17039A8C  nsParser::WillBuildModel(nsString&amp;, nsIDTD*)+000BC
+  05F06ED0    PPC  1703BF10  nsXIFDTD::WillBuildModel(nsString&amp;, int, nsString&amp;,
+nsIContentSi
+nk*)+00024
+  05F06E90    PPC  17040FA0  nsHTMLContentSinkStream::WillBuildModel()+00038
+  05F06E40    PPC  17032C6C  NS_NewOtherHTMLDTD(nsIDTD**)+0510C
+  05F06D90    PPC  17033550  NS_NewOtherHTMLDTD(nsIDTD**)+059F0
+  05F06D00    PPC  17658348  __throw+0009C
+  05F06B20    PPC  176581C8  ExPPC_ThrowHandler(ThrowContext*)+001E4
+  05F06AA0    PPC  17656EE8  ExPPC_NextAction(ActionIterator*)+00070
+  05F06A60    PPC  176585E0  std::terminate()+00010
+  05F06A20    PPC  17658510  std::dthandler()+0000C
+  05F069E0    PPC  1761CBAC  abort+00028
+  05F069A0    PPC  1761CD8C  exit+00098
+ Return addresses on the stack
+  Stack Addr  Frame Addr   ISA   Caller
+   05F06D08                PPC   17033550 NS_NewOtherHTMLDTD(nsIDTD**)+059F0
+   05F06D04                68K   05536FBE
+   05F06CE8    05F06CE0    PPC   17033550 NS_NewOtherHTMLDTD(nsIDTD**)+059F0
+   05F06C88    05F06C80    PPC   17647634 __dla__FPv+00014
+   05F06C84    05F06C80    68K   0552E90E
+   05F06C78    05F06C70    PPC   17648344 malloc+00040
+   05F06C74    05F06C70    68K   05AFC31E
+   05F06C64    05F06C60    68K   0553CBEE
+   05F06C58                PPC   176483AC free+00030
+   05F06BC4    05F06BC0    68K   0553CBEE
+   05F06BA4    05F06BA0    68K   05AFC31E
+   05F06B98    05F06B90    PPC   1764A120
+nsLargeHeapAllocator::AllocatorFreeBlock(void*)+000
+20
+   05F06B94    05F06B90    68K   0552E90E
+   05F06B88                68K   0556522E
+   05F06B78    05F06B70    PPC   17649F8C
+nsLargeHeapAllocator::AllocatorMakeBlock(unsigned l
+ong)+0002C
+   05F06B74    05F06B70    68K   0552E90E
+   05F06B64                68K   0556522E
+   05F06B58    05F06B50    PPC   175E688C PR_AtomicIncrement+00014
+   05F06B54    05F06B50    68K   0552E90E
+   05F06B34                68K   0552E90E
+   05F06B28    05F06B20    PPC   17658348 __throw+0009C
+   05F06B24    05F06B20    68K   0553CBEE
+   05F06B04                68K   05B3B1CE
+   05F06AEC                68K   05B3B1CE
+   05F06AD8    05F06AD0    PPC   1759F068 nsDll::FindSymbol(const char*)+00044
+   05F06AC8    05F06AC0    PPC   17047ABC NSGetFactory+00074
+   05F06AB8    05F06AB0    PPC   1764746C operator new(unsigned long, const
+std::nothrow_t&amp;)+
+00014
+   05F06AB4    05F06AB0    68K   0553EEFE
+   05F06AA8    05F06AA0    PPC   176581C8 ExPPC_ThrowHandler(ThrowContext*)+001E4
+   05F06A88    05F06A80    PPC   176474DC operator new(unsigned long)+00010
+   05F06A84    05F06A80    68K   0552E90E
+   05F06A78    05F06A70    PPC   17648344 malloc+00040
+   05F06A74    05F06A70    68K   0553EEFE
+   05F06A68    05F06A60    PPC   17656EE8 ExPPC_NextAction(ActionIterator*)+00070
+   05F06A64    05F06A60    68K   0552E90E
+   05F06A54    05F06A50    68K   0552E90E
+   05F06A44                68K   0552E90E
+   05F06A34    05F06A30    68K   055366BE
+   05F06A28    05F06A20    PPC   176585E0 std::terminate()+00010
+   05F06A24    05F06A20    68K   0552E90E
+   05F06A18    05F06A10    PPC   176483AC free+00030
+   05F06A14    05F06A10    68K   0553EEFE
+   05F06A04    05F06A00    68K   0552E90E
+   05F069F8    05F069F0    PPC   17648344 malloc+00040
+   05F069F4    05F069F0    68K   055366BE
+   05F069E8    05F069E0    PPC   17658510 std::dthandler()+0000C
+   05F069C8    05F069C0    PPC   175BD1E4 nsString::Append(const nsString&amp;, int)+
+00018
+   05F069C4    05F069C0    68K   0552E90E
+   05F069B8    05F069B0    PPC   176483AC free+00030
+   05F069B4    05F069B0    68K   0552E90E
+   05F069A8    05F069A0    PPC   1761CBAC abort+00028
+   05F06974    05F06970    68K   0552E90E
+   05F06968    05F06960    PPC   175BD408 nsString::Append(const unsigned short*,
+int)+00084
+   05F06964    05F06960    68K   0552E90E
+   05F06958    05F06950    PPC   1761CD8C exit+00098
+   05F06954    05F06950    68K   0553EEFE
+   05F06944    05F06940    68K   0552E90E
+   05F06924    05F06920    68K   0552E90E
+   05F06918    05F06910    PPC   176483AC free+00030
+   05F06914    05F06910    68K   0552E90E
+ Displaying memory from 0
+  00000000  FFC1 0000 FFC1 0000  0020 1946 0020 1948  ÿÁ¥¥ÿÁ¥¥¥ ¥F¥ ¥H
+  00000010  0020 194A 0020 194C  FFC0 3058 FFC0 305A  ¥ ¥J¥ ¥LÿÀ0XÿÀ0Z
+ Closing log</pre></div><div class="change-set" id="c4"><div class="comment" data-id="29598" data-no="4"
+       data-tags="">
+    
+    <table class="layout-table change-head assignee" id="ch-4" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_567" id="a773251_567"><img src="https://secure.gravatar.com/avatar/de8abfa9de1d36b01d556a823dc11112?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_567" id="a773251_567"><a class="email " href="/user_profile?user_id=567" > <span class="fna">Simon Fraser [no longer active]</span></a>
+</div>
+            <span class="user-role">Assignee</span>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-4"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-4" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=4154#c4">Comment 4</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-03-31 14:29 PST" data-time="922919399">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-4">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-4" data-comment-id="29598">Ooh, this is an unhandled exception. This may actually be a result of me
+reorganizing the Mac standard libraries.</pre></div><div class="change-set" id="a964168_567"><div class="change" id="aa964168_567">
+    <table class="layout-table change-head assignee" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_567" id="a964168_567"><img src="https://secure.gravatar.com/avatar/de8abfa9de1d36b01d556a823dc11112?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_567" id="a964168_567"><a class="email " href="/user_profile?user_id=567" > <span class="fna">Simon Fraser [no longer active]</span></a>
+</div>
+            <span class="user-role">Assignee</span>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a964168_567"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a964168_567">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=4154#a964168_567">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-04-02 17:24 PST" data-time="923102667">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Target Milestone: M4</div></div></div><div class="change-set" id="c5"><div class="comment" data-id="29599" data-no="5"
+       data-tags="">
+    
+    <table class="layout-table change-head assignee" id="ch-5" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_567" id="a964168_567"><img src="https://secure.gravatar.com/avatar/de8abfa9de1d36b01d556a823dc11112?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_567" id="a964168_567"><a class="email " href="/user_profile?user_id=567" > <span class="fna">Simon Fraser [no longer active]</span></a>
+</div>
+            <span class="user-role">Assignee</span>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-5"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-5" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=4154#c5">Comment 5</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-04-02 17:24 PST" data-time="923102699">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-5">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-5" data-comment-id="29599">M4</pre></div><div class="change-set" id="a964347_567"><div class="change" id="aa964347_567">
+    <table class="layout-table change-head assignee" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_567" id="a964347_567"><img src="https://secure.gravatar.com/avatar/de8abfa9de1d36b01d556a823dc11112?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_567" id="a964347_567"><a class="email " href="/user_profile?user_id=567" > <span class="fna">Simon Fraser [no longer active]</span></a>
+</div>
+            <span class="user-role">Assignee</span>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a964347_567"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a964347_567">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=4154#a964347_567">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-04-02 17:27 PST" data-time="923102846">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Status: NEW &rarr; ASSIGNED</div></div></div><div class="change-set" id="a1230047_567"><div class="change" id="aa1230047_567">
+    <table class="layout-table change-head assignee" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_567" id="a1230047_567"><img src="https://secure.gravatar.com/avatar/de8abfa9de1d36b01d556a823dc11112?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_567" id="a1230047_567"><a class="email " href="/user_profile?user_id=567" > <span class="fna">Simon Fraser [no longer active]</span></a>
+</div>
+            <span class="user-role">Assignee</span>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a1230047_567"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a1230047_567">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=4154#a1230047_567">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-04-05 20:15 PDT" data-time="923368546">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Status: ASSIGNED &rarr; RESOLVED</div><div class="change">Closed: <span class="rel-time" title="1999-04-05 20:15 PDT" data-time="923368546">22 years ago</span></div><div class="change">Resolution: --- &rarr; FIXED</div></div></div><div class="change-set" id="c6"><div class="comment" data-id="29600" data-no="6"
+       data-tags="">
+    
+    <table class="layout-table change-head assignee" id="ch-6" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_567" id="a1230047_567"><img src="https://secure.gravatar.com/avatar/de8abfa9de1d36b01d556a823dc11112?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_567" id="a1230047_567"><a class="email " href="/user_profile?user_id=567" > <span class="fna">Simon Fraser [no longer active]</span></a>
+</div>
+            <span class="user-role">Assignee</span>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-6"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-6" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=4154#c6">Comment 6</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-04-05 20:15 PDT" data-time="923368559">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-6">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-6" data-comment-id="29600">This was most likely caused by the same bug as 4153. Should be fixed now.
+Get Text and GetHTML are now on the Debug menu in the editor testbed.</pre></div><div class="change-set" id="c7"><div class="comment" data-id="29601" data-no="7"
+       data-tags="">
+    
+    <table class="layout-table change-head reporter" id="ch-7" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_4144" id="a1230047_567"><img src="https://secure.gravatar.com/avatar/933b0894c26fc6b3fa4061bbc50044a6?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_4144" id="a1230047_567"><a class="email " href="/user_profile?user_id=4144" > <span class="fna">Chris Petersen</span></a>
+</div>
+            <span class="user-role">Reporter</span>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-7"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-7" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=4154#c7">Comment 7</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-04-06 13:17 PDT" data-time="923429879">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-7">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-7" data-comment-id="29601">Yes, selecting Get Text now longer crashes. However, Get HTML doesn't appear
+under Debug. Is this correct ?</pre></div><div class="change-set" id="c8"><div class="comment" data-id="29602" data-no="8"
+       data-tags="">
+    
+    <table class="layout-table change-head reporter" id="ch-8" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_4144" id="a1230047_567"><img src="https://secure.gravatar.com/avatar/933b0894c26fc6b3fa4061bbc50044a6?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_4144" id="a1230047_567"><a class="email " href="/user_profile?user_id=4144" > <span class="fna">Chris Petersen</span></a>
+</div>
+            <span class="user-role">Reporter</span>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-8"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-8" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=4154#c8">Comment 8</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-04-06 14:06 PDT" data-time="923432819">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-8">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-8" data-comment-id="29602">Fixed for Get Text in April 6th Build.</pre><div class="activity"><div class="change">Status: RESOLVED &rarr; VERIFIED</div></div></div><div class="change-set" id="c9"><div class="comment" data-id="29603" data-no="9"
+       data-tags="">
+    
+    <table class="layout-table change-head assignee" id="ch-9" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_567" id="a1230047_567"><img src="https://secure.gravatar.com/avatar/de8abfa9de1d36b01d556a823dc11112?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_567" id="a1230047_567"><a class="email " href="/user_profile?user_id=567" > <span class="fna">Simon Fraser [no longer active]</span></a>
+</div>
+            <span class="user-role">Assignee</span>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-9"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-9" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=4154#c9">Comment 9</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-04-06 15:05 PDT" data-time="923436359">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-9">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-9" data-comment-id="29603">Get HTML should be under the Debug menu in editor, if you get to the editor by
+starting up with navigator.xul, and opening the editior from the Tasks
+menu.</pre></div><div id="new-comment-notice">
+          You need to <a href="/show_bug.cgi?id=4154&amp;GoAheadAndLogIn=1">log in</a>
+          before you can comment on or make changes to this bug.
+        </div>
+
+
+
+<div id="bottom-actions">
+  <div id="bottom-right-actions">
+    <button type="button" id="top-btn" class="secondary" aria-label="Go to Page Top">Top &uarr;</button>
+  </div>
+</div></div> 
+</main> 
+</div> 
+
+
+</body>
+</html>

@@ -1,0 +1,3990 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+<meta property="og:type" content="website">
+<meta property="og:title" content="6419 - want command-line queries for bugzilla">
+<meta property="og:url" content="https://bugzilla.mozilla.org/show_bug.cgi?id=6419">
+<meta property="og:description"
+      content="RESOLVED (endico) in Bugzilla - Query/Bug List. Last updated 2012-12-18.">
+<meta name="twitter:label1" value="Type">
+<meta name="twitter:data1" value="enhancement">
+<meta name="twitter:label2" value="Priority">
+<meta name="twitter:data2" value="P2">
+
+    <meta name="viewport" content="width=1024">
+    <meta name="color-scheme" content="dark light">
+    <meta name="generator" content="Bugzilla 20200805.1">
+    <meta name="bugzilla-global" content="dummy"
+        id="bugzilla-global" data-bugzilla="{&quot;api_token&quot;:&quot;&quot;,&quot;config&quot;:{&quot;basepath&quot;:&quot;\/&quot;},&quot;constant&quot;:{&quot;COMMENT_COLS&quot;:80},&quot;param&quot;:{&quot;maxattachmentsize&quot;:&quot;10240&quot;,&quot;maxusermatches&quot;:&quot;50&quot;,&quot;splinter_base&quot;:&quot;\/page.cgi?id=splinter.html&amp;ignore=\/&quot;},&quot;string&quot;:{&quot;bug_type_required&quot;:&quot;You must select a Type for this bug&quot;,&quot;component_required&quot;:&quot;You must select a Component for this bug&quot;,&quot;description_required&quot;:&quot;You must enter a Description for this bug&quot;,&quot;short_desc_required&quot;:&quot;You must enter a Summary for this bug&quot;,&quot;version_required&quot;:&quot;You must select a Version for this bug&quot;},&quot;user&quot;:{&quot;is_new&quot;:1,&quot;login&quot;:&quot;&quot;}}">
+    <title>6419 - want command-line queries for bugzilla</title>
+
+<link rel="Top" href="/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="/showdependencytree.cgi?id=6419&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="/showdependencygraph.cgi?id=6419">
+
+      <link rel="Show" title="Bug Activity"
+            href="/show_activity.cgi?id=6419">
+
+<link href="https://bugzilla.mozilla.org/static/v20200805.1/skins/yui.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/skins/standard/global.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BugModal/web/bug_modal.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/plugins/contextMenu/contextMenu.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BMO/web/styles/bug_modal.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/EditComments/web/styles/inline-editor.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/ui/jquery-ui-min.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/ui/jquery-ui-structure-min.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/ui/jquery-ui-theme-min.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/skins/lib/prism.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/Needinfo/web/styles/needinfo.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/Review/web/styles/badge.css" rel="stylesheet" type="text/css">
+
+
+
+    
+<script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/jquery-min.js"></script><script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/ui/jquery-ui-min.js"></script><script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/js/yui.js"></script><script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/plugins/contextMenu/contextMenu-min.js"></script><script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/plugins/devbridgeAutocomplete/devbridgeAutocomplete-min.js"></script><script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/js/global.js"></script><script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/js/util.js"></script><script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/js/dropdown.js"></script>
+
+      <script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6">
+          YAHOO.namespace('bugzilla');
+          if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+              YAHOO.util.Event._simpleRemove(window, "unload",
+                                             YAHOO.util.Event._unload);
+          }BUGZILLA.value_descs = JSON.parse('{\"bug_status\":{},\"resolution\":{\"\":\"---\"}}');
+
+  
+    var tracking_flags_str = "{\"comments\":{},\"flags\":{},\"types\":[]}";
+    var TrackingFlags = $.parseJSON(tracking_flags_str);
+
+  
+
+  
+  BUGZILLA.bug_id = 6419;
+  BUGZILLA.bug_title = '6419 - want command-line queries for bugzilla';
+  BUGZILLA.bug_summary = 'want command-line queries for bugzilla';
+  BUGZILLA.bug_url = 'https:\/\/bugzilla.mozilla.org\/show_bug.cgi?id=6419';
+  BUGZILLA.bug_keywords = '',
+  BUGZILLA.user = {
+    id: 0,
+    login: '',
+    is_insider: false,
+    is_timetracker: false,
+    can_tag: false,
+    timezone: 'America\/Los_Angeles',
+    settings: {
+      quote_replies: 'quoted_reply',
+      zoom_textareas: true,
+      remember_collapsed: true,
+      inline_attachments: true,
+      autosize_comments: false
+    }
+  };
+
+  BUGZILLA.bug_secure = false;
+      </script>
+<script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BugModal/web/autosize.min.js"></script><script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/ProdCompSearch/web/js/prod_comp_search.js"></script><script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BugModal/web/bug_modal.js"></script><script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BugModal/web/comments.js"></script><script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/ComponentWatching/web/js/overlay.js"></script><script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/js/bugzilla-readable-status-min.js"></script><script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/js/field.js"></script><script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/js/comments.js"></script><script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/TrackingFlags/web/js/flags.js"></script><script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BMO/web/js/firefox-crash-table.js"></script><script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/js/lib/prism.js"></script><script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/GoogleAnalytics/web/js/analytics.js"></script><script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/js/lib/md5.min.js"></script><script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/Review/web/js/badge.js"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla@Mozilla" href="/search_plugin.cgi"><link rel="shortcut icon" href="/extensions/BMO/web/images/favicon.ico">
+<link rel="canonical" href="https://bugzilla.mozilla.org/show_bug.cgi?id=6419">
+<link rel="shorturl" href="https://bugzilla.mozilla.org/6419"><meta name="google-analytics" content="UA-36116321-3" data-location="https://bugzilla.mozilla.org/bug/show-modal" data-title="6419 - want command-line queries for bugzilla">
+<script async src="https://www.google-analytics.com/analytics.js"></script><meta name="robots" content="noarchive">
+  </head>
+
+
+
+  <body
+        class="bugzilla-mozilla-org
+               skin-standard bug_modal yui-skin-sam">
+
+
+
+<div id="wrapper">
+
+<aside id="message-container" role="complementary">
+  <noscript>
+    <div class="noscript">
+      <div class="inner">
+        <p>Please enable JavaScript in your browser to use all the features on this site.</p>
+      </div>
+    </div>
+  </noscript>
+</aside>
+
+<header id="header" role="banner">
+  <div class="inner">
+    <h1 id="header-title" class="title"><a href="https://bugzilla.mozilla.org/home" title="Go to home page">Bugzilla</a></h1>
+    <form role="search" id="header-search" class="quicksearch" action="/buglist.cgi" data-no-csrf>
+      <section class="searchbox-outer dropdown" role="combobox" aria-expanded="false" aria-haspopup="listbox"
+               aria-labelledby="header-search-label" aria-owns="header-search-dropdown">
+        <h2 id="header-search-label">Quick Search</h2>
+        <span class="icon" aria-hidden="true"></span>
+        <input role="searchbox" id="quicksearch_top" class="dropdown-button" name="quicksearch" autocomplete="off"
+               value="" placeholder="Search Bugs"
+               title="Enter a bug number or some search terms" aria-controls="header-search-dropdown"
+               aria-label="Quick Search"><div id="header-search-dropdown" class="dropdown-content right" role="listbox" style="display: none;">
+  <div id="header-search-dropdown-wrapper">
+  </div>
+</div>
+      </section>
+    </form>
+    <nav id="header-nav">
+      <ul class="links">
+        <li class="link-browse">
+          <a href="/describecomponents.cgi" title="Browse bugs by component">
+            <span class="icon" aria-hidden="true"></span>
+            <span class="label">Browse</span>
+          </a>
+        </li>
+        <li class="link-search">
+          <a href="/query.cgi?format=advanced" title="Search bugs using various criteria">
+            <span class="icon" aria-hidden="true"></span>
+            <span class="label">Advanced Search</span>
+          </a>
+        </li>
+      </ul>
+      <div class="dropdown">
+        <button type="button" id="header-tools-menu-button" class="dropdown-button minor" title="More tools…"
+                aria-label="More tools…" aria-expanded="false" aria-haspopup="true" aria-controls="header-tools-menu">
+          <span class="icon" aria-hidden="true"></span>
+        </button>
+        <ul class="dropdown-content left" id="header-tools-menu" role="menu" style="display:none;">
+          <li role="presentation">
+            <a href="/report.cgi" role="menuitem" tabindex="-1">Reports</a>
+          </li>
+            <li role="separator"></li>
+            <li role="presentation">
+              <a href="https://bmo.readthedocs.io/en/latest/" role="menuitem" tabindex="-1">Documentation</a>
+            </li>
+        </ul>
+      </div>
+    </nav>
+      <ul id="header-login" class="links">
+          <li id="moz_new_account_container_top"><a href="/createaccount.cgi">New Account</a></li><li id="mini_login_container_top">
+  <a id="login_link_top" href="/show_bug.cgi?id=6419&amp;GoAheadAndLogIn=1"
+     class='show_mini_login_form' data-qs-suffix="_top">Log In</a>
+
+  <div id="mini_login_top" class="mini-popup mini_login bz_default_hidden"><span id="github_mini_login_top" class="mini_login_top">
+    <form method="post" action="/github.cgi">
+      <input type="hidden" name="github_secret" value="SylUL21Sjbm2JB6eA29HSeZBvfBISidf01JFDgllrJfzYzUpF9b1pRFkdFj54unNlnzGaRVvg7Y96eV96tWZXEOPmM8PZpDqZV8btaoU89TA0cv1iTVLbpfPA1KuaSB3Is3fu5aKEz8ZjARX2FZ3sZ2YqqwjRsXUdnceIsuOIQIEInwxW6eQsqAZkbzetnP6uXljo3mDKHuBTtyFZfSYQHwOUNs5omaeAvucZEf6hun34PSCBJJ6y2ZZjXUxUnuT">
+      <input type="hidden" name="target_uri" value="https://bugzilla.mozilla.org/show_bug.cgi?id=6419">
+      <input type="image" src="/extensions/GitHubAuth/web/images/sign_in.png" height="22" width="75" align="absmiddle"
+             alt="Sign in with GitHub"
+             title="Sign in with GitHub"> or
+    </form>
+  </span>
+
+  <form action="/show_bug.cgi?id=6419" method="POST"
+        data-qs-suffix="_top">
+
+    <input id="Bugzilla_login_top"
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           placeholder="Email"
+           aria-label="Email"
+           type="email"
+           required
+    >
+    <input class="bz_password"
+           id="Bugzilla_password_top"
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+           placeholder="Password"
+           aria-label="Password"
+           required
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text"
+           id="Bugzilla_password_dummy_top" value="password"
+           title="Password"
+    >
+      <input type="checkbox" id="Bugzilla_remember_top"
+             name="Bugzilla_remember" value="on" class="bz_remember"
+                 checked>
+      <label for="Bugzilla_remember_top">Remember</label>
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+           class="check_mini_login_fields"
+            id="log_in_top">
+    <a href="#" id="hide_mini_login_top" aria-label="Close"
+       class="close-button hide_mini_login_form" data-qs-suffix="_top">
+      <span class="icon" aria-hidden="true"></span>
+    </a>
+  </form>
+  </div>
+</li>
+<li id="forgot_container_top">
+  <a id="forgot_link_top" href="/show_bug.cgi?id=6419&amp;GoAheadAndLogIn=1#forgot"
+     class='show_forgot_form'
+     data-qs-suffix="_top">Forgot Password</a>
+  <div id="forgot_form_top" class="mini-popup mini_forgot bz_default_hidden">
+  <form action="/token.cgi" method="post">
+    <input type="email" name="loginname" size="20" placeholder="Email" aria-label="Email" required>
+    <input id="forgot_button_top" value="Reset Password"
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token_top" name="token" value="1598303058-lSK2N8UZFjJIYOeg98ksQtH_1rmTptKuFlJh-SPdNMo">
+    <a href="#" class="close-button hide_forgot_form" aria-label="Close" data-qs-suffix="_top">
+      <span class="icon" aria-hidden="true"></span>
+    </a>
+  </form>
+  </div>
+</li>
+      </ul><div id="header-external-links" class="dropdown first">
+  <button type="button" id="header-external-menu-button" class="dropdown-button minor" title="Mozilla"
+          aria-label="Mozilla" aria-expanded="false" aria-haspopup="true" aria-controls="header-external-menu">
+    <img src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BMO/web/images/moz-fav-one-color-white-rgb.svg" width="32" height="32" alt="">
+  </button>
+  <ul class="dropdown-content right" id="header-external-menu" role="menu" style="display:none;">
+    <li role="presentation">
+      <a href="https://www.mozilla.org/" role="menuitem" tabindex="-1">Mozilla Home</a>
+    </li>
+    <li role="separator"></li>
+    <li role="presentation">
+      <a href="https://www.mozilla.org/privacy/websites/" role="menuitem" tabindex="-1">Privacy</a>
+    </li>
+    <li role="presentation">
+      <a href="https://www.mozilla.org/privacy/websites/#cookies" role="menuitem" tabindex="-1">Cookies</a>
+    </li>
+    <li role="presentation">
+      <a href="https://www.mozilla.org/about/legal/" role="menuitem" tabindex="-1">Legal</a>
+    </li>
+  </ul>
+</div>
+  </div>
+</header> 
+
+
+<main id="bugzilla-body" tabindex="-1">
+<div id="main-inner">
+
+
+
+
+<div role="toolbar" id="page-toolbar">
+  <div role="group" class="buttons">
+    <button type="button" id="copy-summary" class="secondary"
+      title="Copy bug number and summary to your clipboard">Copy Summary</button>
+    <div id="clip-container" style="display:none"><input type="text" id="clip"></div>
+    <div class="dropdown">
+      <button type="button" id="action-menu-btn" aria-haspopup="true" aria-label="View"
+        aria-expanded="false" aria-controls="action-menu" class="dropdown-button secondary">View &#9662;</button>
+      <ul class="dropdown-content left" id="action-menu" role="menu" style="display:none;">
+        <li role="presentation">
+          <a id="action-reset" role="menuitem" tabindex="-1">Reset Sections</a>
+        </li>
+        <li role="presentation">
+          <a id="action-expand-all" role="menuitem" tabindex="-1">Expand All Sections</a>
+        </li>
+        <li role="presentation">
+          <a id="action-collapse-all" role="menuitem" tabindex="-1">Collapse All Sections</a>
+        </li>
+        <li role="separator"></li>
+        <li role="presentation">
+          <a id="action-history" role="menuitem" tabindex="-1">History</a>
+        </li>
+        <li role="separator"></li>
+        <li role="presentation">
+          <a href="/rest/bug/6419" role="menuitem" tabindex="-1">JSON</a>
+        </li>
+        <li role="presentation">
+          <a href="/show_bug.cgi?ctype=xml&amp;id=6419" role="menuitem" tabindex="-1">XML</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+<div role="status" id="io-error" style="display:none"></div>
+<div role="status" id="floating-message" style="display:none">
+  <div id="floating-message-text"></div>
+</div>
+<section class="module"
+>
+  <div class="module-content"
+  >
+  <div id="summary-container">
+    <div class="field indent" id="field-status_summary"
+>
+
+
+  
+    <div class=" container">
+        <span id="field-value-status_summary">
+      <span class="bug-status-label text" data-status="closed">Closed</span>
+      <span id="field-value-bug_id">
+        <a href="/show_bug.cgi?id=6419">Bug 6419</a>
+      </span>
+      <span>
+        <span class="bug-time-label">Opened <span class="rel-time" title="1999-05-14 11:52 PDT" data-time="926707955">22 years ago</span></span>
+          <span class="bug-time-label">Closed <span class="rel-time" title="2001-11-15 09:09 PST" data-time="1005844168">19 years ago</span></span>
+      </span>
+        </span>
+    </div>
+
+  
+</div>
+<div class="field indent edit-hide"
+>
+
+
+  
+    <div class=" container">
+      
+
+      <h1 id="field-value-short_desc">want command-line queries for bugzilla</h1>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-short_desc" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#short_desc" id="short_desc-help-link" class="help">Summary:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-short_desc">
+            want command-line queries for bugzilla
+
+        </span>
+    </div>
+
+  
+</div>
+  </div>
+  </div>
+</section>
+
+
+<section class="module" id="module-categories"
+>
+    <header id="module-categories-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Categories section"
+           data-label-collapsed="Expand Categories section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-categories-content"
+             aria-expanded="true"
+             aria-labeledby="module-categories-title"
+             aria-describedby="module-categories-subtitle"></div>
+        <h2 class="module-title" id="module-categories-title">Categories</h2>
+          <h3 class="module-subtitle" id="module-categories-subtitle">
+            (Bugzilla :: Query/Bug List, enhancement, P2)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-categories-content"
+  ><div class="fields-lhs">
+
+    <div class="field" id="field-product"
+>
+    <div class="name">
+        <a href="/describecomponents.cgi?product=Bugzilla" id="product-help-link" class="help">Product:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-product">
+      <div class="name-info-outer dropdown">
+        <span id="product-name" class="dropdown-button" tabindex="0" role="button"
+             aria-haspopup="menu" aria-controls="product-info">Bugzilla
+          <span class="icon" aria-hidden="true">&#x25BE;</span>
+        </span>
+        <aside id="product-info" class="name-info-popup dropdown-content right hover-display" hidden role="menu"
+               aria-label="Product description and actions">
+          <header>
+            <div class="title">Bugzilla</div>
+            <div class="description">The <a href="http://www.bugzilla.org">Bugzilla</a> bug-tracking system.<br>
+<b>Note:</b> This is <b>not</b> the place to request configuration, permission, or account changes to this installation of Bugzilla (bugzilla.mozilla.org). File such changes under the appropriate component in the <a href="enter_bug.cgi?product=bugzilla.mozilla.org"><b>bugzilla.mozilla.org</b></a> product.</div>
+          </header>
+          <li role="separator"></li>
+          <div class="actions">
+            <div><a href="/buglist.cgi?product=Bugzilla&amp;bug_status=__open__"
+                    target="_blank" role="menuitem" tabindex="-1">See Open Bugs in This Product</a></div>
+            <div><a href="/enter_bug.cgi?product=Bugzilla"
+                    target="_blank" role="menuitem" tabindex="-1">File New Bug in This Product</a></div>
+            <div><button disabled type="button" class="secondary component-watching" role="menuitem" tabindex="-1"
+                         data-product="Bugzilla"
+                         data-label-watch="Watch This Product" data-label-unwatch="Unwatch This Product"
+                         data-source="BugModal">Watch This Product</button></div>
+          </div>
+        </aside>
+      </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field" id="field-component"
+>
+    <div class="name">
+        <a href="/describecomponents.cgi?product=Bugzilla&component=Query%2FBug%20List#Query%2FBug%20List" id="component-help-link" class="help">Component:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-component">
+      <div class="name-info-outer dropdown">
+        <span id="component-name" class="dropdown-button" tabindex="0" role="button"
+             aria-haspopup="menu" aria-controls="component-info">Query/Bug List
+          <span class="icon" aria-hidden="true">&#x25BE;</span>
+        </span>
+        <aside id="component-info" class="name-info-popup dropdown-content right hover-display" hidden role="menu"
+               aria-label="Component description and actions">
+          <header>
+            <div class="title">Bugzilla :: Query/Bug List</div>
+            <div class="description">Anything to do with searching for bugs and viewing the buglists. <code>query.cgi</code> and <code>buglist.cgi</code></div>
+          </header>
+          <li role="separator"></li>
+          <div class="actions">
+            <div><a href="/buglist.cgi?product=Bugzilla&amp;component=Query%2FBug%20List&amp;bug_status=__open__"
+                    target="_blank" role="menuitem" tabindex="-1">See Open Bugs in This Component</a></div>
+            <div><a href="/buglist.cgi?product=Bugzilla&amp;component=Query%2FBug%20List&amp;chfield=resolution&chfieldfrom=-6m&chfieldvalue=FIXED&bug_status=__closed__"
+                    target="_blank" role="menuitem" tabindex="-1">Recently Fixed Bugs in This Component</a></div>
+            <div><a href="/enter_bug.cgi?product=Bugzilla&amp;component=Query%2FBug%20List"
+                    target="_blank" role="menuitem" tabindex="-1">File New Bug in This Component</a></div>
+            <div><button disabled type="button" class="secondary component-watching" role="menuitem" tabindex="-1"
+                         data-product="Bugzilla" data-component="Query/Bug List"
+                         data-label-watch="Watch This Component" data-label-unwatch="Unwatch This Component"
+                         data-source="BugModal">Watch This Component</button></div>
+          </div>
+        </aside>
+      </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-version" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#version" id="version-help-link" class="help">Version:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-version">
+            unspecified
+
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#rep_platform" id="-help-link" class="help">Platform:
+        </a>
+    </div>
+
+
+  
+    <div class=" container"><div class="field inline" id="field-rep_platform"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-rep_platform">
+            x86
+
+        </span>
+    </div>
+
+  
+</div><div class="field indent inline" id="field-op_sys"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-op_sys">
+            All
+
+        </span>
+    </div>
+
+  
+</div><div class="field indent inline"
+>
+
+
+  
+    <div class=" container">
+    </div>
+
+  
+</div>
+    </div>
+
+  
+</div>
+</div><div class="fields-rhs">
+
+    <div class="field contains-buttons" id="field-bug_type"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#bug_type" id="bug_type-help-link" class="help">Type:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_type">
+      <span class="bug-type-label iconic-text" data-type="enhancement">
+        <span class="icon" aria-hidden="true"></span>enhancement</span>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field" id="field-importance"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#priority" id="importance-help-link" class="help">Priority:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-importance"><div class="field inline" id="field-priority"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-priority">P2
+        </span>
+    </div>
+
+  
+</div><div class="field inline" id="field-bug_severity"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#bug_severity" id="bug_severity-help-link" class="help">Severity:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_severity">
+            normal
+
+        </span>
+    </div>
+
+  
+</div>
+        </span>
+    </div>
+
+  
+</div>
+
+    
+</div>
+  </div>
+</section>
+
+
+<section class="module" id="module-tracking"
+>
+    <header id="module-tracking-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Tracking section"
+           data-label-collapsed="Expand Tracking section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-tracking-content"
+             aria-expanded="true"
+             aria-labeledby="module-tracking-title"
+             aria-describedby="module-tracking-subtitle"></div>
+        <h2 class="module-title" id="module-tracking-title">Tracking</h2>
+          <h3 class="module-subtitle" id="module-tracking-subtitle">
+            (<span id="readable-bug-status" data-readable-bug-status="{&quot;resolution&quot;:&quot;FIXED&quot;,&quot;status&quot;:&quot;RESOLVED&quot;,&quot;keywords&quot;:[],&quot;flags&quot;:[],&quot;target_milestone&quot;:&quot;Bugzilla 2.16&quot;,&quot;id&quot;:6419,&quot;dupe_of&quot;:null,&quot;priority&quot;:&quot;P2&quot;}"></span>)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-tracking-content"
+  ><div class="fields-lhs">
+
+    <div class="field edit-hide" id="field-status-view"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugStatuses" id="status-view-help-link" class="help">Status:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-status-view">RESOLVED
+        FIXED
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-status-edit" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugStatuses" id="status-edit-help-link" class="help">Status:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-status-edit"><div class="field inline" id="field-bug_status"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_status">
+            RESOLVED
+
+        </span>
+    </div>
+
+  
+</div><div class="field indent inline" id="field-resolution"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-resolution">
+            FIXED
+
+        </span>
+    </div>
+
+  
+</div>
+  <div id="status-action-buttons">
+      <div id="assigned-container" style="display:none">
+        <button type="button" class="secondary" id="mark-as-assigned-btn">
+          Mark as Assigned
+        </button>
+      </div>
+  </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field" id="field-target_milestone"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#target_milestone" id="target_milestone-help-link" class="help">Milestone:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-target_milestone">
+            Bugzilla 2.16
+
+        </span>
+    </div>
+
+  
+</div>
+
+    
+
+
+</div><div class="fields-rhs">
+
+
+</div>
+  </div>
+</section>
+
+
+
+<section class="module" id="module-people"
+>
+    <header id="module-people-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse People section"
+           data-label-collapsed="Expand People section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-people-content"
+             aria-expanded="false"
+             aria-labeledby="module-people-title"
+             aria-describedby="module-people-subtitle"></div>
+        <h2 class="module-title" id="module-people-title">People</h2>
+          <h3 class="module-subtitle" id="module-people-subtitle">
+            (Reporter: akkzilla, Assigned: endico)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-people-content" style="display:none"
+  ><div class="fields-lhs">
+
+    <div class="field edit-hide" id="field-assigned_to"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#assigned_to" id="assigned_to-help-link" class="help">Assignee:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-assigned_to"><div class="vcard vcard_4415" ><img src="https://secure.gravatar.com/avatar/f28841fc7184f71e364a61ab6b9e9798?d=mm&size=40" class="gravatar" width="20" height="20"> <a class="email disabled" href="/user_profile?user_id=4415" > <span class="fna">endico</span></a>
+</div>
+        </span>
+    </div>
+
+  
+</div><div class="field edit-show" id="field-assigned_to" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#assigned_to" id="assigned_to-help-link" class="help">Assignee:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-assigned_to">
+      <div class="set-default-container" style="display:none">
+        <input type="checkbox" id="set-default-assignee" name="set_default_assignee" class="set-default"
+          value="1" data-for="assigned_to">
+        <label for="set-default-assignee">Reset Assignee to default</label>
+      </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-bug_mentors" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#bug_mentor" id="bug_mentors-help-link" class="help">Mentors:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_mentors">---
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-hide" id="field-qa_contact"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#qa_contact" id="qa_contact-help-link" class="help">QA Contact:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-qa_contact"><div class="vcard vcard_5086" ><img src="https://secure.gravatar.com/avatar/9df24a05a7e63cf07e49d30ddfeee31a?d=mm&size=40" class="gravatar" width="20" height="20"> <a class="email " href="/user_profile?user_id=5086" > <span class="fna">default-qa</span></a>
+</div>
+        </span>
+    </div>
+
+  
+</div><div class="field edit-show" id="field-qa_contact" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#qa_contact" id="qa_contact-help-link" class="help">QA Contact:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-qa_contact">
+      <div class="set-default-container" style="display:none">
+        <input type="checkbox" id="set-default-qa-contact" name="set_default_qa_contact" class="set-default"
+          value="1" data-for="qa_contact">
+        <label for="set-default-qa-contact">Reset QA Contact to default</label>
+      </div>
+        </span>
+    </div>
+
+  
+</div>
+</div><div class="fields-rhs">
+
+    <div class="field" id="field-reporter"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#reporter" id="reporter-help-link" class="help">Reporter:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-reporter">
+            <div class="vcard vcard_3858" ><img src="https://secure.gravatar.com/avatar/3d0a56a82f3db0e6bec9aefe6e84d17e?d=mm&size=40" class="gravatar" width="20" height="20"> <a class="email " href="/user_profile?user_id=3858" > <span class="fna">akkzilla</span></a>
+</div>
+
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-triage_owner" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#triage_owner" id="triage_owner-help-link" class="help">Triage Owner:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-triage_owner">
+            ---
+
+        </span>
+    </div>
+
+  
+</div>
+
+    
+
+    <div class="field"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#cc" id="-help-link" class="help">CC:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+
+
+        <span aria-owns="cc-summary cc-latch">
+          <span role="button" tabindex="0" id="cc-summary" data-count="5">5 people
+          </span>
+        </span>
+
+
+        <div id="cc-list" style="display:none"></div>
+    </div>
+
+  
+</div>
+</div>
+  </div>
+</section>
+
+
+<section class="module" id="module-references"
+>
+    <header id="module-references-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse References section"
+           data-label-collapsed="Expand References section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-references-content"
+             aria-expanded="false"
+             aria-labeledby="module-references-title"
+             aria-describedby="module-references-subtitle"></div>
+        <h2 class="module-title" id="module-references-title">References</h2>
+          <h3 class="module-subtitle" id="module-references-subtitle">
+            (Blocks 1 open bug)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-references-content" style="display:none"
+  ><div class="fields-lhs">
+
+    <div class="field bug-list edit-show" id="field-dependson" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#dependson" id="dependson-help-link" class="help">Depends on:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-dependson">
+        ---
+        </span>
+    </div>
+
+  
+</div><div class="field bug-list" id="field-blocked"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#blocks" id="blocked-help-link" class="help">Blocks:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-blocked">
+            <div class="bug-list">
+        <span class="bug-type-label iconic" title="enhancement"
+              aria-label="enhancement" data-type="enhancement">
+          <span class="icon" aria-hidden="true"></span>
+        </span><a class="bz_bug_link
+          bz_status_NEW"
+   title="NEW - [META] command line query tool (contrib/cmdline shell scripts)"
+   href="/show_bug.cgi?id=278800">cmdline</a>
+      </div>
+
+        </span>
+    </div>
+
+  
+</div><div class="field" id="field-dependencytree"
+>
+    <div class="name">
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-dependencytree">
+        Dependency <a href="/showdependencytree.cgi?id=6419&amp;hide_resolved=1">tree</a>
+        / <a href="/showdependencygraph.cgi?id=6419">graph</a>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field bug-list edit-show" id="field-regresses" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#regresses" id="regresses-help-link" class="help">Regressions:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-regresses">
+        ---
+        </span>
+    </div>
+
+  
+</div><div class="field bug-list edit-show" id="field-regressed_by" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#regressed_by" id="regressed_by-help-link" class="help">Regressed by:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-regressed_by">
+        ---
+        </span>
+    </div>
+
+  
+</div>
+
+    
+</div><div class="fields-rhs">
+
+    <div class="field edit-show" id="field-bug_file_loc" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#bug_file_loc" id="bug_file_loc-help-link" class="help">URL:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_file_loc"><div class="link">
+    <a href="" target="_blank"
+      rel="noreferrer" title=""
+      class="bug-url" data-safe="0"></a>
+  </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-see_also" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#see_also" id="see_also-help-link" class="help">See Also:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-see_also">
+        ---
+        </span>
+    </div>
+
+  
+</div>
+</div>
+  </div>
+</section>
+
+
+<section class="module" id="module-details"
+>
+    <header id="module-details-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Details section"
+           data-label-collapsed="Expand Details section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-details-content"
+             aria-expanded="false"
+             aria-labeledby="module-details-title"
+             aria-describedby="module-details-subtitle"></div>
+        <h2 class="module-title" id="module-details-title">Details</h2>
+      </div>
+    </header>
+  <div class="module-content" id="module-details-content" style="display:none"
+  ><div class="fields-lhs">
+
+    <div class="field edit-show" id="field-alias" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#alias" id="alias-help-link" class="help">Alias:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-alias">
+        ---
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-keywords" style="display:none"
+>
+    <div class="name">
+        <a href="/describekeywords.cgi" id="keywords-help-link" class="help">Keywords:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-keywords">---
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-status_whiteboard" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/Whiteboard" id="status_whiteboard-help-link" class="help">Whiteboard:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-status_whiteboard">---
+        </span>
+    </div>
+
+  
+</div>
+
+    
+
+    
+
+    <div class="field" id="field-votes"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#votes" id="votes-help-link" class="help">Votes:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-votes">0
+        </span>
+    </div>
+
+  
+</div>
+</div><div class="fields-rhs">
+
+    <div class="field edit-show" id="field-bug_flags" style="display:none"
+>
+    <div class="name">Bug Flags:
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-bug_flags"><div id="bug-flags" class="flags">
+  <table class="layout-table">
+    <tbody class="edit-show" style="display:none"><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="approval for check-in to the Bugzilla repository" for="flag_type-38">approval</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-38-dirty">
+      <select id="flag_type-38" name="flag_type-38"
+        title="approval for check-in to the Bugzilla repository"
+        class="bug-flag">
+          <option value="X"></option>
+            <option value="?" >?</option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Approval for check-in to the Bugzilla repository on the 5.0 branch." for="flag_type-872">approval5.0</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-872-dirty">
+      <select id="flag_type-872" name="flag_type-872"
+        title="Approval for check-in to the Bugzilla repository on the 5.0 branch."
+        class="bug-flag">
+          <option value="X"></option>
+            <option value="?" >?</option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Use this flag to nominate bugs for fixing for the Bugzilla 5.0.4 release. If the bug is deemed critical for the release by the Bugzilla development team then it will receive a &quot;+&quot;. If the bug is deemed to not be critical for this release the team will add a &quot;-&quot; to the flag." for="flag_type-909">blocking5.0.4</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-909-dirty">
+      <select id="flag_type-909" name="flag_type-909"
+        title="Use this flag to nominate bugs for fixing for the Bugzilla 5.0.4 release. If the bug is deemed critical for the release by the Bugzilla development team then it will receive a &quot;+&quot;. If the bug is deemed to not be critical for this release the team will add a &quot;-&quot; to the flag."
+        class="bug-flag">
+          <option value="X"></option>
+            <option value="?" >?</option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="approval for check-in to the Bugzilla repository on the BUGZILLA-4_4-BRANCH" for="flag_type-793">approval4.4</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-793-dirty">
+      <select id="flag_type-793" name="flag_type-793"
+        title="approval for check-in to the Bugzilla repository on the BUGZILLA-4_4-BRANCH"
+        class="bug-flag">
+          <option value="X"></option>
+            <option value="?" >?</option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Use this flag to nominate bugs for fixing for the Bugzilla 4.4.13 release. If the bug is deemed critical for the release by the Bugzilla development team then it will receive a &quot;+&quot;. If the bug is deemed to not be critical for this release the team will add a &quot;-&quot; to the flag." for="flag_type-910">blocking4.4.13</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-910-dirty">
+      <select id="flag_type-910" name="flag_type-910"
+        title="Use this flag to nominate bugs for fixing for the Bugzilla 4.4.13 release. If the bug is deemed critical for the release by the Bugzilla development team then it will receive a &quot;+&quot;. If the bug is deemed to not be critical for this release the team will add a &quot;-&quot; to the flag."
+        class="bug-flag">
+          <option value="X"></option>
+            <option value="?" >?</option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Flag is used to track security bug bounty nominations. Mail security(at)mozilla.org to nominate a bug." for="flag_type-803">sec-bounty</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-803-dirty">
+      <select id="flag_type-803" name="flag_type-803"
+        title="Flag is used to track security bug bounty nominations. Mail security(at)mozilla.org to nominate a bug."
+        class="bug-flag">
+          <option value="X"></option>
+            <option value="?" >?</option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Flag is used to track whether the bug report is eligible for inclusion in the Bug Bounty Hall of Fame." for="flag_type-913">sec-bounty-hof</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-913-dirty">
+      <select id="flag_type-913" name="flag_type-913"
+        title="Flag is used to track whether the bug report is eligible for inclusion in the Bug Bounty Hall of Fame."
+          disabled
+        class="bug-flag">
+          <option value="X"></option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="needs to have documentation written" for="flag_type-74">documentation</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-74-dirty">
+      <select id="flag_type-74" name="flag_type-74"
+        title="needs to have documentation written"
+        class="bug-flag">
+          <option value="X"></option>
+            <option value="?" >?</option>
+            <option value="+" >+</option>
+            <option value="-" >-</option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="needs to have a testcase created" for="flag_type-254">testcase</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-254-dirty">
+      <select id="flag_type-254" name="flag_type-254"
+        title="needs to have a testcase created"
+          disabled
+        class="bug-flag">
+          <option value="X"></option>
+      </select>
+    </td>
+
+      <td class="flag-requestee">
+        <div id="requestee_type-254-container" style="display:none"><input
+    name="requestee_type-254"
+    value="" class="requestee bz_autocomplete_user"  id="requestee_type-254" 
+  >
+        </div>
+      <td>
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Include a summary of changes made by this bug in the release notes." for="flag_type-873">relnote</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-873-dirty">
+      <select id="flag_type-873" name="flag_type-873"
+        title="Include a summary of changes made by this bug in the release notes."
+          disabled
+        class="bug-flag">
+          <option value="X"></option>
+      </select>
+    </td>
+
+
+  </tr>
+    </tbody>
+  </table>
+</div>
+        </span>
+    </div>
+
+  
+</div>
+</div>
+
+  
+  </div>
+</section>
+
+
+<section class="module edit-show" style="display:none" id="module-crash-data"
+>
+    <header id="module-crash-data-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Crash Data section"
+           data-label-collapsed="Expand Crash Data section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-crash-data-content"
+             aria-expanded="false"
+             aria-labeledby="module-crash-data-title"
+             aria-describedby="module-crash-data-subtitle"></div>
+        <h2 class="module-title" id="module-crash-data-title">Crash Data</h2>
+      </div>
+    </header>
+  <div class="module-content" id="module-crash-data-content" style="display:none"
+  ><div class="field edit-show" id="field-cf_crash_signature" style="display:none"
+>
+    <div class="name">Signature:
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-cf_crash_signature">
+        </span>
+    </div>
+
+  
+</div>
+  </div>
+</section>
+
+
+<section class="module edit-show" style="display:none" id="module-security"
+>
+    <header id="module-security-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Security section"
+           data-label-collapsed="Expand Security section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-security-content"
+             aria-expanded="false"
+             aria-labeledby="module-security-title"
+             aria-describedby="module-security-subtitle"></div>
+        <h2 class="module-title" id="module-security-title">Security</h2>
+          <h3 class="module-subtitle" id="module-security-subtitle">
+            (public)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-security-content" style="display:none"
+  ><div class="groups edit-hide">
+    This bug is publicly visible.
+</div>
+
+<div class="groups edit-show" style="display:none">
+
+
+</div>
+  </div>
+</section>
+
+
+<section class="module edit-show" style="display:none" id="module-user-story" data-non-stick="1"
+>
+    <header id="module-user-story-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse User Story section"
+           data-label-collapsed="Expand User Story section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-user-story-content"
+             aria-expanded="false"
+             aria-labeledby="module-user-story-title"
+             aria-describedby="module-user-story-subtitle"></div>
+        <h2 class="module-title" id="module-user-story-title">User Story</h2>
+      </div>
+    </header>
+  <div class="module-content" id="module-user-story-content" style="display:none"
+  >
+    <pre id="user-story"></pre>
+  </div>
+</section>
+
+
+
+
+
+
+
+<section class="module" id="module-attachments"
+>
+    <header id="module-attachments-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Attachments section"
+           data-label-collapsed="Expand Attachments section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-attachments-content"
+             aria-expanded="true"
+             aria-labeledby="module-attachments-title"
+             aria-describedby="module-attachments-subtitle"></div>
+        <h2 class="module-title" id="module-attachments-title">Attachments</h2>
+          <h3 class="module-subtitle" id="module-attachments-subtitle">
+            (8 files)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-attachments-content"
+  ><table role="table" class="layout-table" id="attachments">
+    <tr class="
+    " >
+      <td class="attach-desc-td">
+        <div class="attach-desc">
+            <a href="/attachment.cgi?id=26157">query.conf</a>
+        </div>
+        <div>
+            <a href="#c15" class="attach-time activity-ref"><span class="rel-time" title="2001-02-25 02:59 PST" data-time="983098777">20 years ago</span></a>
+          <span class="attach-author"><div class="vcard vcard_13272" ><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div></span>
+        </div>
+        <div class="attach-info">1.43 KB,
+          text/plain        </div>
+      </td>
+      <td>
+      </td>
+      <td class="attach-actions">
+        <a href="/attachment.cgi?id=26157&amp;action=edit">Details</a>
+    </tr>
+    <tr class=" attach-patch
+    " >
+      <td class="attach-desc-td">
+        <div class="attach-desc">
+            <a href="/attachment.cgi?id=26158">buglist*</a>
+        </div>
+        <div>
+            <a href="#c16" class="attach-time activity-ref"><span class="rel-time" title="2001-02-25 03:01 PST" data-time="983098868">20 years ago</span></a>
+          <span class="attach-author"><div class="vcard vcard_13272" ><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div></span>
+        </div>
+        <div class="attach-info">2.78 KB,
+          patch        </div>
+      </td>
+      <td>
+      </td>
+      <td class="attach-actions">
+        <a href="/attachment.cgi?id=26158&amp;action=edit">Details</a>
+          | <a href="/attachment.cgi?id=26158&amp;action=diff">Diff</a>&#x0020; |
+  <a href="/page.cgi?id=splinter.html&ignore=&bug=6419&attachment=26158">Splinter Review</a>
+    </tr>
+    <tr class=" attach-patch
+    " >
+      <td class="attach-desc-td">
+        <div class="attach-desc">
+            <a href="/attachment.cgi?id=26159">bugs*</a>
+        </div>
+        <div>
+            <a href="#c17" class="attach-time activity-ref"><span class="rel-time" title="2001-02-25 03:03 PST" data-time="983098998">20 years ago</span></a>
+          <span class="attach-author"><div class="vcard vcard_13272" ><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div></span>
+        </div>
+        <div class="attach-info">310 bytes,
+          patch        </div>
+      </td>
+      <td>
+      </td>
+      <td class="attach-actions">
+        <a href="/attachment.cgi?id=26159&amp;action=edit">Details</a>
+          | <a href="/attachment.cgi?id=26159&amp;action=diff">Diff</a>&#x0020; |
+  <a href="/page.cgi?id=splinter.html&ignore=&bug=6419&attachment=26159">Splinter Review</a>
+    </tr>
+    <tr class=" attach-patch
+    " >
+      <td class="attach-desc-td">
+        <div class="attach-desc">
+            <a href="/attachment.cgi?id=26211">buglist* for sh</a>
+        </div>
+        <div>
+            <a href="#c20" class="attach-time activity-ref"><span class="rel-time" title="2001-02-26 13:09 PST" data-time="983221786">20 years ago</span></a>
+          <span class="attach-author"><div class="vcard vcard_13272" ><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div></span>
+        </div>
+        <div class="attach-info">2.42 KB,
+          patch        </div>
+      </td>
+      <td>
+      </td>
+      <td class="attach-actions">
+        <a href="/attachment.cgi?id=26211&amp;action=edit">Details</a>
+          | <a href="/attachment.cgi?id=26211&amp;action=diff">Diff</a>&#x0020; |
+  <a href="/page.cgi?id=splinter.html&ignore=&bug=6419&attachment=26211">Splinter Review</a>
+    </tr>
+    <tr class=" attach-patch
+    " >
+      <td class="attach-desc-td">
+        <div class="attach-desc">
+            <a href="/attachment.cgi?id=26213">bugs* for sh</a>
+        </div>
+        <div>
+            <a href="#c21" class="attach-time activity-ref"><span class="rel-time" title="2001-02-26 13:10 PST" data-time="983221842">20 years ago</span></a>
+          <span class="attach-author"><div class="vcard vcard_13272" ><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div></span>
+        </div>
+        <div class="attach-info">310 bytes,
+          patch        </div>
+      </td>
+      <td>
+      </td>
+      <td class="attach-actions">
+        <a href="/attachment.cgi?id=26213&amp;action=edit">Details</a>
+          | <a href="/attachment.cgi?id=26213&amp;action=diff">Diff</a>&#x0020; |
+  <a href="/page.cgi?id=splinter.html&ignore=&bug=6419&attachment=26213">Splinter Review</a>
+    </tr>
+    <tr class=" attach-patch
+    " >
+      <td class="attach-desc-td">
+        <div class="attach-desc">
+            <a href="/attachment.cgi?id=26215">bugs* for sh (for real this time)</a>
+        </div>
+        <div>
+            <a href="#c24" class="attach-time activity-ref"><span class="rel-time" title="2001-02-26 13:43 PST" data-time="983223833">20 years ago</span></a>
+          <span class="attach-author"><div class="vcard vcard_13272" ><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div></span>
+        </div>
+        <div class="attach-info">310 bytes,
+          patch        </div>
+      </td>
+      <td>
+      </td>
+      <td class="attach-actions">
+        <a href="/attachment.cgi?id=26215&amp;action=edit">Details</a>
+          | <a href="/attachment.cgi?id=26215&amp;action=diff">Diff</a>&#x0020; |
+  <a href="/page.cgi?id=splinter.html&ignore=&bug=6419&attachment=26215">Splinter Review</a>
+    </tr>
+    <tr class=" attach-patch
+    " >
+      <td class="attach-desc-td">
+        <div class="attach-desc">
+            <a href="/attachment.cgi?id=26943">patch for the sh version of buglist to support $COLUMNLIST</a>
+        </div>
+        <div>
+            <a href="#c28" class="attach-time activity-ref"><span class="rel-time" title="2001-03-06 14:54 PST" data-time="983919299">20 years ago</span></a>
+          <span class="attach-author"><div class="vcard vcard_13272" ><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div></span>
+        </div>
+        <div class="attach-info">442 bytes,
+          patch        </div>
+      </td>
+      <td>
+      </td>
+      <td class="attach-actions">
+        <a href="/attachment.cgi?id=26943&amp;action=edit">Details</a>
+          | <a href="/attachment.cgi?id=26943&amp;action=diff">Diff</a>&#x0020; |
+  <a href="/page.cgi?id=splinter.html&ignore=&bug=6419&attachment=26943">Splinter Review</a>
+    </tr>
+    <tr class=" attach-patch
+    " >
+      <td class="attach-desc-td">
+        <div class="attach-desc">
+            <a href="/attachment.cgi?id=26944">buglist* (new sh version) with support for $COLUMNLIST</a>
+        </div>
+        <div>
+            <a href="#c29" class="attach-time activity-ref"><span class="rel-time" title="2001-03-06 14:57 PST" data-time="983919427">20 years ago</span></a>
+          <span class="attach-author"><div class="vcard vcard_13272" ><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div></span>
+        </div>
+        <div class="attach-info">2.45 KB,
+          patch        </div>
+      </td>
+      <td>
+      </td>
+      <td class="attach-actions">
+        <a href="/attachment.cgi?id=26944&amp;action=edit">Details</a>
+          | <a href="/attachment.cgi?id=26944&amp;action=diff">Diff</a>&#x0020; |
+  <a href="/page.cgi?id=splinter.html&ignore=&bug=6419&attachment=26944">Splinter Review</a>
+    </tr>
+</table>
+
+<footer id="attachments-footer">
+  <div id="attachments-actions">
+  </div>
+  
+</footer>
+  </div>
+</section>
+
+
+
+<script nonce="SGNnGd9aYifn9POc6hnvcglFAPiFXeDwmh6asqN1mfKtkdj6">
+  init_module_visibility();
+</script>
+
+
+
+<meta name="firefox-versions" content="{&quot;FIREFOX_AURORA&quot;:&quot;&quot;,&quot;FIREFOX_DEVEDITION&quot;:&quot;80.0b8&quot;,&quot;FIREFOX_ESR&quot;:&quot;68.11.0esr&quot;,&quot;FIREFOX_ESR_NEXT&quot;:&quot;78.1.0esr&quot;,&quot;FIREFOX_NIGHTLY&quot;:&quot;81.0a1&quot;,&quot;LAST_MERGE_DATE&quot;:&quot;2020-07-27&quot;,&quot;LAST_RELEASE_DATE&quot;:&quot;2020-07-28&quot;,&quot;LAST_SOFTFREEZE_DATE&quot;:&quot;2020-07-23&quot;,&quot;LATEST_FIREFOX_DEVEL_VERSION&quot;:&quot;80.0b8&quot;,&quot;LATEST_FIREFOX_OLDER_VERSION&quot;:&quot;3.6.28&quot;,&quot;LATEST_FIREFOX_RELEASED_DEVEL_VERSION&quot;:&quot;80.0b8&quot;,&quot;LATEST_FIREFOX_VERSION&quot;:&quot;79.0&quot;,&quot;NEXT_MERGE_DATE&quot;:&quot;2020-08-24&quot;,&quot;NEXT_RELEASE_DATE&quot;:&quot;2020-08-25&quot;,&quot;NEXT_SOFTFREEZE_DATE&quot;:&quot;2020-08-20&quot;}">
+
+
+<div id="comment-actions">
+    <button type="button" id="bottom-btn" class="secondary" aria-label="Go to Page Bottom">Bottom &darr;</button>
+  <div class="dropdown">
+    <button type="button" id="comment-tags-btn" aria-haspopup="true" aria-label="Tags"
+      aria-expanded="false" aria-controls="comment-tags-menu" class="dropdown-button minor">Tags &#9662;</button>
+    <ul id="comment-tags-menu" role="menu" tabindex="0" class="dropdown-content left" style="display:none">
+      <li role="presentation">
+        <a role="menuitem" tabindex="-1" data-comment-tag="">Reset</a>
+      </li>
+    </ul>
+  </div>
+  <div class="dropdown">
+    <button type="button" id="view-menu-btn" aria-haspopup="true" aria-label="Timeline"
+      aria-expanded="false" aria-controls="view-menu" class="dropdown-button minor">Timeline &#9662;</button>
+    <ul id="view-menu" role="menu" tabindex="0" class="dropdown-content left" style="display:none">
+      <li role="presentation">
+        <a id="view-reset" role="menuitem" tabindex="-1">Reset</a>
+      </li>
+      <li role="separator"></li>
+      <li role="presentation">
+        <a id="view-collapse-all" role="menuitem" tabindex="-1">Collapse All</a>
+      </li>
+      <li role="presentation">
+        <a id="view-expand-all" role="menuitem" tabindex="-1">Expand All</a>
+      </li>
+      <li role="presentation">
+        <a id="view-comments-only" role="menuitem" tabindex="-1">Comments Only</a>
+      </li>
+    </ul>
+   </div>
+</div>
+<div class="change-set" id="c0"><div class="comment" data-id="47735" data-no="0"
+       data-tags="">
+    
+    <table class="layout-table change-head reporter" id="ch-0" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_3858" ><img src="https://secure.gravatar.com/avatar/3d0a56a82f3db0e6bec9aefe6e84d17e?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_3858" ><a class="email " href="/user_profile?user_id=3858" > <span class="fna">Akkana Peck</span></a>
+</div>
+            <span class="user-role">Reporter</span>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-0"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-0" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c0">Description</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-05-14 11:52 PDT" data-time="926707955">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-0">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-0" data-comment-id="47735">It would be very cool to have some command-line queries for bugzilla, like SGI's
+pvquery.
+
+I don't remember the exact syntax of pvquery, but it had flags for the various
+options you might want to pass in in a bug query, for example (I'm making up
+flag letters here)
+
+pvquery -Aakkana -P1,2 -snew,assigned -Rkostello -MM1,M2,M3,M4,M5,M6 -Sclipboard
+
+might get me all the bugs assigned to akkana, priority 1 or 2, status new or
+assigned, reported by kostello, milestones1 through 6, with &quot;clipboard&quot; in the
+summary (note I picked s for status and S for summary; alternately maybe S for
+summary and arguments without a flag match stuff in the summary?)
+
+The main thought is that a command-line query like this might be faster than
+going through a browser, and it would be easier to redirect output without
+dealing with 4.x's annoying reformatting when converting copied text to
+plaintext (though hopefully mozilla will soon be to the point where we don't
+need to use 4.x any more :-)</pre></div><div class="change-set" id="a1572712_3794"><div class="change" id="aa1572712_3794">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_3794" id="a1572712_3794"><img src="https://secure.gravatar.com/avatar/fb2f634ada0fd54fa83cd87fabafd52c?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_3794" id="a1572712_3794"><a class="email " href="/user_profile?user_id=3794" > <span class="fna">Terry Weissman</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a1572712_3794"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a1572712_3794">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#a1572712_3794">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-06-01 16:44 PDT" data-time="928280667">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Assignee: terry &rarr; terry</div></div></div><div class="change-set" id="a21445560_3794"><div class="change" id="aa21445560_3794">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_3794" id="a21445560_3794"><img src="https://secure.gravatar.com/avatar/fb2f634ada0fd54fa83cd87fabafd52c?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_3794" id="a21445560_3794"><a class="email " href="/user_profile?user_id=3794" > <span class="fna">Terry Weissman</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a21445560_3794"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a21445560_3794">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#a21445560_3794">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2000-01-17 15:58 PST" data-time="948153515">21 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Status: NEW &rarr; ASSIGNED</div><div class="change">Priority: P3 &rarr; P2</div></div></div><div class="change-set" id="c1"><div class="comment" data-id="227358" data-no="1"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-1" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_6036" id="a21445560_3794"><img src="https://secure.gravatar.com/avatar/9ef232ad0592e6907376848d40a0c6d4?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_6036" id="a21445560_3794"><a class="email disabled" href="/user_profile?user_id=6036" > <span class="fna">Andrew Taylor</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-1"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-1" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c1">Comment 1</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2000-03-10 13:42 PST" data-time="952724569">21 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-1">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-1" data-comment-id="227358">Command line bug submission would be cool, too.  Then it would be possible to do 
+stuff like email bug submission.</pre></div><div class="change-set" id="c2"><div class="comment" data-id="262103" data-no="2"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-2" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_3794" id="a21445560_3794"><img src="https://secure.gravatar.com/avatar/fb2f634ada0fd54fa83cd87fabafd52c?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_3794" id="a21445560_3794"><a class="email " href="/user_profile?user_id=3794" > <span class="fna">Terry Weissman</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-2"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-2" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c2">Comment 2</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2000-04-13 07:28 PDT" data-time="955636115">21 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-2">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-2" data-comment-id="262103"><a href="mailto:tara&#64;tequilarista.org">tara&#64;tequilarista.org</a> is the new owner of Bugzilla and Bonsai.  (For details,
+see my posting in netscape.public.mozilla.webtools,
+<a rel="nofollow" href="news://news.mozilla.org/38F5D90D.F40E8C1A%40geocast.com">news://news.mozilla.org/38F5D90D.F40E8C1A%40geocast.com</a> .)</pre><div class="activity"><div class="change">Assignee: terry &rarr; tara</div><div class="change">Status: ASSIGNED &rarr; NEW</div></div></div><div class="change-set" id="a29996464_11345"><div class="change" id="aa29996464_11345">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_11345" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/f839551bcb1fe930db083d0687f6f3cb?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_11345" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=11345" > <span class="fna">Tara Hernandez</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a29996464_11345"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a29996464_11345">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#a29996464_11345">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2000-04-25 16:13 PDT" data-time="956704419">21 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Status: NEW &rarr; ASSIGNED</div></div></div><div class="change-set" id="c3"><div class="comment" data-id="300932" data-no="3"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-3" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_11345" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/f839551bcb1fe930db083d0687f6f3cb?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_11345" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=11345" > <span class="fna">Tara Hernandez</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-3"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-3" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c3">Comment 3</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2000-05-19 16:09 PDT" data-time="958777777">21 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-3">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-3" data-comment-id="300932">Brian--have at it.  Prototype something up and let's see what we get.  Probably
+worth working with akkana as you go.</pre><div class="activity"><div class="change">Assignee: tara &rarr; briano</div><div class="change">Status: ASSIGNED &rarr; NEW</div></div></div><div class="change-set" id="c4"><div class="comment" data-id="301304" data-no="4"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-4" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_10297" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/e9b8879974f9b8c15f35712b58182a86?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_10297" id="a29996464_11345"><a class="email " href="/user_profile?user_id=10297" > <span class="fna">Dave Miller [:justdave]</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-4"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-4" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c4">Comment 4</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2000-05-20 09:54 PDT" data-time="958841647">21 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-4">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-4" data-comment-id="301304">Something to point out is that with bug_email.pl as far along as it is now (we 
+can already submit via email and add comments), this would make queries via email 
+easy to implement, too.
+</pre></div><div class="change-set" id="c5"><div class="comment" data-id="312014" data-no="5"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-5" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_1677" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/6d5a32d33c160e1a8d79e354f038317b?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_1677" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=1677" > <span class="fna">Brian Ostrom</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-5"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-5" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c5">Comment 5</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2000-05-30 12:22 PDT" data-time="959714530">21 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-5">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-5" data-comment-id="312014">Sounds like fun.  I'll start playing with this when I have time.
+And it'll be Unix-only, of course.... ;-)
+</pre><div class="activity"><div class="change">Status: NEW &rarr; ASSIGNED</div></div></div><div class="change-set" id="c6"><div class="comment" data-id="336019" data-no="6"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-6" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_1677" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/6d5a32d33c160e1a8d79e354f038317b?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_1677" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=1677" > <span class="fna">Brian Ostrom</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-6"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-6" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c6">Comment 6</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2000-06-20 20:08 PDT" data-time="961556910">21 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-6">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-6" data-comment-id="336019">Okay.  I started playing around with a couple of prototype approaches.
+The first (of course ;-) was a shell script, which worked fine, but
+requires rsh, so it can't be used in anything but an intranet setting.
+So then I wrote a C program with the vague hope that mysqld might be
+doing something sane with port 3306 (hopefully this is the default).
+It opens a socket, does a connect, a send, and a recv.  But all I get
+back is &quot;3.22.19&lt;and random gibberish&gt;&quot;.  Oh, I forgot to mention that
+in order to get even this far, I had to enable 'select' access from
+any user on any host (*just* select, so in theory no one could do
+anything malicious).
+
+I guess it's time to grab the mysql source, and try to figure out what
+I'm doing wrong.
+
+Note: I'm trying to avoid using Perl, because I want this to be small,
+fast, and not reliant on having Perl and the required obscure modules
+installed.
+</pre></div><div class="change-set" id="c7"><div class="comment" data-id="346820" data-no="7"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-7" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_22599" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/1a31769c00192ed0a23c3142d6deace0?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_22599" id="a29996464_11345"><a class="email " href="/user_profile?user_id=22599" > <span class="fna">Ben Bucksch (:BenB)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-7"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-7" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c7">Comment 7</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2000-06-30 17:58 PDT" data-time="962413110">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-7">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-7" data-comment-id="346820">I filed <a class="bz_bug_link
+          bz_status_NEW"
+   title="NEW - Display HTML preferences"
+   href="/show_bug.cgi?id=31907">bug 31907</a> for using NNTP for comments.
+
+If you could at least make a reply to the bugzilla spam work, that would totally
+rock.</pre></div><div class="change-set" id="c8"><div class="comment" data-id="346848" data-no="8"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-8" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_10297" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/e9b8879974f9b8c15f35712b58182a86?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_10297" id="a29996464_11345"><a class="email " href="/user_profile?user_id=10297" > <span class="fna">Dave Miller [:justdave]</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-8"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-8" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c8">Comment 8</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2000-06-30 18:36 PDT" data-time="962415360">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-8">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-8" data-comment-id="346848">I think you got the wrong bug number...  that one is something to do with 
+preferences in Mail/News in Mozilla.
+
+Replying to the bugzilla spam to add comments is already possible (but doesn't 
+really have much to do with this particular bug).  Look at bug_email.pl and 
+appendbugmail.pl (or whatever their real names are) and the associated README in 
+the contrib/ directory.
+</pre></div><div class="change-set" id="c9"><div class="comment" data-id="346856" data-no="9"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-9" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_22599" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/1a31769c00192ed0a23c3142d6deace0?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_22599" id="a29996464_11345"><a class="email " href="/user_profile?user_id=22599" > <span class="fna">Ben Bucksch (:BenB)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-9"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-9" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c9">Comment 9</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2000-06-30 18:57 PDT" data-time="962416638">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-9">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-9" data-comment-id="346856">Sorry, the right bug is 31706.
+
+Dave,
+cool!
+
+However, I am no admin, just a Mozilla bugzilla user, so a perl script doesn't
+help me at all. Can't we set this up for Mozilla's bugzilla?</pre></div><div class="change-set" id="c10"><div class="comment" data-id="346863" data-no="10"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-10" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_10297" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/e9b8879974f9b8c15f35712b58182a86?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_10297" id="a29996464_11345"><a class="email " href="/user_profile?user_id=10297" > <span class="fna">Dave Miller [:justdave]</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-10"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-10" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c10">Comment 10</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2000-06-30 19:09 PDT" data-time="962417347">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-10">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-10" data-comment-id="346863">Ah, that's right...  mozilla.org doesn't use it.  I think this is because the 
+error messages and confirmation notices it sends out still leave a lot to be 
+desired, and they'd tend to scare people off.  But this is a topic for another 
+bug report, it's off topic here.  (I just looked, and I don't see one anywhere..  
+if I get around to it I'll open a new one for that later tonight).
+</pre></div><div class="change-set" id="c11"><div class="comment" data-id="545067" data-no="11"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-11" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_23394" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/9d3ffc99e5694f41bbbdeffb12e5f4f3?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_23394" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=23394" > <span class="fna">dror2</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-11"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-11" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c11">Comment 11</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2000-12-25 21:27 PST" data-time="977808430">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-11">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-11" data-comment-id="545067">The simplest hack for command-line interface to bugzilla would be a lynx-based 
+script (That is, actually submitting requests through the web interface).
+It has the property of being independent and works over the Internet.
+However, it has the drawback of being limited to the current HTML format of web 
+pages... (that is, it would break on every GUI change..)</pre></div><div class="change-set" id="c12"><div class="comment" data-id="549247" data-no="12"
+       data-tags="">
+    
+    <table class="layout-table change-head reporter" id="ch-12" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_3858" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/3d0a56a82f3db0e6bec9aefe6e84d17e?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_3858" id="a29996464_11345"><a class="email " href="/user_profile?user_id=3858" > <span class="fna">Akkana Peck</span></a>
+</div>
+            <span class="user-role">Reporter</span>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-12"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-12" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c12">Comment 12</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-01-02 13:11 PST" data-time="978469877">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-12">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-12" data-comment-id="549247">The advantage of command-line queries is that they could be noninteractive --
+e.g. I could write a script to have bugzilla mail me my buglist at particular
+times, or (if it extends to changes, not just queries) to close a bug at the
+same time as I'm checking in a fix.  Just making it non-GUI using lynx wouldn't
+help much -- sure, you could write a script to send characters to lynx, but that
+wouldn't really be any easier than writing a script to send queries to bugzilla
+over an http pipe.</pre></div><div class="change-set" id="c13"><div class="comment" data-id="603476" data-no="13"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-13" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_13272" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/bdde202bfbd8a9f34e0603a8f1923149?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_13272" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-13"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-13" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c13">Comment 13</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-02-17 18:21 PST" data-time="982462912">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-13">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-13" data-comment-id="603476">What about turning <a rel="nofollow" href="http://www.ags.uni-sb.de/~afranke/mozilla/quicksearch.html">http://www.ags.uni-sb.de/~afranke/mozilla/quicksearch.html</a>
+into a server-side CGI script and using wget ?
+Akkana's original query would have to be translated to
+
+&quot;assignedto:akkana priority:1,2 status:new,assigned reporter:kostello
+milestone:m1,m2,m3,m4,m5,m6 summary:clipboard&quot;
+
+or shorter
+
+&quot;NEW,ASSI &#64;akkana p1,2 rep:kostello tm:m1,m2,m3,m4,m5,m6 +clipboard&quot;
+ 
+The only problem is that m1 is treated as a substring like everything else,
+therefore m10,...m19 bugs would show up. But anyway, who wants to query for m1
+bugs now? Or, if this is a serious problem, why not enhance that tool with a
+generic &quot;exact match&quot; shortcut? Or we just special case the milestone field and
+use exact matching instead of substring matching there.</pre></div><div class="change-set" id="c14"><div class="comment" data-id="603486" data-no="14"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-14" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_13272" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/bdde202bfbd8a9f34e0603a8f1923149?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_13272" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-14"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-14" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c14">Comment 14</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-02-17 18:41 PST" data-time="982464109">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-14">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-14" data-comment-id="603486">Ah, and just in case it helps anybody, here is a shell script to extract the bug
+numbers from a buglist.cgi generated html page:
+#!/bin/sh
+## usage: bugids &lt;inputfile&gt;
+echo `grep 'TR VALIGN=TOP ALIGN=LEFT CLASS=' $1 | sed -e 's/&lt;TR.*id=//' | sed -e
+'s/&quot;.*//'` | sed -e 's/ /\,/g'</pre></div><div class="change-set" id="c15"><div class="comment" data-id="612093" data-no="15"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-15" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_13272" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/bdde202bfbd8a9f34e0603a8f1923149?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_13272" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-15"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-15" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c15">Comment 15</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-02-25 02:59 PST" data-time="983098777">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-15">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><div id="att-26157"
+         class="attachment"
+         data-id="26157" itemscope itemtype="http://schema.org/MediaObject">
+      <meta itemprop="name" content="query.conf">
+      <meta itemprop="contentSize" content="1467">
+      <meta itemprop="encodingFormat" content="text/plain">
+      <div class="label">
+        Attached file
+          <a class="link" href="attachment.cgi?id=26157" itemprop="contentUrl">
+        <span id="att-26157-description" itemprop="description">query.conf</span></a>
+        — <a href="attachment.cgi?id=26157&amp;action=edit" itemprop="url">Details</a>
+      </div>
+    </div></div><div class="change-set" id="c16"><div class="comment" data-id="612096" data-no="16"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-16" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_13272" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/bdde202bfbd8a9f34e0603a8f1923149?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_13272" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-16"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-16" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c16">Comment 16</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-02-25 03:01 PST" data-time="983098868">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-16">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><div id="att-26158"
+         class="attachment patch"
+         data-id="26158" itemscope itemtype="http://schema.org/MediaObject">
+      <meta itemprop="name" content="buglist">
+      <meta itemprop="contentSize" content="2848">
+      <meta itemprop="encodingFormat" content="text/plain">
+      <div class="label">
+        Attached patch
+          <meta itemprop="contentUrl" content="attachment.cgi?id=26158">
+          <a class="link" href="attachment.cgi?id=26158&amp;action=diff">
+        <span id="att-26158-description" itemprop="description">buglist*</span></a>
+        — <a href="attachment.cgi?id=26158&amp;action=edit" itemprop="url">Details</a>
+          — <a href="/page.cgi?id=splinter.html&ignore=&bug=6419&attachment=26158">Splinter Review</a>
+      </div>
+    </div></div><div class="change-set" id="c17"><div class="comment" data-id="612097" data-no="17"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-17" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_13272" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/bdde202bfbd8a9f34e0603a8f1923149?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_13272" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-17"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-17" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c17">Comment 17</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-02-25 03:03 PST" data-time="983098998">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-17">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><div id="att-26159"
+         class="attachment patch"
+         data-id="26159" itemscope itemtype="http://schema.org/MediaObject">
+      <meta itemprop="name" content="bugs">
+      <meta itemprop="contentSize" content="310">
+      <meta itemprop="encodingFormat" content="text/plain">
+      <div class="label">
+        Attached patch
+          <meta itemprop="contentUrl" content="attachment.cgi?id=26159">
+          <a class="link" href="attachment.cgi?id=26159&amp;action=diff">
+        <span id="att-26159-description" itemprop="description">bugs*</span></a>
+        — <a href="attachment.cgi?id=26159&amp;action=edit" itemprop="url">Details</a>
+          — <a href="/page.cgi?id=splinter.html&ignore=&bug=6419&attachment=26159">Splinter Review</a>
+      </div>
+    </div></div><div class="change-set" id="c18"><div class="comment" data-id="612101" data-no="18"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-18" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_13272" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/bdde202bfbd8a9f34e0603a8f1923149?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_13272" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-18"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-18" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c18">Comment 18</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-02-25 03:34 PST" data-time="983100884">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-18">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-18" data-comment-id="612101">I have attached a fix for this bug. It's not perfect, but it seems to work.
+
+The query.conf file contains the mapping from options to field names and
+comparison types. Quoted option names are `grep'ped for, so it should be easy to
+edit this file. Comments (#) have no effect; you have to make sure that these
+lines do not contain any quoted &quot;option&quot;.
+
+buglist is a tcsh script that submits a bugzilla query and writes the resulting
+html page to stdout. It supports both short options (&quot;-Afoo&quot;, &quot;-Rbar&quot;) and long
+optiones (&quot;--assignedto=foo&quot;, &quot;--reporter=bar&quot;). If the first character of an
+option is not &quot;-&quot;, it is treated as if was prefixed with &quot;--default=&quot;.
+
+The columnlist for the result is currently hardcoded, but it sould be easy to
+make it use the same setting that's in ~/.netscape/cookies . The following
+commands may help:
+set line=`grep COLUMNLIST ~/.netscape/cookies`
+set start=`expr match &quot;${line}&quot; '.*COLUMNLIST'`
+set start=`expr ${start} + 1`
+set len=`expr length &quot;${line}&quot;`
+set len=`expr ${len} - ${start}`
+set columnlist=`expr substr &quot;${line}&quot; ${start} ${len}`
+For mozilla, I'm not sure how to find out which profile to use.
+
+bugs is a simple tcsh script that calls buglist and then extracts the bug
+numbers from the output. Adding the prefix 
+	<a rel="nofollow" href="http://bugzilla.mozilla.org/buglist.cgi?bug_id">http://bugzilla.mozilla.org/buglist.cgi?bug_id</a>=
+turns the bug list into a working link (if any bugs were found at all).
+Counting them is easy: Just pipe the result through this:
+	sed -e 's/,/ /g' | wc | awk '{printf $2 &quot;\n&quot;}'
+
+Akkana, are you still interested in this?</pre><div class="activity"><div class="change">Keywords: <a href="/buglist.cgi?keywords=patch&amp;resolution=---">patch</a></div></div></div><div class="change-set" id="c19"><div class="comment" data-id="612748" data-no="19"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-19" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_15478" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/2fcc73b792a791a3d51f375eb7497724?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_15478" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=15478" > <span class="fna">Stephan Niemz</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-19"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-19" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c19">Comment 19</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-02-26 09:25 PST" data-time="983208342">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-19">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-19" data-comment-id="612748">Not everybody has tcsh installed, so I'm not sure if this helps that much.
+
+Besides, csh programming is considered harmful, see
+<a rel="nofollow" href="http://www.landfield.com/faqs/unix-faq/shell/csh-whynot/">http://www.landfield.com/faqs/unix-faq/shell/csh-whynot/</a> for the reasons.
+
+IMHO the best would be a Perl or maybe a shell script.</pre><div class="activity"><div class="change">QA Contact: matty</div></div></div><div class="change-set" id="c20"><div class="comment" data-id="613053" data-no="20"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-20" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_13272" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/bdde202bfbd8a9f34e0603a8f1923149?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_13272" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-20"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-20" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c20">Comment 20</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-02-26 13:09 PST" data-time="983221786">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-20">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><div id="att-26211"
+         class="attachment patch"
+         data-id="26211" itemscope itemtype="http://schema.org/MediaObject">
+      <meta itemprop="name" content="buglist">
+      <meta itemprop="contentSize" content="2481">
+      <meta itemprop="encodingFormat" content="text/plain">
+      <div class="label">
+        Attached patch
+          <meta itemprop="contentUrl" content="attachment.cgi?id=26211">
+          <a class="link" href="attachment.cgi?id=26211&amp;action=diff">
+        <span id="att-26211-description" itemprop="description">buglist* for sh</span></a>
+        — <a href="attachment.cgi?id=26211&amp;action=edit" itemprop="url">Details</a>
+          — <a href="/page.cgi?id=splinter.html&ignore=&bug=6419&attachment=26211">Splinter Review</a>
+      </div>
+    </div></div><div class="change-set" id="c21"><div class="comment" data-id="613055" data-no="21"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-21" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_13272" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/bdde202bfbd8a9f34e0603a8f1923149?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_13272" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-21"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-21" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c21">Comment 21</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-02-26 13:10 PST" data-time="983221842">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-21">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><div id="att-26213"
+         class="attachment patch"
+         data-id="26213" itemscope itemtype="http://schema.org/MediaObject">
+      <meta itemprop="name" content="bugs">
+      <meta itemprop="contentSize" content="310">
+      <meta itemprop="encodingFormat" content="text/plain">
+      <div class="label">
+        Attached patch
+          <meta itemprop="contentUrl" content="attachment.cgi?id=26213">
+          <a class="link" href="attachment.cgi?id=26213&amp;action=diff">
+        <span id="att-26213-description" itemprop="description">bugs* for sh</span></a>
+        — <a href="attachment.cgi?id=26213&amp;action=edit" itemprop="url">Details</a>
+          — <a href="/page.cgi?id=splinter.html&ignore=&bug=6419&attachment=26213">Splinter Review</a>
+      </div>
+    </div></div><div class="change-set" id="c22"><div class="comment" data-id="613074" data-no="22"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-22" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_13272" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/bdde202bfbd8a9f34e0603a8f1923149?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_13272" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-22"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-22" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c22">Comment 22</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-02-26 13:16 PST" data-time="983222190">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-22">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-22" data-comment-id="613074">faniz: Thank's for the link about csh. BTW it's easy to criticize others. I know
+that you can program in perl. What about porting the make_query_URL function
+from <a rel="nofollow" href="http://bugzilla.mozilla.org/showattachment.cgi?attach_id=26161">http://bugzilla.mozilla.org/showattachment.cgi?attach_id=26161</a> (<a class="bz_bug_link
+          bz_status_VERIFIED bz_closed"
+   title="VERIFIED FIXED - check in new files for QuickSearch"
+   href="/show_bug.cgi?id=69793">bug 69793</a>)
+to perl then?</pre></div><div class="change-set" id="c23"><div class="comment" data-id="613143" data-no="23"
+       data-tags="">
+    
+    <table class="layout-table change-head reporter" id="ch-23" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_3858" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/3d0a56a82f3db0e6bec9aefe6e84d17e?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_3858" id="a29996464_11345"><a class="email " href="/user_profile?user_id=3858" > <span class="fna">Akkana Peck</span></a>
+</div>
+            <span class="user-role">Reporter</span>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-23"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-23" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c23">Comment 23</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-02-26 13:24 PST" data-time="983222690">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-23">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-23" data-comment-id="613143">Sounds awesome!  I don't care whether it's tcsh or sh or perl or some other
+language -- that page ranting about csh is pretty silly, every language has some
+disadvantages and I could easily write a page ranting about problems in sh or
+perl.  Most people on Unix these days have tcsh available.  (Note, your
+attachment for &quot;bugs* for sh&quot; begins with &quot;#!/bin/tcsh -f&quot;, might be a typo.)
+
+Both the tcsh and sh versions call the command wget, which I don't have.  Is
+that a separate package I need to install.  (The rpmfind server is down, so I
+couldn't search there.)</pre></div><div class="change-set" id="c24"><div class="comment" data-id="613171" data-no="24"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-24" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_13272" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/bdde202bfbd8a9f34e0603a8f1923149?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_13272" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-24"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-24" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c24">Comment 24</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-02-26 13:43 PST" data-time="983223833">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-24">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><div id="att-26215"
+         class="attachment patch"
+         data-id="26215" itemscope itemtype="http://schema.org/MediaObject">
+      <meta itemprop="name" content="bugs">
+      <meta itemprop="contentSize" content="310">
+      <meta itemprop="encodingFormat" content="text/plain">
+      <div class="label">
+        Attached patch
+          <meta itemprop="contentUrl" content="attachment.cgi?id=26215">
+          <a class="link" href="attachment.cgi?id=26215&amp;action=diff">
+        <span id="att-26215-description" itemprop="description">bugs* for sh (for real this time)</span></a>
+        — <a href="attachment.cgi?id=26215&amp;action=edit" itemprop="url">Details</a>
+          — <a href="/page.cgi?id=splinter.html&ignore=&bug=6419&attachment=26215">Splinter Review</a>
+      </div>
+    </div></div><div class="change-set" id="c25"><div class="comment" data-id="613176" data-no="25"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-25" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_13272" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/bdde202bfbd8a9f34e0603a8f1923149?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_13272" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-25"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-25" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c25">Comment 25</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-02-26 13:45 PST" data-time="983223957">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-25">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-25" data-comment-id="613176"><a rel="nofollow" href="http://rpmfind.net/linux/rpm2html/search.php?query=wget">http://rpmfind.net/linux/rpm2html/search.php?query=wget</a> seems to be up now.</pre></div><div class="change-set" id="c26"><div class="comment" data-id="613266" data-no="26"
+       data-tags="">
+    
+    <table class="layout-table change-head reporter" id="ch-26" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_3858" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/3d0a56a82f3db0e6bec9aefe6e84d17e?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_3858" id="a29996464_11345"><a class="email " href="/user_profile?user_id=3858" > <span class="fna">Akkana Peck</span></a>
+</div>
+            <span class="user-role">Reporter</span>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-26"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-26" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c26">Comment 26</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-02-26 14:48 PST" data-time="983227686">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-26">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-26" data-comment-id="613266">Oh, that's very cool.  I customized the columns for my screen width and piped
+buglist through w3m -T text/html -dump and the result looks great!  And I can
+pipe to wc and grep and other helpful utilities.
+
+Looking at the Netscape cookies to decide which columns to show sounds cool, but
+actually I like it better this way (or else customizable through command-line
+options), since I'll probably want to show fewer columns in my 80-column text
+windows than I do in a browser window that uses a proportional font.
+
+I'll definitely use this, and bet other people will like it, too -- Thanks!
+
+We should check this in to the tree somewhere (mozilla/tools ?) and advertise
+it.  If we think any win people might want this (not sure how likely that is), I
+could translate it into perl, but for Unix people it's fine in either shell
+language.</pre></div><div class="change-set" id="c27"><div class="comment" data-id="616020" data-no="27"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-27" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_15478" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/2fcc73b792a791a3d51f375eb7497724?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_15478" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=15478" > <span class="fna">Stephan Niemz</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-27"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-27" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c27">Comment 27</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-02-28 09:51 PST" data-time="983382716">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-27">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-27" data-comment-id="616020">Andreas: sorry, I think my comment was a bit too harsh.  I just find *csh
+scripts very bad to maintain.
+
+I'm already planning on writing a script to attach files to a bug directly from
+the command line.  If I find the time, I could indeed port your quicksearch to
+perl.</pre></div><div class="change-set" id="c28"><div class="comment" data-id="623784" data-no="28"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-28" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_13272" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/bdde202bfbd8a9f34e0603a8f1923149?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_13272" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-28"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-28" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c28">Comment 28</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-03-06 14:54 PST" data-time="983919299">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-28">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><div id="att-26943"
+         class="attachment patch"
+         data-id="26943" itemscope itemtype="http://schema.org/MediaObject">
+      <meta itemprop="name" content="buglist.diff">
+      <meta itemprop="contentSize" content="442">
+      <meta itemprop="encodingFormat" content="text/plain">
+      <div class="label">
+        Attached patch
+          <meta itemprop="contentUrl" content="attachment.cgi?id=26943">
+          <a class="link" href="attachment.cgi?id=26943&amp;action=diff">
+        <span id="att-26943-description" itemprop="description">patch for the sh version of buglist to support $COLUMNLIST</span></a>
+        — <a href="attachment.cgi?id=26943&amp;action=edit" itemprop="url">Details</a>
+          — <a href="/page.cgi?id=splinter.html&ignore=&bug=6419&attachment=26943">Splinter Review</a>
+      </div>
+    </div></div><div class="change-set" id="c29"><div class="comment" data-id="623788" data-no="29"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-29" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_13272" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/bdde202bfbd8a9f34e0603a8f1923149?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_13272" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-29"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-29" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c29">Comment 29</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-03-06 14:57 PST" data-time="983919427">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-29">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><div id="att-26944"
+         class="attachment patch"
+         data-id="26944" itemscope itemtype="http://schema.org/MediaObject">
+      <meta itemprop="name" content="buglist">
+      <meta itemprop="contentSize" content="2509">
+      <meta itemprop="encodingFormat" content="text/plain">
+      <div class="label">
+        Attached patch
+          <meta itemprop="contentUrl" content="attachment.cgi?id=26944">
+          <a class="link" href="attachment.cgi?id=26944&amp;action=diff">
+        <span id="att-26944-description" itemprop="description">buglist* (new sh version) with support for $COLUMNLIST</span></a>
+        — <a href="attachment.cgi?id=26944&amp;action=edit" itemprop="url">Details</a>
+          — <a href="/page.cgi?id=splinter.html&ignore=&bug=6419&attachment=26944">Splinter Review</a>
+      </div>
+    </div></div><div class="change-set" id="c30"><div class="comment" data-id="623798" data-no="30"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-30" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_13272" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/bdde202bfbd8a9f34e0603a8f1923149?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_13272" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-30"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-30" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c30">Comment 30</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-03-06 15:03 PST" data-time="983919825">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-30">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-30" data-comment-id="623798">I think the COLUMNLIST problem is solved now: it's not a commandline option, but
+an environment variable. The 'env' program makes it easy to use though:
+
+env COLUMNLIST=&quot;priority summaryfull&quot; buglist --status=NEW --assignedto=akkana
+</pre></div><div class="change-set" id="c31"><div class="comment" data-id="745459" data-no="31"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-31" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_4412" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/106d7ac8a2e9029d80bdf5a252e792cb?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_4412" id="a29996464_11345"><a class="email " href="/user_profile?user_id=4412" > <span class="fna">Matthew Tuck [:CodeMachine]</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-31"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-31" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c31">Comment 31</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-05-27 10:44 PDT" data-time="990985452">20 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-31">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-31" data-comment-id="745459">Consider for 2.16.</pre><div class="activity"><div class="change">Target Milestone: --- &rarr; Bugzilla 2.16</div></div></div><div class="change-set" id="c32"><div class="comment" data-id="892797" data-no="32"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-32" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_32335" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/9977bfa30af6394fdac2ad76abd078bd?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_32335" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=32335" > <span class="fna">Christopher Aillon (sabbatical, not receiving bugmail)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-32"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-32" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c32">Comment 32</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-08-29 02:49 PDT" data-time="999078541">19 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-32">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-32" data-comment-id="892797">--&gt;New product Bugzilla</pre><div class="activity"><div class="change">Component: Bugzilla &rarr; Query/Bug List</div><div class="change">Product: Webtools &rarr; Bugzilla</div><div class="change">Version: other &rarr; unspecified</div></div></div><div class="change-set" id="c33"><div class="comment" data-id="897956" data-no="33"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-33" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_15368" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/35dbab342a7e877f177322fdc9b94e97?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_15368" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=15368" > <span class="fna">Zach Lipton [:zach]</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-33"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-33" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c33">Comment 33</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-08-31 16:32 PDT" data-time="999300750">19 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-33">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-33" data-comment-id="897956">Returning to default owner.</pre><div class="activity"><div class="change">Assignee: briano &rarr; endico</div><div class="change">Status: ASSIGNED &rarr; NEW</div></div></div><div class="change-set" id="c34"><div class="comment" data-id="964133" data-no="34"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-34" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_9911" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/559c3cf31c98a95b23421186b78df500?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_9911" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=9911" > <span class="fna">Gervase Markham [:gerv] (not reading bugmail)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-34"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-34" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c34">Comment 34</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-10-09 18:58 PDT" data-time="1002679095">19 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-34">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-34" data-comment-id="964133">Is there any reason we can't just check this script (with some documentation,
+Andreas ;-) into contrib?
+
+Gerv</pre></div><div class="change-set" id="c35"><div class="comment" data-id="964628" data-no="35"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-35" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_13272" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/bdde202bfbd8a9f34e0603a8f1923149?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_13272" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-35"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-35" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c35">Comment 35</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-10-10 05:08 PDT" data-time="1002715702">19 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-35">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-35" data-comment-id="964628">Documentation is already available here:
+<a rel="nofollow" href="http://www.trilobyte.net/barnsons/html/cmdline.html">http://www.trilobyte.net/barnsons/html/cmdline.html</a>
+
+IMO the contrib directory would be a good place :-)
+
+This tool consists three files:
+query.conf	<span class=""><a href="/attachment.cgi?id=26157" name="attach_26157" title="query.conf">attachment 26157</a> <a href="/attachment.cgi?id=26157&amp;action=edit" title="query.conf">[details]</a></span>
+buglist		<span class=""><a href="/attachment.cgi?id=26944" name="attach_26944" title="buglist* (new sh version) with support for $COLUMNLIST">attachment 26944</a> <a href="/attachment.cgi?id=26944&amp;action=edit" title="buglist* (new sh version) with support for $COLUMNLIST">[details]</a> <a href="/attachment.cgi?id=26944&amp;action=diff" title="buglist* (new sh version) with support for $COLUMNLIST">[diff]</a></span> <a href='/page.cgi?id=splinter.html&amp;ignore=&amp;bug=6419&amp;attachment=26944'>[review]</a>
+bugs		<span class=""><a href="/attachment.cgi?id=26215" name="attach_26215" title="bugs* for sh (for real this time)">attachment 26215</a> <a href="/attachment.cgi?id=26215&amp;action=edit" title="bugs* for sh (for real this time)">[details]</a> <a href="/attachment.cgi?id=26215&amp;action=diff" title="bugs* for sh (for real this time)">[diff]</a></span> <a href='/page.cgi?id=splinter.html&amp;ignore=&amp;bug=6419&amp;attachment=26215'>[review]</a>
+where &quot;buglist&quot; and &quot;bugs&quot; must be executable.
+</pre></div><div class="change-set" id="c36"><div class="comment" data-id="1020904" data-no="36"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-36" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_9911" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/559c3cf31c98a95b23421186b78df500?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_9911" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=9911" > <span class="fna">Gervase Markham [:gerv] (not reading bugmail)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-36"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-36" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c36">Comment 36</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-11-12 12:37 PST" data-time="1005597467">19 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-36">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-36" data-comment-id="1020904">I'd like to check these in, but they don't have appropriate license headers.
+Andreas (or anyone who knows what is position is): I assume that these files are
+licensed under the standard Bugzilla license (the MPL)?
+
+Gerv</pre></div><div class="change-set" id="c37"><div class="comment" data-id="1025244" data-no="37"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-37" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_13272" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/bdde202bfbd8a9f34e0603a8f1923149?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_13272" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-37"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-37" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c37">Comment 37</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-11-15 00:37 PST" data-time="1005813446">19 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-37">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-37" data-comment-id="1025244">Gerv: feel free to put in any license you want.</pre></div><div class="change-set" id="c38"><div class="comment" data-id="1025683" data-no="38"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-38" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_9911" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/559c3cf31c98a95b23421186b78df500?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_9911" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=9911" > <span class="fna">Gervase Markham [:gerv] (not reading bugmail)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-38"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-38" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c38">Comment 38</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2001-11-15 09:09 PST" data-time="1005844168">19 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-38">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-38" data-comment-id="1025683">Checked into contrib/cmdline/ .
+
+Gerv</pre><div class="activity"><div class="change">Status: NEW &rarr; RESOLVED</div><div class="change">Closed: <span class="rel-time" title="2001-11-15 09:09 PST" data-time="1005844168">19 years ago</span></div><div class="change">Resolution: --- &rarr; FIXED</div></div></div><div class="change-set" id="c39"><div class="comment" data-id="1307128" data-no="39"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-39" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_34154" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/46adf28b6c446171d0969de18806379d?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_34154" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=34154" > <span class="fna">Maciej Maczynski</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-39"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-39" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c39">Comment 39</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2002-04-26 03:21 PDT" data-time="1019816491">19 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-39">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-39" data-comment-id="1307128">I was using buglist script happily for a long time on linux.
+Now I've moved to solaris 7 and the script does not work any more.
+It looks like solaris version of sh does not like &quot;length&quot; and &quot;substr&quot;.
+Also &quot;let&quot; and &quot;==&quot; in 'if' are not wellcome.
+
+I've made the script work with the following changes:
+- using /usr/ucb/expr instead of /usr/bin/expr 
+ (set the variable expr=/usr/ucb/expr and use ${expr})
+- changing &quot;==&quot; to &quot;=&quot;
+- changing every &quot;let a=b+c&quot; to &quot;a=`${expr} ${b} + ${c}`&quot;
+
+I can submit a patch, but I'd like an opinion from someone who is
+more competent in shell scripts then I.  I mean is there a way to use 
+the original script on Sun without the changes I've made?
+
+</pre></div><div class="change-set" id="c40"><div class="comment" data-id="1309943" data-no="40"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-40" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_13272" id="a29996464_11345"><img src="https://secure.gravatar.com/avatar/bdde202bfbd8a9f34e0603a8f1923149?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_13272" id="a29996464_11345"><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-40"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-40" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c40">Comment 40</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2002-04-27 11:03 PDT" data-time="1019930580">19 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-40">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-40" data-comment-id="1309943">- using /usr/ucb/expr instead of /usr/bin/expr 
+ (set the variable expr=/usr/ucb/expr and use ${expr})
+
+I think there are several different approaches:
+* the lazy one: rely on some tools to be in your $PATH, document the required
+versions with comments in the script file, and leave it up to the admin who
+installs the script to ensure that it works with the default $PATH or that the
+script is changed to set it's own $PATH appropriately.
+* store the path to each tool in a variable, and refer to the variable each time
+you are calling the script (like you suggest with ${expr}). If the path is
+different on the installation site, the admin just needs to tweak a few lines at
+the top of the script.
+* autodetect the appropriate tools with configure at install time and let
+configure replace the placeholders in the script.in file when it generates the
+script
+
+IMO, the configuration approach is too complex here. The use of ${tool} for
+every call makes scripts slightly less readable in my experience, though I have
+often used it in some of my scripts (and the &quot;buglist&quot; script is can hardly be
+called readable anyway). When I was writing the script, I was hoping to get
+around by only using features that are supported by all commonly used toolsets.
+I don't know what version of expr (and if it's gnu or something else)
+you have in your /usr/bin directory, and why it is in your $PATH before /usr/ucs
+, but if it exists and changing the default $PATH globally is not an option,
+then your ${expr} solution sounds fine, to me at least.
+BTW, I have the same problem on our solaris 2.6 machines, but we are using
+/bin/expr , and I can't get that one to print a version...
+
+- changing &quot;==&quot; to &quot;=&quot;
+
+I think this should work on Linux, too. (At least it worked when I tried.) 
+So this change should be fine.
+
+- changing every &quot;let a=b+c&quot; to &quot;a=`${expr} ${b} + ${c}`&quot;
+
+I don't know enough about let to make a call here, but it makes sense to me.
+One less dependencies on shell builtins. If you get around using ${expr} in the
+first issue, then this could be &quot;a=`expr ${b} + ${c}`&quot;, of course.
+
+Note that I'm not an expert in shell programming. If someone has real knowledge
+in this area, please share.</pre></div><div class="change-set" id="a179319774_13272"><div class="change" id="aa179319774_13272">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_13272" id="a179319774_13272"><img src="https://secure.gravatar.com/avatar/bdde202bfbd8a9f34e0603a8f1923149?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_13272" id="a179319774_13272"><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a179319774_13272"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a179319774_13272">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#a179319774_13272">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2005-01-17 21:55 PST" data-time="1106027729">16 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Blocks: <a class="bz_bug_link
+          bz_status_NEW"
+   title="NEW - [META] command line query tool (contrib/cmdline shell scripts)"
+   href="/show_bug.cgi?id=278800">cmdline</a></div></div></div><div class="change-set" id="c41"><div class="comment" data-id="2389573" data-no="41"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-41" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_13272" id="a179319774_13272"><img src="https://secure.gravatar.com/avatar/bdde202bfbd8a9f34e0603a8f1923149?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_13272" id="a179319774_13272"><a class="email disabled" href="/user_profile?user_id=13272" > <span class="fna">Andreas Franke (gone)</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-41"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-41" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#c41">Comment 41</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2005-01-18 05:35 PST" data-time="1106055348">16 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-41">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-41" data-comment-id="2389573">In <a class="bz_bug_link
+          bz_status_RESOLVED bz_closed"
+   title="RESOLVED FIXED - make cmdline query tool work with 2.18"
+   href="/show_bug.cgi?id=278829">bug 278829</a>, there is a new, Bugzilla 2.18 compatible version which might
+solve the solaris problems:  it doesn't use 'let' or '==', only `expr foo :
+someregexp` matching which seems to work on both linux and solaris.
+
+If there are still issues, please open new bugs for them and make them block <a class="bz_bug_link
+          bz_status_NEW"
+   title="NEW - [META] command line query tool (contrib/cmdline shell scripts)"
+   href="/show_bug.cgi?id=278800">bug
+278800</a>.</pre></div><div class="change-set" id="a429184424_1"><div class="change" id="aa429184424_1">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_1" id="a429184424_1"><img src="https://secure.gravatar.com/avatar/eaa3c40fff208819d0810fc338eea0aa?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_1" id="a429184424_1"><a class="email " href="/user_profile?user_id=1" > <span class="fna">Nobody; OK to take it and work on it</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a429184424_1"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a429184424_1">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=6419#a429184424_1">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="2012-12-18 20:46 PST" data-time="1355892379">8 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">QA Contact: matty_is_a_geek &rarr; default-qa</div></div></div><div id="new-comment-notice">
+          You need to <a href="/show_bug.cgi?id=6419&amp;GoAheadAndLogIn=1">log in</a>
+          before you can comment on or make changes to this bug.
+        </div>
+
+
+
+<div id="bottom-actions">
+  <div id="bottom-right-actions">
+    <button type="button" id="top-btn" class="secondary" aria-label="Go to Page Top">Top &uarr;</button>
+  </div>
+</div></div> 
+</main> 
+</div> 
+
+
+</body>
+</html>

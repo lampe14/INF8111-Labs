@@ -1,0 +1,2196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+<meta property="og:type" content="website">
+<meta property="og:title" content="1343 - Crash of Netscape without any informations from Mozilla, got caught by Dr. Watson">
+<meta property="og:url" content="https://bugzilla.mozilla.org/show_bug.cgi?id=1343">
+<meta property="og:description"
+      content="VERIFIED (blythe) in MozillaClassic Graveyard - Windows FE. Last updated 1999-04-21.">
+<meta name="twitter:label1" value="Type">
+<meta name="twitter:data1" value="defect">
+<meta name="twitter:label2" value="Priority">
+<meta name="twitter:data2" value="P3">
+
+    <meta name="viewport" content="width=1024">
+    <meta name="color-scheme" content="dark light">
+    <meta name="generator" content="Bugzilla 20200805.1">
+    <meta name="bugzilla-global" content="dummy"
+        id="bugzilla-global" data-bugzilla="{&quot;api_token&quot;:&quot;&quot;,&quot;config&quot;:{&quot;basepath&quot;:&quot;\/&quot;},&quot;constant&quot;:{&quot;COMMENT_COLS&quot;:80},&quot;param&quot;:{&quot;maxattachmentsize&quot;:&quot;10240&quot;,&quot;maxusermatches&quot;:&quot;50&quot;,&quot;splinter_base&quot;:&quot;\/page.cgi?id=splinter.html&amp;ignore=\/&quot;},&quot;string&quot;:{&quot;bug_type_required&quot;:&quot;You must select a Type for this bug&quot;,&quot;component_required&quot;:&quot;You must select a Component for this bug&quot;,&quot;description_required&quot;:&quot;You must enter a Description for this bug&quot;,&quot;short_desc_required&quot;:&quot;You must enter a Summary for this bug&quot;,&quot;version_required&quot;:&quot;You must select a Version for this bug&quot;},&quot;user&quot;:{&quot;is_new&quot;:1,&quot;login&quot;:&quot;&quot;}}">
+    <title>1343 - Crash of Netscape without any informations from Mozilla, got caught by Dr. Watson</title>
+
+<link rel="Top" href="/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="/showdependencytree.cgi?id=1343&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="/showdependencygraph.cgi?id=1343">
+
+      <link rel="Show" title="Bug Activity"
+            href="/show_activity.cgi?id=1343">
+
+<link href="https://bugzilla.mozilla.org/static/v20200805.1/skins/yui.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/skins/standard/global.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BugModal/web/bug_modal.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/plugins/contextMenu/contextMenu.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BMO/web/styles/bug_modal.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/EditComments/web/styles/inline-editor.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/ui/jquery-ui-min.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/ui/jquery-ui-structure-min.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/ui/jquery-ui-theme-min.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/skins/lib/prism.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/Needinfo/web/styles/needinfo.css" rel="stylesheet" type="text/css"><link href="https://bugzilla.mozilla.org/static/v20200805.1/extensions/Review/web/styles/badge.css" rel="stylesheet" type="text/css">
+
+
+
+    
+<script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/jquery-min.js"></script><script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/ui/jquery-ui-min.js"></script><script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/js/yui.js"></script><script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/plugins/contextMenu/contextMenu-min.js"></script><script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/js/jquery/plugins/devbridgeAutocomplete/devbridgeAutocomplete-min.js"></script><script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/js/global.js"></script><script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/js/util.js"></script><script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/js/dropdown.js"></script>
+
+      <script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT">
+          YAHOO.namespace('bugzilla');
+          if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+              YAHOO.util.Event._simpleRemove(window, "unload",
+                                             YAHOO.util.Event._unload);
+          }BUGZILLA.value_descs = JSON.parse('{\"bug_status\":{},\"resolution\":{\"\":\"---\"}}');
+
+  
+    var tracking_flags_str = "{\"flags\":{},\"types\":[],\"comments\":{}}";
+    var TrackingFlags = $.parseJSON(tracking_flags_str);
+
+  
+
+  
+  BUGZILLA.bug_id = 1343;
+  BUGZILLA.bug_title = '1343 - Crash of Netscape without any informations from Mozilla, got caught by Dr. Watson';
+  BUGZILLA.bug_summary = 'Crash of Netscape without any informations from Mozilla, got caught by Dr. Watson';
+  BUGZILLA.bug_url = 'https:\/\/bugzilla.mozilla.org\/show_bug.cgi?id=1343';
+  BUGZILLA.bug_keywords = '',
+  BUGZILLA.user = {
+    id: 0,
+    login: '',
+    is_insider: false,
+    is_timetracker: false,
+    can_tag: false,
+    timezone: 'America\/Los_Angeles',
+    settings: {
+      quote_replies: 'quoted_reply',
+      zoom_textareas: true,
+      remember_collapsed: true,
+      inline_attachments: true,
+      autosize_comments: false
+    }
+  };
+
+  BUGZILLA.bug_secure = false;
+      </script>
+<script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BugModal/web/autosize.min.js"></script><script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/ProdCompSearch/web/js/prod_comp_search.js"></script><script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BugModal/web/bug_modal.js"></script><script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BugModal/web/comments.js"></script><script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/ComponentWatching/web/js/overlay.js"></script><script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/js/bugzilla-readable-status-min.js"></script><script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/js/field.js"></script><script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/js/comments.js"></script><script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/TrackingFlags/web/js/flags.js"></script><script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BMO/web/js/firefox-crash-table.js"></script><script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/js/lib/prism.js"></script><script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/GoogleAnalytics/web/js/analytics.js"></script><script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/js/lib/md5.min.js"></script><script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT" src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/Review/web/js/badge.js"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla@Mozilla" href="/search_plugin.cgi"><link rel="shortcut icon" href="/extensions/BMO/web/images/favicon.ico">
+<link rel="canonical" href="https://bugzilla.mozilla.org/show_bug.cgi?id=1343">
+<link rel="shorturl" href="https://bugzilla.mozilla.org/1343"><meta name="google-analytics" content="UA-36116321-3" data-location="https://bugzilla.mozilla.org/bug/show-modal" data-title="1343 - Crash of Netscape without any informations from Mozilla, got caught by Dr. Watson">
+<script async src="https://www.google-analytics.com/analytics.js"></script><meta name="robots" content="noarchive">
+  </head>
+
+
+
+  <body
+        class="bugzilla-mozilla-org
+               skin-standard bug_modal yui-skin-sam">
+
+
+
+<div id="wrapper">
+
+<aside id="message-container" role="complementary">
+  <noscript>
+    <div class="noscript">
+      <div class="inner">
+        <p>Please enable JavaScript in your browser to use all the features on this site.</p>
+      </div>
+    </div>
+  </noscript>
+</aside>
+
+<header id="header" role="banner">
+  <div class="inner">
+    <h1 id="header-title" class="title"><a href="https://bugzilla.mozilla.org/home" title="Go to home page">Bugzilla</a></h1>
+    <form role="search" id="header-search" class="quicksearch" action="/buglist.cgi" data-no-csrf>
+      <section class="searchbox-outer dropdown" role="combobox" aria-expanded="false" aria-haspopup="listbox"
+               aria-labelledby="header-search-label" aria-owns="header-search-dropdown">
+        <h2 id="header-search-label">Quick Search</h2>
+        <span class="icon" aria-hidden="true"></span>
+        <input role="searchbox" id="quicksearch_top" class="dropdown-button" name="quicksearch" autocomplete="off"
+               value="" placeholder="Search Bugs"
+               title="Enter a bug number or some search terms" aria-controls="header-search-dropdown"
+               aria-label="Quick Search"><div id="header-search-dropdown" class="dropdown-content right" role="listbox" style="display: none;">
+  <div id="header-search-dropdown-wrapper">
+  </div>
+</div>
+      </section>
+    </form>
+    <nav id="header-nav">
+      <ul class="links">
+        <li class="link-browse">
+          <a href="/describecomponents.cgi" title="Browse bugs by component">
+            <span class="icon" aria-hidden="true"></span>
+            <span class="label">Browse</span>
+          </a>
+        </li>
+        <li class="link-search">
+          <a href="/query.cgi?format=advanced" title="Search bugs using various criteria">
+            <span class="icon" aria-hidden="true"></span>
+            <span class="label">Advanced Search</span>
+          </a>
+        </li>
+      </ul>
+      <div class="dropdown">
+        <button type="button" id="header-tools-menu-button" class="dropdown-button minor" title="More tools…"
+                aria-label="More tools…" aria-expanded="false" aria-haspopup="true" aria-controls="header-tools-menu">
+          <span class="icon" aria-hidden="true"></span>
+        </button>
+        <ul class="dropdown-content left" id="header-tools-menu" role="menu" style="display:none;">
+          <li role="presentation">
+            <a href="/report.cgi" role="menuitem" tabindex="-1">Reports</a>
+          </li>
+            <li role="separator"></li>
+            <li role="presentation">
+              <a href="https://bmo.readthedocs.io/en/latest/" role="menuitem" tabindex="-1">Documentation</a>
+            </li>
+        </ul>
+      </div>
+    </nav>
+      <ul id="header-login" class="links">
+          <li id="moz_new_account_container_top"><a href="/createaccount.cgi">New Account</a></li><li id="mini_login_container_top">
+  <a id="login_link_top" href="/show_bug.cgi?id=1343&amp;GoAheadAndLogIn=1"
+     class='show_mini_login_form' data-qs-suffix="_top">Log In</a>
+
+  <div id="mini_login_top" class="mini-popup mini_login bz_default_hidden"><span id="github_mini_login_top" class="mini_login_top">
+    <form method="post" action="/github.cgi">
+      <input type="hidden" name="github_secret" value="8stveQMQGGHjDFMrmzMZrFl40ePG6RaDBrt3QKJcmS6pBCpXV2gT5Wjw7gMWffbVz2rnhPD3s4H3OeWEXOcX5WBtRTFTscWKFKxCaVxjYh68kRVyEQXz52IEWOATWhrBO7QdRKhhRMxjjJmHoLXeDTxVvOFNlBT3HvSBJrVEQgKVlIBx9kEbGyvFoJ2R3XqB4AKZGFJD7yWJIis4dPYe0yBApiGbklzYtbTkWieQozno4FK6NRWylLUFonECIGnD">
+      <input type="hidden" name="target_uri" value="https://bugzilla.mozilla.org/show_bug.cgi?id=1343">
+      <input type="image" src="/extensions/GitHubAuth/web/images/sign_in.png" height="22" width="75" align="absmiddle"
+             alt="Sign in with GitHub"
+             title="Sign in with GitHub"> or
+    </form>
+  </span>
+
+  <form action="/show_bug.cgi?id=1343" method="POST"
+        data-qs-suffix="_top">
+
+    <input id="Bugzilla_login_top"
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           placeholder="Email"
+           aria-label="Email"
+           type="email"
+           required
+    >
+    <input class="bz_password"
+           id="Bugzilla_password_top"
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+           placeholder="Password"
+           aria-label="Password"
+           required
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text"
+           id="Bugzilla_password_dummy_top" value="password"
+           title="Password"
+    >
+      <input type="checkbox" id="Bugzilla_remember_top"
+             name="Bugzilla_remember" value="on" class="bz_remember"
+                 checked>
+      <label for="Bugzilla_remember_top">Remember</label>
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+           class="check_mini_login_fields"
+            id="log_in_top">
+    <a href="#" id="hide_mini_login_top" aria-label="Close"
+       class="close-button hide_mini_login_form" data-qs-suffix="_top">
+      <span class="icon" aria-hidden="true"></span>
+    </a>
+  </form>
+  </div>
+</li>
+<li id="forgot_container_top">
+  <a id="forgot_link_top" href="/show_bug.cgi?id=1343&amp;GoAheadAndLogIn=1#forgot"
+     class='show_forgot_form'
+     data-qs-suffix="_top">Forgot Password</a>
+  <div id="forgot_form_top" class="mini-popup mini_forgot bz_default_hidden">
+  <form action="/token.cgi" method="post">
+    <input type="email" name="loginname" size="20" placeholder="Email" aria-label="Email" required>
+    <input id="forgot_button_top" value="Reset Password"
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token_top" name="token" value="1598300679-ZXDL-J4dYPlTClgZtMHDdG25WslQ_Y_zon5bHL_0bxo">
+    <a href="#" class="close-button hide_forgot_form" aria-label="Close" data-qs-suffix="_top">
+      <span class="icon" aria-hidden="true"></span>
+    </a>
+  </form>
+  </div>
+</li>
+      </ul><div id="header-external-links" class="dropdown first">
+  <button type="button" id="header-external-menu-button" class="dropdown-button minor" title="Mozilla"
+          aria-label="Mozilla" aria-expanded="false" aria-haspopup="true" aria-controls="header-external-menu">
+    <img src="https://bugzilla.mozilla.org/static/v20200805.1/extensions/BMO/web/images/moz-fav-one-color-white-rgb.svg" width="32" height="32" alt="">
+  </button>
+  <ul class="dropdown-content right" id="header-external-menu" role="menu" style="display:none;">
+    <li role="presentation">
+      <a href="https://www.mozilla.org/" role="menuitem" tabindex="-1">Mozilla Home</a>
+    </li>
+    <li role="separator"></li>
+    <li role="presentation">
+      <a href="https://www.mozilla.org/privacy/websites/" role="menuitem" tabindex="-1">Privacy</a>
+    </li>
+    <li role="presentation">
+      <a href="https://www.mozilla.org/privacy/websites/#cookies" role="menuitem" tabindex="-1">Cookies</a>
+    </li>
+    <li role="presentation">
+      <a href="https://www.mozilla.org/about/legal/" role="menuitem" tabindex="-1">Legal</a>
+    </li>
+  </ul>
+</div>
+  </div>
+</header> 
+
+
+<main id="bugzilla-body" tabindex="-1">
+<div id="main-inner">
+
+
+
+
+<div role="toolbar" id="page-toolbar">
+  <div role="group" class="buttons">
+    <button type="button" id="copy-summary" class="secondary"
+      title="Copy bug number and summary to your clipboard">Copy Summary</button>
+    <div id="clip-container" style="display:none"><input type="text" id="clip"></div>
+    <div class="dropdown">
+      <button type="button" id="action-menu-btn" aria-haspopup="true" aria-label="View"
+        aria-expanded="false" aria-controls="action-menu" class="dropdown-button secondary">View &#9662;</button>
+      <ul class="dropdown-content left" id="action-menu" role="menu" style="display:none;">
+        <li role="presentation">
+          <a id="action-reset" role="menuitem" tabindex="-1">Reset Sections</a>
+        </li>
+        <li role="presentation">
+          <a id="action-expand-all" role="menuitem" tabindex="-1">Expand All Sections</a>
+        </li>
+        <li role="presentation">
+          <a id="action-collapse-all" role="menuitem" tabindex="-1">Collapse All Sections</a>
+        </li>
+        <li role="separator"></li>
+        <li role="presentation">
+          <a id="action-history" role="menuitem" tabindex="-1">History</a>
+        </li>
+        <li role="separator"></li>
+        <li role="presentation">
+          <a href="/rest/bug/1343" role="menuitem" tabindex="-1">JSON</a>
+        </li>
+        <li role="presentation">
+          <a href="/show_bug.cgi?ctype=xml&amp;id=1343" role="menuitem" tabindex="-1">XML</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+<div role="status" id="io-error" style="display:none"></div>
+<div role="status" id="floating-message" style="display:none">
+  <div id="floating-message-text"></div>
+</div>
+<section class="module"
+>
+  <div class="module-content"
+  >
+  <div id="summary-container">
+    <div class="field indent" id="field-status_summary"
+>
+
+
+  
+    <div class=" container">
+        <span id="field-value-status_summary">
+      <span class="bug-status-label text" data-status="closed">Closed</span>
+      <span id="field-value-bug_id">
+        <a href="/show_bug.cgi?id=1343">Bug 1343</a>
+      </span>
+      <span>
+        <span class="bug-time-label">Opened <span class="rel-time" title="1998-11-10 17:22 PST" data-time="910747353">22 years ago</span></span>
+          <span class="bug-time-label">Closed <span class="rel-time" title="1998-11-11 09:39 PST" data-time="910805962">22 years ago</span></span>
+      </span>
+        </span>
+    </div>
+
+  
+</div>
+<div class="field indent edit-hide"
+>
+
+
+  
+    <div class=" container">
+      
+
+      <h1 id="field-value-short_desc">Crash of Netscape without any informations from Mozilla, got caught by Dr<wbr>. Watson</h1>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-short_desc" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#short_desc" id="short_desc-help-link" class="help">Summary:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-short_desc">
+            Crash of Netscape without any informations from Mozilla, got caught by Dr. Watson
+
+        </span>
+    </div>
+
+  
+</div>
+  </div>
+  </div>
+</section>
+
+
+<section class="module" id="module-categories"
+>
+    <header id="module-categories-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Categories section"
+           data-label-collapsed="Expand Categories section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-categories-content"
+             aria-expanded="true"
+             aria-labeledby="module-categories-title"
+             aria-describedby="module-categories-subtitle"></div>
+        <h2 class="module-title" id="module-categories-title">Categories</h2>
+          <h3 class="module-subtitle" id="module-categories-subtitle">
+            (MozillaClassic Graveyard :: Windows FE, defect, P3)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-categories-content"
+  ><div class="fields-lhs">
+
+    <div class="field" id="field-product"
+>
+    <div class="name">
+        <a href="/describecomponents.cgi?product=MozillaClassic%20Graveyard" id="product-help-link" class="help">Product:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-product">
+      <div class="name-info-outer dropdown">
+        <span id="product-name" class="dropdown-button" tabindex="0" role="button"
+             aria-haspopup="menu" aria-controls="product-info">MozillaClassic Graveyard
+          <span class="icon" aria-hidden="true">&#x25BE;</span>
+        </span>
+        <aside id="product-info" class="name-info-popup dropdown-content right hover-display" hidden role="menu"
+               aria-label="Product description and actions">
+          <header>
+            <div class="title">MozillaClassic Graveyard</div>
+            <div class="description">For bugs about the Mozilla web browser before M3. <b>You cannot file bugs in this component</b>.</div>
+          </header>
+          <li role="separator"></li>
+          <div class="actions">
+            <div><a href="/buglist.cgi?product=MozillaClassic%20Graveyard&amp;bug_status=__open__"
+                    target="_blank" role="menuitem" tabindex="-1">See Open Bugs in This Product</a></div>
+            <div><a href="/enter_bug.cgi?product=MozillaClassic%20Graveyard"
+                    target="_blank" role="menuitem" tabindex="-1">File New Bug in This Product</a></div>
+            <div><button disabled type="button" class="secondary component-watching" role="menuitem" tabindex="-1"
+                         data-product="MozillaClassic Graveyard"
+                         data-label-watch="Watch This Product" data-label-unwatch="Unwatch This Product"
+                         data-source="BugModal">Watch This Product</button></div>
+          </div>
+        </aside>
+      </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field" id="field-component"
+>
+    <div class="name">
+        <a href="/describecomponents.cgi?product=MozillaClassic%20Graveyard&component=Windows%20FE#Windows%20FE" id="component-help-link" class="help">Component:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-component">
+      <div class="name-info-outer dropdown">
+        <span id="component-name" class="dropdown-button" tabindex="0" role="button"
+             aria-haspopup="menu" aria-controls="component-info">Windows FE
+          <span class="icon" aria-hidden="true">&#x25BE;</span>
+        </span>
+        <aside id="component-info" class="name-info-popup dropdown-content right hover-display" hidden role="menu"
+               aria-label="Component description and actions">
+          <header>
+            <div class="title">MozillaClassic Graveyard :: Windows FE</div>
+            <div class="description"></div>
+          </header>
+          <li role="separator"></li>
+          <div class="actions">
+            <div><a href="/buglist.cgi?product=MozillaClassic%20Graveyard&amp;component=Windows%20FE&amp;bug_status=__open__"
+                    target="_blank" role="menuitem" tabindex="-1">See Open Bugs in This Component</a></div>
+            <div><a href="/buglist.cgi?product=MozillaClassic%20Graveyard&amp;component=Windows%20FE&amp;chfield=resolution&chfieldfrom=-6m&chfieldvalue=FIXED&bug_status=__closed__"
+                    target="_blank" role="menuitem" tabindex="-1">Recently Fixed Bugs in This Component</a></div>
+            <div><a href="/enter_bug.cgi?product=MozillaClassic%20Graveyard&amp;component=Windows%20FE"
+                    target="_blank" role="menuitem" tabindex="-1">File New Bug in This Component</a></div>
+            <div><button disabled type="button" class="secondary component-watching" role="menuitem" tabindex="-1"
+                         data-product="MozillaClassic Graveyard" data-component="Windows FE"
+                         data-label-watch="Watch This Component" data-label-unwatch="Unwatch This Component"
+                         data-source="BugModal">Watch This Component</button></div>
+          </div>
+        </aside>
+      </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-version" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#version" id="version-help-link" class="help">Version:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-version">
+            other
+
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#rep_platform" id="-help-link" class="help">Platform:
+        </a>
+    </div>
+
+
+  
+    <div class=" container"><div class="field inline" id="field-rep_platform"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-rep_platform">
+            x86
+
+        </span>
+    </div>
+
+  
+</div><div class="field indent inline" id="field-op_sys"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-op_sys">
+            Windows NT
+
+        </span>
+    </div>
+
+  
+</div><div class="field indent inline"
+>
+
+
+  
+    <div class=" container">
+    </div>
+
+  
+</div>
+    </div>
+
+  
+</div>
+</div><div class="fields-rhs">
+
+    <div class="field contains-buttons" id="field-bug_type"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#bug_type" id="bug_type-help-link" class="help">Type:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_type">
+      <span class="bug-type-label iconic-text" data-type="defect">
+        <span class="icon" aria-hidden="true"></span>defect</span>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field" id="field-importance"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#priority" id="importance-help-link" class="help">Priority:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-importance"><div class="field inline" id="field-priority"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-priority">P3
+        </span>
+    </div>
+
+  
+</div><div class="field inline" id="field-bug_severity"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#bug_severity" id="bug_severity-help-link" class="help">Severity:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_severity">
+            critical
+
+        </span>
+    </div>
+
+  
+</div>
+        </span>
+    </div>
+
+  
+</div>
+
+    
+</div>
+  </div>
+</section>
+
+
+<section class="module" id="module-tracking"
+>
+    <header id="module-tracking-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Tracking section"
+           data-label-collapsed="Expand Tracking section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-tracking-content"
+             aria-expanded="true"
+             aria-labeledby="module-tracking-title"
+             aria-describedby="module-tracking-subtitle"></div>
+        <h2 class="module-title" id="module-tracking-title">Tracking</h2>
+          <h3 class="module-subtitle" id="module-tracking-subtitle">
+            (Not tracked)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-tracking-content"
+  ><div class="fields-lhs">
+
+    <div class="field edit-hide" id="field-status-view"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugStatuses" id="status-view-help-link" class="help">Status:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-status-view">VERIFIED
+        WONTFIX
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-status-edit" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugStatuses" id="status-edit-help-link" class="help">Status:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-status-edit"><div class="field inline" id="field-bug_status"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_status">
+            VERIFIED
+
+        </span>
+    </div>
+
+  
+</div><div class="field indent inline" id="field-resolution"
+>
+
+
+  
+    <div class="value">
+        <span id="field-value-resolution">
+            WONTFIX
+
+        </span>
+    </div>
+
+  
+</div>
+  <div id="status-action-buttons">
+      <div id="assigned-container" style="display:none">
+        <button type="button" class="secondary" id="mark-as-assigned-btn">
+          Mark as Assigned
+        </button>
+      </div>
+  </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-target_milestone" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#target_milestone" id="target_milestone-help-link" class="help">Milestone:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-target_milestone">
+            ---
+
+        </span>
+    </div>
+
+  
+</div>
+
+    
+
+
+</div><div class="fields-rhs">
+
+
+</div>
+  </div>
+</section>
+
+
+
+<section class="module" id="module-people"
+>
+    <header id="module-people-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse People section"
+           data-label-collapsed="Expand People section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-people-content"
+             aria-expanded="false"
+             aria-labeledby="module-people-title"
+             aria-describedby="module-people-subtitle"></div>
+        <h2 class="module-title" id="module-people-title">People</h2>
+          <h3 class="module-subtitle" id="module-people-subtitle">
+            (Reporter: micha, Assigned: blythe)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-people-content" style="display:none"
+  ><div class="fields-lhs">
+
+    <div class="field edit-hide" id="field-assigned_to"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#assigned_to" id="assigned_to-help-link" class="help">Assignee:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-assigned_to"><div class="vcard vcard_1671" ><img src="https://secure.gravatar.com/avatar/8bad0592ff413d472c89281100e3454d?d=mm&size=40" class="gravatar" width="20" height="20"> <a class="email disabled" href="/user_profile?user_id=1671" > <span class="fna">blythe</span></a>
+</div>
+        </span>
+    </div>
+
+  
+</div><div class="field edit-show" id="field-assigned_to" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#assigned_to" id="assigned_to-help-link" class="help">Assignee:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-assigned_to">
+      <div class="set-default-container" style="display:none">
+        <input type="checkbox" id="set-default-assignee" name="set_default_assignee" class="set-default"
+          value="1" data-for="assigned_to">
+        <label for="set-default-assignee">Reset Assignee to default</label>
+      </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-bug_mentors" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#bug_mentor" id="bug_mentors-help-link" class="help">Mentors:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_mentors">---
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-qa_contact" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#qa_contact" id="qa_contact-help-link" class="help">QA Contact:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-qa_contact">
+      <div class="set-default-container" style="display:none">
+        <input type="checkbox" id="set-default-qa-contact" name="set_default_qa_contact" class="set-default"
+          value="1" data-for="qa_contact">
+        <label for="set-default-qa-contact">Reset QA Contact to default</label>
+      </div>
+        </span>
+    </div>
+
+  
+</div>
+</div><div class="fields-rhs">
+
+    <div class="field" id="field-reporter"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#reporter" id="reporter-help-link" class="help">Reporter:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-reporter">
+            <div class="vcard vcard_4065" ><img src="https://secure.gravatar.com/avatar/728423c4e5c368806732f6a0c8cc8fe0?d=mm&size=40" class="gravatar" width="20" height="20"> <a class="email disabled" href="/user_profile?user_id=4065" > <span class="fna">micha</span></a>
+</div>
+
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-triage_owner" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#triage_owner" id="triage_owner-help-link" class="help">Triage Owner:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-triage_owner">
+            ---
+
+        </span>
+    </div>
+
+  
+</div>
+
+    
+
+    <div class="field"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#cc" id="-help-link" class="help">CC:
+        </a>
+    </div>
+
+
+  
+    <div class=" container">
+
+
+        <i>Nobody</i>
+
+
+    </div>
+
+  
+</div>
+</div>
+  </div>
+</section>
+
+
+<section class="module" id="module-references"
+>
+    <header id="module-references-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse References section"
+           data-label-collapsed="Expand References section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-references-content"
+             aria-expanded="false"
+             aria-labeledby="module-references-title"
+             aria-describedby="module-references-subtitle"></div>
+        <h2 class="module-title" id="module-references-title">References</h2>
+          <h3 class="module-subtitle" id="module-references-subtitle">
+            (<div class="link">
+    <a href="http://www.sierrastudios.com/games/half-life/" target="_blank"
+      rel="noreferrer" title="http://www.sierrastudios.com/games/half-life/"
+      class="bug-url" data-safe="1">URL</a>
+  </div>)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-references-content" style="display:none"
+  ><div class="fields-lhs">
+
+    <div class="field bug-list edit-show" id="field-dependson" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#dependson" id="dependson-help-link" class="help">Depends on:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-dependson">
+        ---
+        </span>
+    </div>
+
+  
+</div><div class="field bug-list edit-show" id="field-blocked" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#blocks" id="blocked-help-link" class="help">Blocks:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-blocked">
+        ---
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field bug-list edit-show" id="field-regresses" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#regresses" id="regresses-help-link" class="help">Regressions:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-regresses">
+        ---
+        </span>
+    </div>
+
+  
+</div><div class="field bug-list edit-show" id="field-regressed_by" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#regressed_by" id="regressed_by-help-link" class="help">Regressed by:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-regressed_by">
+        ---
+        </span>
+    </div>
+
+  
+</div>
+
+    
+</div><div class="fields-rhs">
+
+    <div class="field" id="field-bug_file_loc"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#bug_file_loc" id="bug_file_loc-help-link" class="help">URL:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-bug_file_loc"><div class="link">
+    <a href="http://www.sierrastudios.com/games/half-life/" target="_blank"
+      rel="noreferrer" title="http://www.sierrastudios.com/games/half-life/"
+      class="bug-url" data-safe="1">sierrastudios.com/games/half-life</a>
+  </div>
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-see_also" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#see_also" id="see_also-help-link" class="help">See Also:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-see_also">
+        ---
+        </span>
+    </div>
+
+  
+</div>
+</div>
+  </div>
+</section>
+
+
+<section class="module" id="module-details"
+>
+    <header id="module-details-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Details section"
+           data-label-collapsed="Expand Details section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-details-content"
+             aria-expanded="false"
+             aria-labeledby="module-details-title"
+             aria-describedby="module-details-subtitle"></div>
+        <h2 class="module-title" id="module-details-title">Details</h2>
+      </div>
+    </header>
+  <div class="module-content" id="module-details-content" style="display:none"
+  ><div class="fields-lhs">
+
+    <div class="field edit-show" id="field-alias" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/BugFields#alias" id="alias-help-link" class="help">Alias:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-alias">
+        ---
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-keywords" style="display:none"
+>
+    <div class="name">
+        <a href="/describekeywords.cgi" id="keywords-help-link" class="help">Keywords:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-keywords">---
+        </span>
+    </div>
+
+  
+</div>
+
+    <div class="field edit-show" id="field-status_whiteboard" style="display:none"
+>
+    <div class="name">
+        <a href="https://wiki.mozilla.org/BMO/UserGuide/Whiteboard" id="status_whiteboard-help-link" class="help">Whiteboard:
+        </a>
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-status_whiteboard">---
+        </span>
+    </div>
+
+  
+</div>
+
+    
+
+    
+
+    
+</div><div class="fields-rhs">
+
+    <div class="field edit-show" id="field-bug_flags" style="display:none"
+>
+    <div class="name">Bug Flags:
+    </div>
+
+
+  
+    <div class=" container">
+        <span id="field-value-bug_flags"><div id="bug-flags" class="flags">
+  <table class="layout-table">
+    <tbody class="edit-show" style="display:none"><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Flag is used to track security bug bounty nominations. Mail security(at)mozilla.org to nominate a bug." for="flag_type-803">sec-bounty</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-803-dirty">
+      <select id="flag_type-803" name="flag_type-803"
+        title="Flag is used to track security bug bounty nominations. Mail security(at)mozilla.org to nominate a bug."
+        class="bug-flag">
+          <option value="X"></option>
+            <option value="?" >?</option>
+      </select>
+    </td>
+
+
+  </tr><tr>
+    <td class="flag-setter">
+    </td>
+
+    <td class="flag-name">
+      <label title="Flag is used to track whether the bug report is eligible for inclusion in the Bug Bounty Hall of Fame." for="flag_type-913">sec-bounty-hof</label>
+    </td>
+
+    <td class="flag-value">
+      <input type="hidden" id="flag_type-913-dirty">
+      <select id="flag_type-913" name="flag_type-913"
+        title="Flag is used to track whether the bug report is eligible for inclusion in the Bug Bounty Hall of Fame."
+          disabled
+        class="bug-flag">
+          <option value="X"></option>
+      </select>
+    </td>
+
+
+  </tr>
+    </tbody>
+  </table>
+</div>
+        </span>
+    </div>
+
+  
+</div>
+</div>
+
+  
+  </div>
+</section>
+
+
+<section class="module edit-show" style="display:none" id="module-crash-data"
+>
+    <header id="module-crash-data-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Crash Data section"
+           data-label-collapsed="Expand Crash Data section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-crash-data-content"
+             aria-expanded="false"
+             aria-labeledby="module-crash-data-title"
+             aria-describedby="module-crash-data-subtitle"></div>
+        <h2 class="module-title" id="module-crash-data-title">Crash Data</h2>
+      </div>
+    </header>
+  <div class="module-content" id="module-crash-data-content" style="display:none"
+  ><div class="field edit-show" id="field-cf_crash_signature" style="display:none"
+>
+    <div class="name">Signature:
+    </div>
+
+
+  
+    <div class="value">
+        <span id="field-value-cf_crash_signature">
+        </span>
+    </div>
+
+  
+</div>
+  </div>
+</section>
+
+
+<section class="module edit-show" style="display:none" id="module-security"
+>
+    <header id="module-security-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse Security section"
+           data-label-collapsed="Expand Security section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-security-content"
+             aria-expanded="false"
+             aria-labeledby="module-security-title"
+             aria-describedby="module-security-subtitle"></div>
+        <h2 class="module-title" id="module-security-title">Security</h2>
+          <h3 class="module-subtitle" id="module-security-subtitle">
+            (public)
+          </h3>
+      </div>
+    </header>
+  <div class="module-content" id="module-security-content" style="display:none"
+  ><div class="groups edit-hide">
+    This bug is publicly visible.
+</div>
+
+<div class="groups edit-show" style="display:none">
+
+
+</div>
+  </div>
+</section>
+
+
+<section class="module edit-show" style="display:none" id="module-user-story" data-non-stick="1"
+>
+    <header id="module-user-story-header" class="module-header">
+      <div class="module-latch"
+           data-label-expanded="Collapse User Story section"
+           data-label-collapsed="Expand User Story section">
+        <div class="module-spinner" role="button" tabindex="0"
+             aria-controls="module-user-story-content"
+             aria-expanded="false"
+             aria-labeledby="module-user-story-title"
+             aria-describedby="module-user-story-subtitle"></div>
+        <h2 class="module-title" id="module-user-story-title">User Story</h2>
+      </div>
+    </header>
+  <div class="module-content" id="module-user-story-content" style="display:none"
+  >
+    <pre id="user-story"></pre>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<script nonce="OcCtxoS7SFJ1nfdfMGqnGjbD2AjSvunTcvo7pepBCexgk2zT">
+  init_module_visibility();
+</script>
+
+
+
+<meta name="firefox-versions" content="{&quot;FIREFOX_AURORA&quot;:&quot;&quot;,&quot;FIREFOX_DEVEDITION&quot;:&quot;80.0b8&quot;,&quot;FIREFOX_ESR&quot;:&quot;68.11.0esr&quot;,&quot;FIREFOX_ESR_NEXT&quot;:&quot;78.1.0esr&quot;,&quot;FIREFOX_NIGHTLY&quot;:&quot;81.0a1&quot;,&quot;LAST_MERGE_DATE&quot;:&quot;2020-07-27&quot;,&quot;LAST_RELEASE_DATE&quot;:&quot;2020-07-28&quot;,&quot;LAST_SOFTFREEZE_DATE&quot;:&quot;2020-07-23&quot;,&quot;LATEST_FIREFOX_DEVEL_VERSION&quot;:&quot;80.0b8&quot;,&quot;LATEST_FIREFOX_OLDER_VERSION&quot;:&quot;3.6.28&quot;,&quot;LATEST_FIREFOX_RELEASED_DEVEL_VERSION&quot;:&quot;80.0b8&quot;,&quot;LATEST_FIREFOX_VERSION&quot;:&quot;79.0&quot;,&quot;NEXT_MERGE_DATE&quot;:&quot;2020-08-24&quot;,&quot;NEXT_RELEASE_DATE&quot;:&quot;2020-08-25&quot;,&quot;NEXT_SOFTFREEZE_DATE&quot;:&quot;2020-08-20&quot;}">
+
+
+<div id="comment-actions">
+    <button type="button" id="bottom-btn" class="secondary" aria-label="Go to Page Bottom">Bottom &darr;</button>
+  <div class="dropdown">
+    <button type="button" id="comment-tags-btn" aria-haspopup="true" aria-label="Tags"
+      aria-expanded="false" aria-controls="comment-tags-menu" class="dropdown-button minor">Tags &#9662;</button>
+    <ul id="comment-tags-menu" role="menu" tabindex="0" class="dropdown-content left" style="display:none">
+      <li role="presentation">
+        <a role="menuitem" tabindex="-1" data-comment-tag="">Reset</a>
+      </li>
+    </ul>
+  </div>
+  <div class="dropdown">
+    <button type="button" id="view-menu-btn" aria-haspopup="true" aria-label="Timeline"
+      aria-expanded="false" aria-controls="view-menu" class="dropdown-button minor">Timeline &#9662;</button>
+    <ul id="view-menu" role="menu" tabindex="0" class="dropdown-content left" style="display:none">
+      <li role="presentation">
+        <a id="view-reset" role="menuitem" tabindex="-1">Reset</a>
+      </li>
+      <li role="separator"></li>
+      <li role="presentation">
+        <a id="view-collapse-all" role="menuitem" tabindex="-1">Collapse All</a>
+      </li>
+      <li role="presentation">
+        <a id="view-expand-all" role="menuitem" tabindex="-1">Expand All</a>
+      </li>
+      <li role="presentation">
+        <a id="view-comments-only" role="menuitem" tabindex="-1">Comments Only</a>
+      </li>
+    </ul>
+   </div>
+</div>
+<div class="change-set" id="c0"><div class="comment" data-id="6611" data-no="0"
+       data-tags="">
+    
+    <table class="layout-table change-head reporter" id="ch-0" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_4065" ><img src="https://secure.gravatar.com/avatar/728423c4e5c368806732f6a0c8cc8fe0?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_4065" ><a class="email disabled" href="/user_profile?user_id=4065" > <span class="fna">micha</span></a>
+</div>
+            <span class="user-role">Reporter</span>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-0"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-0" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=1343#c0">Description</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1998-11-10 17:22 PST" data-time="910747353">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-0">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-0" data-comment-id="6611">Microsoft (R) Windows NT (TM) Version 4.00 DrWtsn32
+Copyright (C) 1985-1996 Microsoft Corp. All rights reserved.
+
+
+
+Application exception occurred:
+        App: exe\inetinfo.dbg (pid=124)
+        When: 5/17/1997 &#64; 13:9:29.279
+        Exception number: c0000005 (access violation)
+
+*----&gt; System Information &lt;----*
+        Computer Name: MMX2
+        User Name: SYSTEM
+        Number of Processors: 1
+        Processor Type: x86 Family 5 Model 4 Stepping 4
+        Windows Version: 4.0
+        Current Build: 1381
+        Current Type: Uniprocessor Free
+        Registered Organization: Aworldwidemall.com Inc.
+        Registered Owner: Andreas Barth
+
+*----&gt; Task List &lt;----*
+   0 Idle.exe
+   2 System.exe
+  21 smss.exe
+  24 csrss.exe
+  35 WINLOGON.exe
+  41 services.exe
+  44 lsass.exe
+  68 SPOOLSS.exe
+  82 NTAGENT.exe
+  88 LLSSRV.exe
+  94 LOCATOR.exe
+ 113 RPCSS.exe
+ 124 inetinfo.exe
+ 154 nscm.exe
+ 181 nsmon.exe
+ 187 nsum.exe
+ 223 nspm.exe
+ 107 nddeagnt.exe
+ 251 EXPLORER.exe
+ 455 systray.exe
+ 265 NTVDM.exe
+ 497 SETUP.exe
+ 495 drwtsn32.exe
+   0 _Total.exe
+
+(01000000 - 01006000) exe\inetinfo.dbg
+(77f60000 - 77fbc000) dll\ntdll.dbg
+(779f0000 - 77a36000) dll\msvcrt.dbg
+(77f00000 - 77f5c000) dll\kernel32.dbg
+(77dc0000 - 77dff000) dll\advapi32.dbg
+(77e70000 - 77ec3000) dll\user32.dbg
+(77ed0000 - 77efb000) dll\gdi32.dbg
+(77e20000 - 77e6f000) dll\rpcrt4.dbg
+(77e10000 - 77e17000) dll\rpcltc1.dbg
+(776d0000 - 776d8000) dll\wsock32.dbg
+(776b0000 - 776c1000) dll\ws2_32.dbg
+(776a0000 - 776a6000) dll\ws2help.dbg
+(53980000 - 539a4000) dll\infocomm.dbg
+(77800000 - 7783a000) dll\netapi32.dbg
+(77840000 - 77849000) dll\NetRap.dbg
+(777e0000 - 777ed000) dll\samlib.dbg
+(77670000 - 77684000) dll\mswsock.dbg
+(77a80000 - 77a8e000) dll\security.dbg
+(54800000 - 54809000) dll\inetsloc.dbg
+(74fa0000 - 74fab000) dll\rpcltscm.dbg
+(77660000 - 7766e000) dll\msafd.dbg
+(77690000 - 77699000) dll\wshtcpip.dbg
+(74ff0000 - 74ffc000) dll\rnr20.dbg
+(74f20000 - 74f3d000) dll\schannel.dbg
+(084a0000 - 084b4000) dll\msnsspc.dbg
+(779d0000 - 779d0000)
+(780a0000 - 780a0000)
+(77e00000 - 77e06000) dll\rpclts1.dbg
+(74fc0000 - 74fcc000) dll\rpcltccm.dbg
+(5dc00000 - 5dc1d000) dll\ldapsvc.dbg
+(5de90000 - 5deb3000) dll\jnfocomm.dbg
+(5da30000 - 5da3b000) dll\msntrace.dbg
+(5e8a0000 - 5e8b7000) dll\idsdiril.dbg
+(5dfd0000 - 5dfe0000) dll\ipldb.dbg
+(5dcb0000 - 5dcc1000) dll\ldapcli.dbg
+(74480000 - 74488000) dll\wshisn.dbg
+(75830000 - 7585a000) dll\nwprovau.dbg
+(77720000 - 77731000) dll\mpr.dbg
+(77bf0000 - 77c3f000) dll\comctl32.dbg
+(5dc30000 - 5dc36000) dll\ldapmsg.dbg
+(5d260000 - 5d279000) dll\ulserver.dbg
+(74470000 - 74477000) dll\wshnetbs.dbg
+(54c80000 - 54c93000) dll\ftpsvc2.dbg
+(53f00000 - 53f0c000) dll\GOPHERD.dbg
+(54080000 - 54089000) dll\gdspace.dbg
+(53d00000 - 53d1f000) dll\w3svc.dbg
+(77b20000 - 77bd1000) dll\ole32.dbg
+(67860000 - 67868000) winnt/fpexedll.dll
+(6c060000 - 6c066000) exchfilt.dbg
+(68200000 - 68260000) dll\asp.dbg
+(65340000 - 653bd000) dll\oleaut32.dbg
+(2e000000 - 2e041000) vbscript.dbg
+(68260000 - 6826a000) dll\browscap.dbg
+(48820000 - 4885a000) msado10o.DBG
+(05510000 - 0555d000) MSDASQL.DBG
+(05560000 - 05579000) MSDATL.DBG
+(05580000 - 05580000)
+(05590000 - 055d0000) odbc32.DBG
+(77c40000 - 77d7c000) dll\shell32.dbg
+(77d80000 - 77db2000) dll\comdlg32.dbg
+(77a90000 - 77a9b000) dll\version.dbg
+(779c0000 - 779c8000) dll\lz32.dbg
+(055d0000 - 055d0000)
+(055f0000 - 055fd000) msdadc.DBG
+(05600000 - 0560b000) MSDAER.DBG
+(05610000 - 05610000)
+(2e100000 - 2e11c000) scrrun.dbg
+(2e080000 - 2e0c5000) jscript.dbg
+(0cd50000 - 0cd5c000) dll\adrot.dbg
+(6d120000 - 6d181000) amhtml.dbg
+(6db80000 - 6dc5d000) mapi32.dbg
+(6de30000 - 6de48000) gapi32.dbg
+(6d0b0000 - 6d0b5000) exchmem.dbg
+(6dd10000 - 6dd58000) olemsg32.dbg
+(6c160000 - 6c181000) emsui32.dbg
+(6def0000 - 6e010000) wmsui32.dbg
+(777f0000 - 777fc000) dll\ntlanman.dbg
+(77890000 - 778a3000) dll\netui0.dbg
+(77850000 - 7788a000) dll\netui1.dbg
+
+State Dump for Thread Id 0x7b
+
+eax=00000004 ebx=0012fcb4 ecx=77deeb88 edx=00000000 esi=00000020 edi=00000000
+eip=77f67e67 esp=0012fbd8 ebp=0012fc40 iopl=0         nv up ei pl zr na po nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=0038  gs=0000             efl=00000246
+
+
+function: ZwReadFile
+        77f67e5c b886000000       mov     eax,0x86
+        77f67e61 8d542404         lea     edx,[esp+0x4]
+ss:0138e5df=????????
+        77f67e65 cd2e             int     2e
+        77f67e67 c22400           ret     0x24
+        77f67e6a 8bc0             mov     eax,eax
+
+*----&gt; Stack Back Trace &lt;----*
+
+FramePtr ReturnAd Param#1  Param#2  Param#3  Param#4  Function Name
+0012fc40 77dd8dac 00000020 001419b8 0000021a 0012fc70 ntdll!ZwReadFile
+0012fc74 77dd8805 00000020 001419b8 0000021a 0012fcb4
+advapi32!RegisterServiceCtrlHandlerA
+0012fcd4 77dd879e 00000020 001419b8 0000021a 00140b5c
+advapi32!StartServiceCtrlDispatcherW
+0012fd18 010013b4 00141918 7ffdebf8 0014090c 00000000
+advapi32!StartServiceCtrlDispatcherW
+0012fd40 0100133f 0012ffc0 7ffdebf8 0014090c 7ffdf000 inetinfo!&lt;nosymbols&gt;
+0012ffc0 77f1b26b 7ffdebf8 0014090c 7ffdf000 7ffdf000 inetinfo!&lt;nosymbols&gt;
+0012fff0 00000000 01001122 00000000 00000000 77fa5aa0
+kernel32!GetProcessPriorityBoost
+00000000 00000000 00000000 00000000 00000000 00000000 inetinfo!&lt;nosymbols&gt;
+
+*----&gt; Raw Stack Dump &lt;----*
+0012fbd8  c7 d2 f0 77 20 00 00 00 - 00 00 00 00 00 00 00 00  ...w ...........
+0012fbe8  00 00 00 00 14 fc 12 00 - b8 19 14 00 1a 02 00 00  ................
+0012fbf8  00 00 00 00 00 00 00 00 - 00 00 00 00 b8 19 14 00  ................
+0012fc08  b4 fc 12 00 00 00 00 00 - 00 00 00 00 00 00 00 00  ................
+0012fc18  40 fc 12 00 88 fc 12 00 - 04 00 00 00 00 00 00 00  &#64;...............
+0012fc28  00 fc 12 00 00 00 00 00 - c4 fc 12 00 5c ae f3 77  ............\..w
+0012fc38  10 ba f3 77 ff ff ff ff - 74 fc 12 00 ac 8d dd 77  ...w....t......w
+0012fc48  20 00 00 00 b8 19 14 00 - 1a 02 00 00 70 fc 12 00   ...........p...
+0012fc58  00 00 00 00 00 00 00 00 - 00 00 00 00 1a 02 00 00  ................
+0012fc68  20 00 00 00 88 fc 12 00 - 00 00 00 00 d4 fc 12 00   ...............
+0012fc78  05 88 dd 77 20 00 00 00 - b8 19 14 00 1a 02 00 00  ...w ...........
+0012fc88  b4 fc 12 00 00 00 00 00 - b8 19 14 00 1a 02 00 00  ................
+0012fc98  2d 00 00 00 00 00 00 00 - 1a 02 00 00 5c ae f3 77  -...........\..w
+0012fca8  00 00 00 00 01 00 00 00 - 70 19 14 00 00 00 00 00  ........p.......
+0012fcb8  00 00 00 00 8c fc 12 00 - 04 00 00 00 08 fd 12 00  ................
+0012fcc8  00 18 de 77 d8 ea de 77 - ff ff ff ff 18 fd 12 00  ...w...w........
+0012fcd8  9e 87 dd 77 20 00 00 00 - b8 19 14 00 1a 02 00 00  ...w ...........
+0012fce8  5c 0b 14 00 18 19 14 00 - 00 10 00 01 b8 21 00 01  \............!..
+0012fcf8  00 00 00 00 20 00 00 00 - e8 fc 12 00 f1 26 de 77  .... ........&amp;.w
+0012fd08  b0 ff 12 00 00 18 de 77 - c8 ea de 77 ff ff ff ff  .......w...w....
+
+State Dump for Thread Id 0x7e
+
+eax=00b8f660 ebx=00000000 ecx=001404d0 edx=00000000 esi=000001a4 edi=00000000
+eip=77f6823b esp=00b8fd24 ebp=00b8fd48 iopl=0         nv up ei pl zr na po nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=003b  gs=0000             efl=00000246
+
+
+function: ZwWaitForSingleObject
+        77f68230 b8c5000000       mov     eax,0xc5
+        77f68235 8d542404         lea     edx,[esp+0x4]
+ss:01dee72b=????????
+        77f68239 cd2e             int     2e
+        77f6823b c20c00           ret     0xc
+        77f6823e 8bc0             mov     eax,eax
+
+*----&gt; Stack Back Trace &lt;----*
+
+FramePtr ReturnAd Param#1  Param#2  Param#3  Param#4  Function Name
+00b8fd48 77f04f8b 000001a4 ffffffff 00000000 5dea5359
+ntdll!ZwWaitForSingleObject
+00000001 00000000 00000000 00000000 00000000 00000000
+kernel32!WaitForSingleObject
+
+State Dump for Thread Id 0x82
+
+eax=00318720 ebx=00000000 ecx=00318720 edx=00000000 esi=00000074 edi=00c8ff8c
+eip=77f6823b esp=00c8ff70 ebp=00c8ff94 iopl=0         nv up ei pl nz na po nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=0038  gs=0000             efl=00000206
+
+
+function: ZwWaitForSingleObject
+        77f68230 b8c5000000       mov     eax,0xc5
+        77f68235 8d542404         lea     edx,[esp+0x4]
+ss:01eee977=????????
+        77f68239 cd2e             int     2e
+        77f6823b c20c00           ret     0xc
+        77f6823e 8bc0             mov     eax,eax
+
+*----&gt; Stack Back Trace &lt;----*
+
+FramePtr ReturnAd Param#1  Param#2  Param#3  Param#4  Function Name
+00c8ff94 77f04f8b 00000074 00007530 00000000 539837ea
+ntdll!ZwWaitForSingleObject
+00c8ffec 00000000 00000000 00000000 00000000 00000000
+kernel32!WaitForSingleObject
+00000000 00000000 00000000 00000000 00000000 00000000 inetinfo!&lt;nosymbols&gt;
+
+State Dump for Thread Id 0x83
+
+eax=00233fe8 ebx=00000008 ecx=0032afc0 edx=00000000 esi=00000000 edi=00000001
+eip=77f67ed7 esp=00d8ff58 ebp=00d8ff84 iopl=0         ov up ei pl nz na po cy
+cs=001b  ss=0023  ds=0023  es=0023  fs=0038  gs=0000             efl=00000a07
+
+
+function: NtRemoveIoCompletion
+        77f67ecc b88d000000       mov     eax,0x8d
+        77f67ed1 8d542404         lea     edx,[esp+0x4]
+ss:01fee95f=????????
+        77f67ed5 cd2e             int     2e
+        77f67ed7 c21400           ret     0x14
+        77f67eda 8bc0             mov     eax,eax
+
+*----&gt; Stack Back Trace &lt;----*
+
+FramePtr ReturnAd Param#1  Param#2  Param#3  Param#4  Function Name
+00d8ff84 539836bb 00000070 00d8ffb0 00d8ffb4 00d8ffac ntdll!NtRemoveIoCompletion
+00d8ffb8 77f04f32 abcdef01 776a2254 00000028 abcdef01
+infocomm!BUFFER::GetNewStorage
+00d8ffec 00000000 00000000 00000000 00000000 00000000 kernel32!lstrcmpiW
+00000000 00000000 00000000 00000000 00000000 00000000 inetinfo!&lt;nosymbols&gt;
+
+State Dump for Thread Id 0x84
+
+eax=00e8f4b0 ebx=00000008 ecx=00000000 edx=00000000 esi=00000000 edi=00000001
+eip=77f67ed7 esp=00e8ff58 ebp=00e8ff84 iopl=0         ov up ei pl nz na po cy
+cs=001b  ss=0023  ds=0023  es=0023  fs=0038  gs=0000             efl=00000a07
+
+
+function: NtRemoveIoCompletion
+        77f67ecc b88d000000       mov     eax,0x8d
+        77f67ed1 8d542404         lea     edx,[esp+0x4]
+ss:020ee95f=????????
+        77f67ed5 cd2e             int     2e
+        77f67ed7 c21400           ret     0x14
+        77f67eda 8bc0             mov     eax,eax
+
+*----&gt; Stack Back Trace &lt;----*
+
+FramePtr ReturnAd Param#1  Param#2  Param#3  Param#4  Function Name
+00e8ff84 539836bb 00000070 00e8ffb0 00e8ffb4 00e8ffac ntdll!NtRemoveIoCompletion
+00e8ffb8 77f04f32 abcdef01 776a2254 00000028 abcdef01
+infocomm!BUFFER::GetNewStorage
+00e8ffec 00000000 00000000 00000000 00000000 00000000 kernel32!lstrcmpiW
+00000000 00000000 00000000 00000000 00000000 00000000 inetinfo!&lt;nosymbols&gt;
+
+State Dump for Thread Id 0x85
+
+eax=5399b0c0 ebx=00000000 ecx=5399b0c0 edx=00000000 esi=0000004c edi=00f8ff74
+eip=77f6823b esp=00f8ff58 ebp=00f8ff7c iopl=0         nv up ei pl nz na po nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=0038  gs=0000             efl=00000206
+
+
+function: ZwWaitForSingleObject
+        77f68230 b8c5000000       mov     eax,0xc5
+        77f68235 8d542404         lea     edx,[esp+0x4]
+ss:021ee95f=????????
+        77f68239 cd2e             int     2e
+        77f6823b c20c00           ret     0xc
+        77f6823e 8bc0             mov     eax,eax
+
+*----&gt; Stack Back Trace &lt;----*
+
+FramePtr ReturnAd Param#1  Param#2  Param#3  Param#4  Function Name
+00f8ff7c 77f04f8b 0000004c 0000035a 00000000 539835f7
+ntdll!ZwWaitForSingleObject
+00f8ffb8 77f04f32 00000000 0000007c 00000084 00000000
+kernel32!WaitForSingleObject
+00f8ffec 00000000 53987622 00000000 00000000 04e3000d kernel32!lstrcmpiW
+00000000 00000000 00000000 00000000 00000000 00000000 inetinfo!&lt;nosymbols&gt;
+
+*----&gt; Raw Stack Dump &lt;----*
+00f8ff58  f7 c4 f1 77 4c 00 00 00 - 00 00 00 00 74 ff f8 00  ...wL.......t...
+00f8ff68  90 af 99 53 98 af 99 53 - e0 0c 33 00 60 14 7d ff  ...S...S..3.`.}.
+00f8ff78  ff ff ff ff b8 ff f8 00 - 8b 4f f0 77 4c 00 00 00  .........O.wL...
+00f8ff88  5a 03 00 00 00 00 00 00 - f7 35 98 53 4c 00 00 00  Z........5.SL...
+00f8ff98  5a 03 00 00 7c 00 00 00 - 84 00 00 00 00 00 00 00  Z...|...........
+00f8ffa8  e0 0c 33 00 2e 7c 79 07 - 5a 03 00 00 e0 0c 33 00  ..3..|y.Z.....3.
+00f8ffb8  ec ff f8 00 32 4f f0 77 - 00 00 00 00 7c 00 00 00  ....2O.w....|...
+00f8ffc8  84 00 00 00 00 00 00 00 - 84 00 00 00 c4 ff f8 00  ................
+00f8ffd8  00 00 6d 77 ff ff ff ff - 5c ae f3 77 d0 c1 f3 77  ..mw....\..w...w
+00f8ffe8  00 00 00 00 00 00 00 00 - 00 00 00 00 22 76 98 53  ............&quot;v.S
+00f8fff8  00 00 00 00 00 00 00 00 - 0d 00 e3 04 01 00 3f 00  ..............?.
+00f90008  3f 00 3f 00 3f 00 00 00 - 00 00 00 00 00 00 00 00  ?.?.?...........
+00f90018  00 00 03 01 00 00 01 00 - 02 00 03 00 04 00 05 00  ................
+00f90028  06 00 07 00 08 00 09 00 - 0a 00 0b 00 0c 00 0d 00  ................
+00f90038  0e 00 0f 00 10 00 11 00 - 12 00 13 00 14 00 15 00  ................
+00f90048  16 00 17 00 18 00 19 00 - 1a 00 1b 00 1c 00 1d 00  ................
+00f90058  1e 00 1f 00 20 00 21 00 - 22 00 23 00 24 00 25 00  .... .!.&quot;.#.$.%.
+00f90068  26 00 27 00 28 00 29 00 - 2a 00 2b 00 2c 00 2d 00  &amp;.'.(.).*.+.,.-.
+00f90078  2e 00 2f 00 30 00 31 00 - 32 00 33 00 34 00 35 00  ../.0.1.2.3.4.5.
+00f90088  36 00 37 00 38 00 39 00 - 3a 00 3b 00 3c 00 3d 00  6.7.8.9.:.;.&lt;.=.
+
+State Dump for Thread Id 0x86
+
+eax=00000000 ebx=00000000 ecx=7ffd7000 edx=00000000 esi=0000004c edi=0110ff74
+eip=77f6823b esp=0110ff58 ebp=0110ff7c iopl=0         nv up ei pl nz na po nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=0038  gs=0000             efl=00000206
+
+
+function: ZwWaitForSingleObject
+        77f68230 b8c5000000       mov     eax,0xc5
+        77f68235 8d542404         lea     edx,[esp+0x4]
+ss:0236e95f=????????
+        77f68239 cd2e             int     2e
+        77f6823b c20c00           ret     0xc
+        77f6823e 8bc0             mov     eax,eax
+
+*----&gt; Stack Back Trace &lt;----*
+
+FramePtr ReturnAd Param#1  Param#2  Param#3  Param#4  Function Name
+0110ff7c 77f04f8b 0000004c 0000035a 00000000 539835f7
+ntdll!ZwWaitForSingleObject
+0110ffb8 77f04f32 00000000 0000007c 00000084 00000000
+kernel32!WaitForSingleObject
+0110ffec 00000000 00000000 00000000 00000000 00000000 kernel32!lstrcmpiW
+00000000 00000000 00000000 00000000 00000000 00000000 inetinfo!&lt;nosymbols&gt;
+
+State Dump for Thread Id 0x89
+
+eax=00310910 ebx=7766a100 ecx=003109c0 edx=00000000 esi=00147088 edi=77f68230
+eip=77f6823b esp=0130fdc0 ebp=0130fe14 iopl=0         nv up ei ng nz ac pe cy
+cs=001b  ss=0023  ds=0023  es=0023  fs=0038  gs=0000             efl=00000293
+
+
+function: ZwWaitForSingleObject
+        77f68230 b8c5000000       mov     eax,0xc5
+        77f68235 8d542404         lea     edx,[esp+0x4]
+ss:0256e7c7=????????
+        77f68239 cd2e             int     2e
+        77f6823b c20c00           ret     0xc
+        77f6823e 8bc0             mov     eax,eax
+
+*----&gt; Stack Back Trace &lt;----*
+
+FramePtr ReturnAd Param#1  Param#2  Param#3  Param#4  Function Name
+0130fe14 77664485 000000dc 00000080 00000001 00000004
+ntdll!ZwWaitForSingleObject
+0130feb4 776b911d 00000000 00147380 00000000 00000000 msafd!&lt;nosymbols&gt;
+0130fef0 74fa14f7 00000000 00147380 00000000 00000000 ws2_32!select
+0130ff2c 77e279df 00146244 0130ff58 0130ff88 0130ff84 rpcltscm!&lt;nosymbols&gt;
+0130ff60 77e294f9 0130ff8c 0130ff88 0130ff84 00141ebc rpcrt4!RpcTestCancel
+0130ff90 77e29436 77e2604d 00146168 0130ffec 003108b0
+rpcrt4!I_RpcTransServerReallocBuffer
+00003a98 00000000 00000000 00000000 00000000 00000000
+rpcrt4!I_RpcTransServerReallocBuffer
+
+State Dump for Thread Id 0x8a
+
+eax=77e260ba ebx=00154584 ecx=00149ed8 edx=00000000 esi=00154574 edi=000003e8
+eip=77f6822b esp=0140feec ebp=0140ff2c iopl=0         nv up ei pl nz na po nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=0038  gs=0000             efl=00000206
+
+
+function: ZwWaitForMultipleObjects
+        77f68220 b8c4000000       mov     eax,0xc4
+        77f68225 8d542404         lea     edx,[esp+0x4]
+ss:0266e8f3=????????
+        77f68229 cd2e             int     2e
+        77f6822b c21400           ret     0x14
+        77f6822e 8bc0             mov     eax,eax
+
+*----&gt; Stack Back Trace &lt;----*
+
+FramePtr ReturnAd Param#1  Param#2  Param#3  Param#4  Function Name
+0140ff2c 77e279df 00154574 0140ff58 0140ff88 0140ff84
+ntdll!ZwWaitForMultipleObjects
+0140ff60 77e294f9 0140ff8c 0140ff88 0140ff84 00141ebc rpcrt4!RpcTestCancel
+0140ff90 77e29436 77e2604d 00154498 0140ffec 00149ed8
+rpcrt4!I_RpcTransServerReallocBuffer
+00003a98 00000000 00000000 00000000 00000000 00000000
+rpcrt4!I_RpcTransServerReallocBuffer
+
+State Dump for Thread Id 0x90
+
+eax=00000000 ebx=00000000 ecx=04154000 edx=00000000 esi=00000114 edi=0160ff8c
+eip=77f6823b esp=0160ff70 ebp=0160ff94 iopl=0         nv up ei pl nz na po nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=0038  gs=0000             efl=00000206
+
+
+function: ZwWaitForSingleObject
+        77f68230 b8c5000000       mov     eax,0xc5
+        77f68235 8d542404         lea     edx,[esp+0x4]
+ss:0286e977=????????
+        77f68239 cd2e             int     2e
+        77f6823b c20c00           ret     0xc
+        77f6823e 8bc0             mov     eax,eax
+
+*----&gt; Stack Back Trace &lt;----*
+
+FramePtr ReturnAd Param#1  Param#2  Param#3  Param#4  Function Name
+0160ff94 77f04f8b 00000114 00007530 00000000 5de99eb7
+ntdll!ZwWaitForSingleObject
+0160ffec 00000000 00000000 00000000 00000000 00000000
+kernel32!WaitForSingleObject
+00000000 00000000 00000000 00000000 00000000 00000000 inetinfo!&lt;nosymbols&gt;
+
+State Dump for Thread Id 0x91
+
+eax=00000102 ebx=abcdef01 ecx=00000102 edx=00000000 esi=00000000 edi=00000001
+eip=77f67ed7 esp=0170ff58 ebp=0170ff84 iopl=0         ov up ei pl nz na po cy
+cs=001b  ss=0023  ds=0023  es=0023  fs=0038  gs=0000             efl=00000a07
+
+
+function: NtRemoveIoCompletion
+        77f67ecc b88d000000       mov     eax,0x8d
+        77f67ed1 8d542404         lea     edx,[esp+0x4]
+ss:0296e95f=????????
+        77f67ed5 cd2e             int     2e
+        77f67ed7 c21400           ret     0x14
+        77f67eda 8bc0             mov     eax,eax
+
+*----&gt; Stack Back Trace &lt;----*
+
+FramePtr ReturnAd Param#1  Param#2  Param#3  Param#4  Function Name
+0170ff84 5de99532 00000110 0170ffb0 0170ffb4 0170ffac ntdll!NtRemoveIoCompletion
+0170ffb8 77f04f32 abcdef01 776a2254 00000028 abcdef01
+jnfocomm!AtqPostCompletionStatus (FPO: Non-FPO [1,4,3])
+0170ffec 00000000 00000000 00000000 00000000 00000000 kernel32!lstrcmpiW
+00000000 00000000 00000000 00000000 00000000 00000000 inetinfo!&lt;nosymbols&gt;
+
+State Dump for Thread Id 0x92
+
+eax=00000102 ebx=abcdef01 ecx=00000102 edx=00000000 esi=00000000 edi=00000001
+eip=77f67ed7 esp=0180ff58 ebp=0180ff84 iopl=0         ov up ei pl nz na po cy
+cs=001b  ss=0023  ds=0023  es=0023  fs=0038  gs=0000             efl=00000a07
+
+
+function: NtRemoveIoCompletion
+        77f67ecc b88d000000       mov     eax,0x8d
+        77f67ed1 8d542404         lea     edx,[esp+0x4]
+ss:02a6e95f=????????
+        77f67ed5 cd2e             int     2e
+        77f67ed7 c21400           ret     0x14
+        77f67eda 8bc0             mov     eax,eax
+
+*----&gt; Stack Back Trace &lt;----*
+
+FramePtr ReturnAd Param#1  Param#2  Param#3  Param#4  Function Name
+0180ff84 5de99532 00000110 0180ffb0 0180ffb4 0180ffac ntdll!NtRemoveIoCompletion
+0180ffb8 77f04f32 abcdef01 776a2254 00000028 abcdef01
+jnfocomm!AtqPostCompletionStatus (FPO: Non-FPO [1,4,3])
+0180ffec 00000000 00000000 00000000 00000000 00000000 kernel32!lstrcmpiW
+00000000 00000000 00000000 00000000 00000000 00000000 inetinfo!&lt;nosymbols&gt;
+
+State Dump for Thread Id 0x93
+
+eax=00000000 ebx=00000000 ecx=00335f00 edx=00000000 esi=00000128 edi=0190ff74
+eip=77f6823b esp=0190ff58 ebp=0190ff7c iopl=0         nv up ei pl nz na po nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=0038  gs=0000             efl=00000206
+
+
+function: ZwWaitForSingleObject
+        77f68230 b8c5000000       mov     eax,0xc5
+        77f68235 8d542404         lea     edx,[esp+0x4]
+ss:02b6e95f=????????
+        77f68239 cd2e             int     2e
+        77f6823b c20c00           ret     0xc
+        77f6823e 8bc0             mov     eax,eax
+
+*----&gt; Stack Back Trace &lt;----*
+
+FramePtr ReturnAd Param#1  Param#2  Param#3  Param#4  Function Name
+0190ff7c 77f04f8b 00000128 00007530 00000000 5dea3128
+ntdll!ZwWaitForSingleObject
+0190ffb8 77f04f32 00000000 0000007c 00000092 00000000
+kernel32!WaitForSingleObject
+0190ffec 00000000 00000000 00000000 00000000 00000000 kernel32!lstrcmpiW
+00000000 00000000 00000000 00000000 00000000 00000000 inetinfo!&lt;nosymbols&gt;
+
+State Dump for Thread Id 0x94
+
+eax=0730ed1d ebx=00000000 ecx=00000001 edx=00000000 esi=00000128 edi=01a0ff74
+eip=77f6823b esp=01a0ff58 ebp=01a0ff7c iopl=0         nv up ei pl nz na po nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=0038  gs=0000             efl=00000206
+
+
+function: ZwWaitForSingleObject
+        77f68230 b8c5000000       mov     eax,0xc5
+        77f68235 8d542404         lea     edx,[esp+0x4]
+ss:02c6e95f=????????
+        77f68239 cd2e             int     2e
+        77f6823b c20c00           ret     0xc
+        77f6823e 8bc0             mov     eax,eax
+
+*----&gt; Stack Back Trace &lt;----*
+
+FramePtr ReturnAd Param#1  Param#2  Param#3  Param#4  Function Name
+01a0ff7c 77f04f8b 00000128 00007530 00000000 5dea3128
+ntdll!ZwWaitForSingleObject
+01a0ffb8 77f04f32 00000000 0000007c 00000092 00000000
+kernel32!WaitForSingleObject
+01a0ffec 00000000 00000000 00000000 00000000 00000000 kernel32!lstrcmpiW
+00000000 00000000 00000000 00000000 00000000 00000000 inetinfo!&lt;nosymbols&gt;
+
+State Dump for Thread Id 0x95
+
+eax=77e260ba ebx=00158ba0 ecx=00000000 edx=00000000 esi=00000000 edi=00158ad0
+eip=77f67f07 esp=01b0fe44 ebp=01b0ff90 iopl=0         nv up ei pl nz na po nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=0038  gs=0000             efl=00000206
+
+
+function: ZwReplyWaitReceivePort
+        77f67efc b890000000       mov     eax,0x90
+        77f67f01 8d542404         lea     edx,[esp+0x4]
+ss:02d6e84b=????????
+        77f67f05 cd2e             int     2e
+        77f67f07 c21000           ret     0x10
+        77f67f0a 8bc0             mov     eax,eax
+
+*----&gt; Stack Back Trace &lt;----*
+
+FramePtr ReturnAd Param#1  Param#2  Param#3  Param#4  Function Name
+01b0ff90 77e25cad 77e2604d 00158ad0 01b0ffec 00000000
+ntdll!ZwReplyWaitReceivePort
+00003a98 00000000 00000000 00000000 00000000 00000000 rpcrt4!NdrOleAllocate
+
+State Dump for Thread Id 0x96
+
+eax=77e260ba ebx=00158d94 ecx=00158e40 edx=00000000 esi=00158d84 edi=000003e8
+eip=77f6822b esp=01c0feec ebp=01c0ff2c iopl=0         nv up ei pl nz na pe nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=0038  gs=0000             efl=00000202
+
+
+function: ZwWaitForMultipleObjects
+        77f68220 b8c4000000       mov     eax,0xc4
+        77f68225 8d542404         lea     edx,[esp+0x4]
+ss:02e6e8f3=????????
+        77f68229 cd2e             int     2e
+        77f6822b c21400           ret     0x14
+        77f6822e 8bc0             mov     eax,eax
+
+*----&gt; Stack Back Trace &lt;----*
+
+FramePtr ReturnAd Param#1  Param#2  Param#3  Param#4  Function Name
+01c0ff2c 77e279df 00158d84 01c0ff58 01c0ff88 01c0ff84
+ntdll!ZwWaitForMultipleObjects
+01c0ff60 77e294f9 01c0ff8c 01c0ff88 01c0ff84 00141ebc rpcrt4!RpcTestCancel
+01c0ff90 77e29436 77e2604d 00158ca8 01c0ffec 00158e40
+rpcrt4!I_RpcTransServerReallocBuffer
+00003a98 00000000 00000000 00000000 00000000 00000000
+rpcrt4!I_RpcTransServerReallocBuffer
+
+*----&gt; Raw Stack Dump &lt;----*
+01c0feec  e9 12 e0 77 02 00 00 00 - 18 ff c0 01 01 00 00 00  ...w............
+01c0fefc  00 00 00 00 00 00 00 00 - 00 00 00 00 a8 8c 15 00  ................
+01c0ff0c  30 30 e0 77 00 00 00 00 - 00 00 00 00 fc 00 00 00  00.w............
+01c0ff1c  54 01 00 00 00 00 00 00 - 00 00 00 00 00 00 00 00  T...............
+01c0ff2c  60 ff c0 01 df 79 e2 77 - 84 8d 15 00 58 ff c0 01  `....y.w....X...
+01c0ff3c  88 ff c0 01 84 ff c0 01 - ff ff ff ff bc 1e 14 00  ................
+01c0ff4c  a8 8c 15 00 b0 8e 15 00 - 00 00 00 00 00 00 00 00  ................
+01c0ff5c  00 00 00 00 90 ff c0 01 - f9 94 e2 77 8c ff c0 01  ...........w....
+01c0ff6c  88 ff c0 01 84 ff c0 01 - bc 1e 14 00 88 8e 15 00  ................
+01c0ff7c  b0 8e 15 00 00 00 00 00 - 00 00 00 00 00 00 00 00  ................
+01c0ff8c  00 00 00 00 98 3a 00 00 - 36 94 e2 77 4d 60 e2 77  .....:..6..wM`.w
+01c0ff9c  a8 8c 15 00 ec ff c0 01 - 40 8e 15 00 b0 8e 15 00  ........&#64;.......
+01c0ffac  b0 8e 15 00 d1 60 e2 77 - 88 8e 15 00 98 67 f6 77  .....`.w.....g.w
+01c0ffbc  32 4f f0 77 b0 8e 15 00 - 40 8e 15 00 98 67 f6 77  2O.w....&#64;....g.w
+01c0ffcc  b0 8e 15 00 98 67 f6 77 - c4 ff c0 01 22 00 24 00  .....g.w....&quot;.$.
+01c0ffdc  ff ff ff ff 5c ae f3 77 - d0 c1 f3 77 00 00 00 00  ....\..w...w....
+01c0ffec  00 00 00 00 00 00 00 00 - ba 60 e2 77 b0 8e 15 00  .........`.w....
+01c0fffc  00 00 00 00 b0 00 00 00 - 00 01 00 00 ff ee ff ee  ................
+01c1000c  02 10 00 00 00 00 00 00 - 00 fe 00 00 00 00 10 00  ................
+01c1001c  00 20 00 00 00 02 00 00 - 00 20 00 00 b7 01 00 00  . ....... ......
+
+State Dump for Thread Id 0x97
+
+eax=000000c0 ebx=0211ff58 ecx=00000000 edx=00000000 esi=7ffdf000 edi=00000000
+eip=77f6822b esp=0211ff34 ebp=0211ff88 iopl=0         nv up ei pl nz ac pe cy
+cs=001b  ss=0023  ds=0023  es=0023  fs=003b  gs=0000             efl=00000213
+
+
+function: ZwWaitForMultipleObjects
+        77f68220 b8c4000000       mov     eax,0xc4
+        77f68225 8d542404         lea     edx,[esp+0x4]
+ss:0337e93b=????????
+        77f68229 cd2e             int     2e
+        77f6822b c21400           ret     0x14
+        77f6822e 8bc0             mov     eax,eax
+
+*----&gt; Stack Back Trace &lt;----*
+
+FramePtr ReturnAd Param#1  Param#2  Param#3  Param#4  Function Name
+0211ff88 53986a9d 00000002 0211ffb4 00000000 ffffffff
+ntdll!ZwWaitForMultipleObjects
+0020c098 00000001 0020c0a0 0020c0a0 00000000 00000103
+infocomm!ReadRegistryString
+
+State Dump for Thread Id 0x98
+
+eax=5de95425 ebx=0221ff58 ecx=00000f56 edx=00000000 esi=7ffdf000 edi=00000000
+eip=77f6822b esp=0221ff34 ebp=0221ff88 iopl=0         nv up ei pl nz ac pe cy
+cs=001b  ss=0023  ds=0023  es=0023  fs=0038  gs=0000             efl=00000213
+
+
+function: ZwWaitForMultipleObjects
+        77f68220 b8c4000000       mov     eax,0xc4
+        77f68225 8d542404         lea     edx,[esp+0x4]
+ss:0347e93b=4ea64da6
+        77f68229 cd2e             int     2e
+        77f6822b c21400           ret     0x14
+        77f6822e 8bc0             mov     eax,eax
+
+*----&gt; Stack Back Trace &lt;----*
+
+FramePtr ReturnAd Param#1  Param#2  Param#3  Param#4  Function Name
+0221ff88 5de95502 00000002 0221ffb4 00000000 ffffffff
+ntdll!ZwWaitForMultipleObjects
+0221ffb8 77f04f32 00159a48 8068b747 00159a40 00159a48
+jnfocomm!TS_OPEN_FILE_INFO::SetHttpInfo  (FPO: [EBP 0x0221ffec] [1,2,4])
+0221ffec 00000000 5de95425 00159a48 00000000 00000000 kernel32!lstrcmpiW
+00000000 00000000 00000000 00000000 00000000 00000000 inetinfo!&lt;nosymbols&gt;
+
+*----&gt; Raw Stack Dump &lt;----*
+0221ff34  b9 c6 f1 77 02 00 00 00 - 58 ff 21 02 01 00 00 00  ...w....X.!.....
+0221ff44  01 00 00 00 00 00 00 00 - 38 bd 15 00 48 9a 15 00  ........8...H...
+0221ff54  30 9e ea 5d 90 01 00 00 - 94 01 00 00 df 0f 00 00  0..]............
+0221ff64  01 00 00 00 38 bd 15 00 - 48 9a 15 00 44 b4 15 00  ....8...H...D...
+0221ff74  00 00 00 00 b4 f9 b8 00 - 40 b4 15 00 00 00 00 00  ........&#64;.......
+0221ff84  01 00 00 00 40 b4 15 00 - 02 55 e9 5d 02 00 00 00  ....&#64;....U.]....
+0221ff94  b4 ff 21 02 00 00 00 00 - ff ff ff ff 01 00 00 00  ..!.............
+0221ffa4  ec ff 21 02 47 b7 68 80 - 40 9a 15 00 48 9a 15 00  ..!.G.h.&#64;...H...
+0221ffb4  90 01 00 00 94 01 00 00 - 32 4f f0 77 48 9a 15 00  ........2O.wH...
+0221ffc4  47 b7 68 80 40 9a 15 00 - 48 9a 15 00 40 9a 15 00  G.h.&#64;...H...&#64;...
+0221ffd4  c4 ff 21 02 48 9a 15 00 - ff ff ff ff 5c ae f3 77  ..!.H.......\..w
+0221ffe4  d0 c1 f3 77 00 00 00 00 - 00 00 00 00 00 00 00 00  ...w............
+0221fff4  25 54 e9 5d 48 9a 15 00 - 00 00 00 00 00 00 00 00  %T.]H...........
+02220004  f4 0b 1c 00 a8 0b 23 03 - 48 0b 23 03 00 00 00 00  ......#.H.#.....
+02220014  00 00 00 00 00 00 00 00 - 00 00 00 00 00 00 00 00  ................
+02220024  8c 63 1b 00 88 04 55 03 - 08 05 22 02 00 00 00 00  .c....U...&quot;.....
+02220034  00 00 00 00 00 00 00 00 - 00 00 00 00 00 00 00 00  ................
+02220044  fc 9b 19 00 08 07 23 03 - 48 09 23 03 00 00 00 00  ......#.H.#.....
+02220054  00 00 00 00 00 00 00 00 - 00 00 00 00 00 00 00 00  ................
+02220064  08 70 30 00 88 00 22 02 - e8 0f 71 00 00 00 00 00  .p0...&quot;...q.....
+
+State Dump for Thread Id 0x9b
+
+eax=77e260ba ebx=0015c398 ecx=74ff1b3e edx=00000000 esi=00000000 edi=0015c2c8
+eip=77f67f07 esp=0232fe44 ebp=0232ff90 iopl=0         nv up ei pl nz na po nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=0038  gs=0000             efl=00000206
+
+
+function: ZwReplyWaitReceivePort
+        77f67efc b890000000       mov     eax,0x90
+        77f67f01 8d542404         lea     edx,[esp+0x4]
+ss:0358e84b=????????
+        77f67f05 cd2e             int     2e
+        77f67f07 c21000           ret     0x10
+        77f67f0a 8bc0             mov     eax,eax
+
+*----&gt; Stack Back Trace &lt;----*
+
+FramePtr ReturnAd Param#1  Param#2  Param#3  Param#4  Function Name
+0232ff90 77e25cad 77e2604d 0015c2c8 0232ffec 74ff1a97
+ntdll!ZwReplyWaitReceivePort
+00003a98 00000000 00000000 00000000 00000000 00000000 rpcrt4!NdrOleAllocate
+
+State Dump for Thread Id 0x9c
+
+eax=77e260ba ebx=0015a9bc ecx=0015aa10 edx=00000000 esi=0015a9ac edi=000003e8
+eip=77f6822b esp=0242feec ebp=0242ff2c iopl=0         nv up ei pl</pre></div><div class="change-set" id="a58609_1671"><div class="change" id="aa58609_1671">
+    <table class="layout-table change-head assignee" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_1671" id="a58609_1671"><img src="https://secure.gravatar.com/avatar/8bad0592ff413d472c89281100e3454d?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_1671" id="a58609_1671"><a class="email disabled" href="/user_profile?user_id=1671" > <span class="fna">Garrett Arch Blythe</span></a>
+</div>
+            <span class="user-role">Assignee</span>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a58609_1671"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a58609_1671">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=1343#a58609_1671">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1998-11-11 09:39 PST" data-time="910805962">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Status: NEW &rarr; RESOLVED</div><div class="change">Closed: <span class="rel-time" title="1998-11-11 09:39 PST" data-time="910805962">22 years ago</span></div><div class="change">Resolution: --- &rarr; WONTFIX</div></div></div><div class="change-set" id="c1"><div class="comment" data-id="6612" data-no="1"
+       data-tags="">
+    
+    <table class="layout-table change-head assignee" id="ch-1" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_1671" id="a58609_1671"><img src="https://secure.gravatar.com/avatar/8bad0592ff413d472c89281100e3454d?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_1671" id="a58609_1671"><a class="email disabled" href="/user_profile?user_id=1671" > <span class="fna">Garrett Arch Blythe</span></a>
+</div>
+            <span class="user-role">Assignee</span>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-1"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-1" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=1343#c1">Comment 1</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1998-11-11 09:39 PST" data-time="910805999">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-1">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-1" data-comment-id="6612">5.0 mozilla winFE is dead.
+If this is a NGLayout browser, assign to NGLayout engineer.</pre></div><div class="change-set" id="a9479983_3853"><div class="change" id="aa9479983_3853">
+    <table class="layout-table change-head " role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_3853" id="a9479983_3853"><img src="https://secure.gravatar.com/avatar/715f1344e52ba783e2f3d133a958bef4?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+        <td class="change-author"><div class="vcard vcard_3853" id="a9479983_3853"><a class="email disabled" href="/user_profile?user_id=3853" > <span class="fna">leger</span></a>
+</div>
+        </td>
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="as-a9479983_3853"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+      <tr id="ar-a9479983_3853">
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=1343#a9479983_3853">Updated</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-02-28 10:42 PST" data-time="920227336">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><div class="activity"><div class="change">Status: RESOLVED &rarr; VERIFIED</div></div></div><div class="change-set" id="c2"><div class="comment" data-id="6613" data-no="2"
+       data-tags="">
+    
+    <table class="layout-table change-head " id="ch-2" role="presentation">
+      <tr>
+        <td rowspan="2" class="change-gravatar"><div class="vcard vcard_3853" id="a9479983_3853"><img src="https://secure.gravatar.com/avatar/715f1344e52ba783e2f3d133a958bef4?d=mm&size=64" class="gravatar" width="32" height="32">
+</div>
+        </td>
+
+        <td class="change-author"><div class="vcard vcard_3853" id="a9479983_3853"><a class="email disabled" href="/user_profile?user_id=3853" > <span class="fna">leger</span></a>
+</div>
+        </td>
+
+        <td rowspan="2" class="comment-actions"><div role="group">
+          <button type="button" class="change-spinner minor iconic" id="cs-2"
+                  aria-label="Collapse" aria-expanded="true"
+                  data-strings='{ "collapse_label": "Collapse", "expand_label": "Expanded" }'>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+        </div></td>
+      </tr>
+
+      <tr id="cr-2" >
+        <td>
+          <h3 class="change-name">
+            <a href="/show_bug.cgi?id=1343#c2">Comment 2</a>
+          </h3>
+          &bull;
+          <div class="change-time"><span class="rel-time" title="1999-02-28 10:42 PST" data-time="920227379">22 years ago</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="ctag-2">
+        <td colspan="2" class="comment-tags">
+        </td>
+      </tr>
+    </table>
+
+    
+  </div><pre
+        class="comment-text  "
+        id="ct-2" data-comment-id="6613">Old bug...marking Verified/Won't Fix.  micha...go get this the latest mozilla
+source at www.mozilla.org!</pre></div><div id="new-comment-notice">
+          You need to <a href="/show_bug.cgi?id=1343&amp;GoAheadAndLogIn=1">log in</a>
+          before you can comment on or make changes to this bug.
+        </div>
+
+
+
+<div id="bottom-actions">
+  <div id="bottom-right-actions">
+    <button type="button" id="top-btn" class="secondary" aria-label="Go to Page Top">Top &uarr;</button>
+  </div>
+</div></div> 
+</main> 
+</div> 
+
+
+</body>
+</html>
